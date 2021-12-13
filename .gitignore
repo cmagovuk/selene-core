@@ -1,0 +1,16 @@
+*.ipynb_checkpoints
+*.log
+*.png
+*.egg-info
+*.egg
+*.pyc
+*.pyo
+*.ipynb
+*.lock
+*.dirlock
+*.csv
+*.parquet
+*.pdf
+
+/vignettes/**/*.Rmd
+/selene/**/*.Rmd
