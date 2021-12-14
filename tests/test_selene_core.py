@@ -25,6 +25,17 @@ def test_crawler_logging():
 def test_crawler_screenshot():
     crawler = Crawler()
     driver = get_driver()
-    assert crawler.screenshot_to_notebook(driver)
+    assert crawler.screenshot_to_notebook(driver) is None
+    
+def test_element_init():
+    el = "test_element"
+    logger = get_logger()
+    element = Element(el, logger)
+    assert element.element == "test_element"
+    
+def test_element_logging():
+    el = "test_element"
+    element = Element(el, logger = get_logger())
+    assert element.log('test') is None    
 
 
