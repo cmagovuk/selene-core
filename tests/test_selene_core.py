@@ -18,14 +18,17 @@ from selene.core.selenium.driver import *
 def test_crawler_init():
     assert Crawler() is not None
     
+    
 def test_crawler_logging():
     crawler = Crawler()
     assert crawler.log('test') is None
+    
     
 def test_crawler_screenshot():
     crawler = Crawler()
     driver = get_driver()
     assert crawler.screenshot_to_notebook(driver) is None
+    
     
 def test_element_init():
     el = "test_element"
@@ -33,9 +36,25 @@ def test_element_init():
     element = Element(el, logger)
     assert element.element == "test_element"
     
+    
 def test_element_logging():
     el = "test_element"
     element = Element(el, logger = get_logger())
-    assert element.log('test') is None    
+    assert element.log('test') is None
+    
+    
+def test_logger_init():
+    logger = get_logger()
+    assert logger is not None
+    
+    
+def test_logger_to_file():
+    logger = get_logger(to_file=True, 
+                        dirpath=".",
+                        filename ="test_logger.log")
+    crawler = Crawler()
+    crawler.log('test')
+    assert os.path.isfile("./test_logger.log")
+    
 
 
