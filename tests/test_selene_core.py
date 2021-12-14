@@ -51,9 +51,27 @@ def test_logger_init():
 def test_logger_to_file():
     logger = get_logger(to_file=True, 
                         dirpath=".",
-                        filename ="test_logger.log")
+                        filename ="test_logger.log",
+                        overwrite=True)
     crawler = Crawler()
     crawler.log('test')
+    assert os.path.isfile("./test_logger.log")
+    
+
+def test_page_init():
+    test_url = "https://www.scrapethissite.com/"
+    page = Page(url=test_url, logger = get_logger())
+    assert page is not None
+    
+
+def test_page_logging():
+    test_url = "https://www.scrapethissite.com/"
+    logger = get_logger(to_file=True, 
+                        dirpath=".",
+                        filename ="test_logger.log",
+                        overwrite=True)
+    page = Page(url=test_url, logger = logger)
+    page.log('test log message')
     assert os.path.isfile("./test_logger.log")
     
 
