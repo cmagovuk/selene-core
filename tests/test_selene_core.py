@@ -1,6 +1,7 @@
 import sys
 import os
 import pytest
+import time
 
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import NoSuchElementException, TimeoutException
@@ -14,6 +15,7 @@ from selene.core.page import *
 from selene.core.utils import *
 
 from selene.core.selenium.driver import *
+
 
 def test_crawler_init():
     assert Crawler() is not None
@@ -75,4 +77,25 @@ def test_page_logging():
     assert os.path.isfile("./test_logger.log")
     
 
+def test_utils_get_domain():
+    url = "https://www.scrapethissite.com/"
+    assert get_domain(url) == "www.scrapethissite.com"
+    
+    
+def test_random_wait():
+    def test_func():
+        print("test function")   
+    
+    start_time = time.time()
+      
+    random_wait(_func = test_func(), seconds_min=2, seconds_max=3)
+    
+    end_time = time.time()
+    time_elapsed = end_time - start_time
+    assert time_elapsed > 2
+      
+
+def test_validate_url():
+    url = "https://www.scrapethissite.com/"
+    assert validateUrl(url) is True
 
