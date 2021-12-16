@@ -24,10 +24,30 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
+      
+      - name: Extract branch name
+        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+        id: extract_branch
+        
+      - name: Get Token
+        uses: cmagovuk/github-app-installation-token-action@v2
+        id: installationToken
+        with: 
+          appId: ${{ secrets.TALOS_V2_APP_ID }}
+          installationId: ${{secrets.TALOS_V2_INSTALLATION_ID }}
+          privateKey: ${{ secrets.TALOS_V2_PRIVATE_KEY }}
+          
+      - name: Setup git
+        run: |
+          git config --global url."https://github.com/".insteadOf git@github.com:
+          git config --global url."https://".insteadOf git://
+          git config --global url."https://x-access-token:${{ steps.installationToken.outputs.token }}@github.com/".insteadOf "https://github.com/"
+      
+      # Set up python using default action
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
         
       # Install / upgrade tox for testing
       - name: Install testing dependencies
