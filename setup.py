@@ -2,6 +2,7 @@ from setuptools import setup, find_packages
 from setuptools.command import easy_install
 
 REQUIREMENTS = [
+    "numpy",
     "selenium",
     "beautifulsoup4",
     "lxml"
