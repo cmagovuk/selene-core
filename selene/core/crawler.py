@@ -1,8 +1,6 @@
-# %%
 from selene.core.logger import get_logger
 
 
-# %%
 class Crawler:
     """
     A parent crawler class to assist any worflow.
