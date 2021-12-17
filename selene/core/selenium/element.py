@@ -6,7 +6,7 @@ from selene.core.selenium.conditions import *
 
 class ElementSelene(Element):
     """
-    A n element class to wrap a selenium.webdriver.remote.webelement.WebElement object,
+    An element class to wrap a selenium.webdriver.remote.webelement.WebElement object,
     in order to:
         - provide extra functionality
         - make it easier to crawlers to change between handling

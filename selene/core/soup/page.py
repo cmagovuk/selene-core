@@ -1,18 +1,14 @@
-# %%
 import os
 import time
 import requests
 from datetime import datetime
 from bs4 import BeautifulSoup
 
-# %%
 from ..page import *
 from ..config import *
 
-# %%
 from .element import ElementSoup, ElementSoupBlank
 
-# %%
 class PageSoup(Page):
     """
     A page class to assist any workflow which requires BeautifulSoup.
