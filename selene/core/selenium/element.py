@@ -1,11 +1,9 @@
-# %%
 from selene.core.element import Element
 from selene.core.selenium.tasks import *
 from selene.core.selenium.scripts import *
 from selene.core.selenium.conditions import *
 
 
-# %%
 class ElementSelene(Element):
     """
     A n element class to wrap a selenium.webdriver.remote.webelement.WebElement object,
