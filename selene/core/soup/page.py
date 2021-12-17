@@ -90,6 +90,19 @@ class PageSoup(Page):
             return cls(url, soup, logger)
 
     def find(self, *args, **kwargs):
+        """
+        Find and return specific a specific element within the page html 
+        
+        Parameters
+        ----------
+            element : str
+                the type of html element searched for e.g. 'div'
+            attributes : dict
+                attributes of the searched element e.g. {"class": "text-1"}
+        Returns
+        ----------
+            el : ElementSoup
+        """
         self.log(f'find: {"; ".join([str(arg) for arg in [*args]])}')
         el = self.soup.find(*args, **kwargs)
         if el is None:
@@ -99,6 +112,20 @@ class PageSoup(Page):
         return ElementSoup(el, self.logger)
 
     def find_all(self, *args, **kwargs):
+        """
+        Find and return all elements within the page html that meet the given criteria 
+        
+        Parameters
+        ----------
+            element : str
+                the type of html element searched for e.g. 'div'
+            attributes : dict
+                attributes of the searched element e.g. {"class": "text-1"}
+        Returns
+        ----------
+            els : list
+                all  ElementSoup that meet criteria 
+        """
         self.log(f'find_all: {"; ".join([str(arg) for arg in [*args]])}')
         els = []
         for el in self.soup.find_all(*args, **kwargs):
