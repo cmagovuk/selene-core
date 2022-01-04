@@ -6,14 +6,18 @@ from selenium.common.exceptions import TimeoutException
 
 from selene.core.config import *
 from selene.core.selenium.scripts import *
+from selene.core.selenium.driver import *
+from selene.core.selenium.page import *
 
 # initialise the driver
 driver = get_driver()
+url = "https://www.scrapethissite.com/"
+page = PageSelene.from_url(driver=driver, url = url)
 
 # TEST CONDITIONS
 
 def test_bool_url_changed():
-    assert True
+    assert bool_url_changed(driver, wait=3, logger=None, url = url) == False
     
 def test_bool_url_expected():
     assert True
