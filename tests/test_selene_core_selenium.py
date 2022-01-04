@@ -14,8 +14,6 @@ driver = get_driver()
 url = "https://www.scrapethissite.com/"
 page = PageSelene.from_url(driver=driver, url = url)
 
-# TEST CONDITIONS
-
 def test_bool_url_changed():
     assert bool_url_changed(driver, wait=1, logger=None, url = url) == False
     
@@ -33,16 +31,19 @@ def test_bool_url_does_not_contain():
     assert bool_url_does_not_contain(driver, wait=1, logger=None, string = "scrape") == False
     
 def test_bool_visible():
-    assert True
+    assert bool_visible(driver, by = By.ID, identifier = 'nav-homepage', wait = 1) == True
     
 def test_bool_invisible():
-    assert True
+    assert bool_invisible(driver, by = By.ID, identifier = 'nav-homepage', wait = 1) == False
     
 def test_bool_clickable():
-    assert True
+    assert bool_clickable(driver, by = By.CLASS_NAME, identifier = 'btn btn-lg btn-default', wait = 1) == False
     
 def test_bool_yoffset_changed():
-    assert True
+    page = PageSelene.from_url(driver=driver, url = "https://www.scrapethissite.com/pages/simple/")
+    orig_offset = driver.execute_script("return window.pageYOffset")
+    page.scroll_down(driver, wait = 1)
+    assert bool_yoffset_changed(driver, wait = 1, yoffset = orig_offset, logger = None) == True
     
 def test_bool_scroll_position_changed():
     assert True
