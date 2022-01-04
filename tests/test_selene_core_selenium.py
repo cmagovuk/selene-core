@@ -17,19 +17,20 @@ page = PageSelene.from_url(driver=driver, url = url)
 # TEST CONDITIONS
 
 def test_bool_url_changed():
-    assert bool_url_changed(driver, wait=3, logger=None, url = url) == False
+    assert bool_url_changed(driver, wait=1, logger=None, url = url) == False
     
 def test_bool_url_expected():
-    assert True
+    assert bool_url_expected(driver, wait=1, logger=None, url = url) == True
     
 def test_bool_url_unexpected():
-    assert True
+    alt_url = "https://www.scrapethissite.com/pages/simple/"
+    assert bool_url_unexpected(driver, wait=1, logger=None, url = alt_url) == True
     
 def test_bool_url_contains():
-    assert True
+    assert bool_url_contains(driver, wait=1, logger=None, string = "scrape") == True
     
 def test_bool_url_does_not_contain():
-    assert True
+    assert bool_url_does_not_contain(driver, wait=1, logger=None, string = "scrape") == False
     
 def test_bool_visible():
     assert True
