@@ -3,6 +3,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.common.exceptions import TimeoutException
+from selenium.webdriver.support.ui import Select
 
 from selene.core.config import *
 from selene.core.selenium.scripts import *
@@ -46,10 +47,17 @@ def test_bool_yoffset_changed():
     assert bool_yoffset_changed(driver, wait = 1, yoffset = orig_offset, logger = None) == True
     
 def test_bool_scroll_position_changed():
-    assert True
+    page = PageSelene.from_url(driver=driver, url = "http://www.scrapethissite.com/pages/frames/")
+    el = page.find(driver, by = By.ID, identifier = 'iframe')
+    orig_pos = script_get_scroll_position(driver, el)
+    el.scroll_to_bottom(driver)
+    assert bool_scroll_position_changed(driver, element = el, wait = 1, position = orig_pos) == True
     
 def test_bool_scroll_height_changed():
-    assert True
+    page = PageSelene.from_url(driver=driver, url = "http://www.scrapethissite.com/pages/forms/")
+    orig_height = script_get_scroll_height(driver)
+    Select(driver.find_element_by_xpath('//*[@id="per_page"]')).select_by_value('100')
+    assert bool_scroll_height_changed(driver, wait = 1, logger = None, height = orig_height) == True
     
 def test_bool_element_class_contains():
     assert True
