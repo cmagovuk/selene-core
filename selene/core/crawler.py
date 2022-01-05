@@ -1,4 +1,5 @@
 from selene.core.logger import get_logger
+from selene.core.selenium.tasks import task_screenshot_to_notebook
 
 
 class Crawler:
