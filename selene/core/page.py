@@ -1,8 +1,6 @@
-# %%
 from .utils import *
 
 
-# %%
 class Page:
     """
     A parent Page class. Both PageSelene and PageSoup inherit this class.

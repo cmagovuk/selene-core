@@ -1,10 +1,8 @@
-# %%
 import os
 import sys
 import logging
 
 
-# %%
 def get_logger(
     name="log",
     level="INFO",

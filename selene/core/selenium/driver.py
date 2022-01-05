@@ -1,15 +1,12 @@
-# %%
 import os
 import time
 import numpy as np
 from selenium import webdriver
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 
-# %%
 from selene.core.config import *
 
 
-# %%
 def get_driver(width=2560, height=1440, user_agent='default', incognito=False):
     """
     Get an instance of selenium.webdriver and start browser
@@ -59,7 +56,6 @@ def get_driver(width=2560, height=1440, user_agent='default', incognito=False):
     return driver
 
 
-# %%
 def stop_driver(driver):
     """
     Stop and close the selenium.webdriver instance
@@ -73,7 +69,6 @@ def stop_driver(driver):
     driver.quit()
 
 
-# %%
 def restart_driver(driver, wait=WAIT_BIG):
     """
     Stop and close the selenium.webdriver instance, wait for a specified
@@ -94,7 +89,6 @@ def restart_driver(driver, wait=WAIT_BIG):
     return get_driver()
 
 
-# %%
 def get_user_agent(i):
     """
     Get a specific user agent string from core.config.USER_AGENTS
@@ -112,7 +106,6 @@ def get_user_agent(i):
     return USER_AGENTS[i]
 
 
-# %%
 def get_user_agent_random():
     """
     Get a random user agent string from core.config.USER_AGENTS

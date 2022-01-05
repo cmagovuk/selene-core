@@ -1,11 +1,9 @@
-# %%
 import re
 import time
 import functools
 import numpy as np
 
 
-# %%
 def get_domain(url):
     """
     Get the domain of a web url. Pretty rudimentary - there might be edge cases.
@@ -26,7 +24,6 @@ def get_domain(url):
         return url.split("http://")[1].split("/")[0]
 
 
-# %%
 def random_wait(_func=None, *, seconds_min=0, seconds_max=1):
     """
     Wraps core.Page, core.selenium.Page and core.Soup.Page functions in order to
@@ -56,8 +53,6 @@ def random_wait(_func=None, *, seconds_min=0, seconds_max=1):
         return decorator_random_wait(_func)
 
 
-# %%
-#validate the url
 def validateUrl(url):
     # Regex to check for a valid URL
     reg_exp = ("((http|https)://)(www.)?" +
