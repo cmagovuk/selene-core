@@ -38,7 +38,7 @@ def test_bool_invisible():
     assert bool_invisible(driver, by = By.ID, identifier = 'nav-homepage', wait = 1) == False
     
 def test_bool_clickable():
-    assert bool_clickable(driver, by = By.CLASS_NAME, identifier = 'btn btn-lg btn-default', wait = 1) == False
+    assert bool_clickable(driver, by = By.XPATH, identifier = '//*[@id="hero"]/div/div/div/a[1]', wait = 1) == True
     
 def test_bool_yoffset_changed():
     page = PageSelene.from_url(driver=driver, url = "https://www.scrapethissite.com/pages/simple/")
@@ -57,16 +57,21 @@ def test_bool_scroll_height_changed():
     page = PageSelene.from_url(driver=driver, url = "http://www.scrapethissite.com/pages/forms/")
     orig_height = script_get_scroll_height(driver)
     Select(driver.find_element_by_xpath('//*[@id="per_page"]')).select_by_value('100')
-    assert bool_scroll_height_changed(driver, wait = 1, logger = None, height = orig_height) == True
+    assert bool_scroll_height_changed(driver, wait = 1, logger = None, height = orig_height) == True      
     
 def test_bool_element_class_contains():
-    assert True
+    test_page = PageSelene.from_url(driver=driver, url = "http://www.scrapethissite.com/pages/")
+    test_element = page.find(driver, by = By.XPATH, identifier = '//*[@id="pages"]/section/div/div/div/div[1]') 
+    assert bool_element_class_contains(driver, element = test_element, wait = 1, logger = None, string = "page") == True
     
 def test_bool_element_class_does_not_contain():
-    assert True    
-    
+    test_page = PageSelene.from_url(driver=driver, url = "http://www.scrapethissite.com/pages/")
+    test_element = page.find(driver, by = By.XPATH, identifier = '//*[@id="pages"]/section/div/div/div/div[1]')
+    assert bool_element_class_does_not_contain(driver, element = test_element, wait = 1, logger = None, string = "test") == True       
 def test_bool_element_text_contains():
-    assert True
+    test_page = PageSelene.from_url(driver=driver, url = "http://www.scrapethissite.com/")
+    test_element = page.find(driver, by = By.XPATH, identifier = '//*[@id="hero"]/div/div/div/a[1]')
+    assert bool_element_text_contains(driver, element = test_element, wait = 1, logger = None, string = "Sandbox") == True
     
 def test_bool_element_text_does_not_contain():
     assert True
