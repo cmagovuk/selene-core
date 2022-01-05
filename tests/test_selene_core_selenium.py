@@ -1,3 +1,5 @@
+import pytest
+
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
@@ -9,6 +11,7 @@ from selene.core.config import *
 from selene.core.selenium.scripts import *
 from selene.core.selenium.driver import *
 from selene.core.selenium.page import *
+from selene.core.selenium.crawler import *
 
 # initialise the driver
 driver = get_driver()
@@ -60,44 +63,45 @@ def test_bool_scroll_height_changed():
     assert bool_scroll_height_changed(driver, wait = 1, logger = None, height = orig_height) == True      
     
 def test_bool_element_class_contains():
-    test_page = PageSelene.from_url(driver=driver, url = "http://www.scrapethissite.com/pages/")
+    page = PageSelene.from_url(driver=driver, url = "http://www.scrapethissite.com/pages/")
     test_element = page.find(driver, by = By.XPATH, identifier = '//*[@id="pages"]/section/div/div/div/div[1]') 
     assert bool_element_class_contains(driver, element = test_element, wait = 1, logger = None, string = "page") == True
     
 def test_bool_element_class_does_not_contain():
-    test_page = PageSelene.from_url(driver=driver, url = "http://www.scrapethissite.com/pages/")
+    page = PageSelene.from_url(driver=driver, url = "http://www.scrapethissite.com/pages/")
     test_element = page.find(driver, by = By.XPATH, identifier = '//*[@id="pages"]/section/div/div/div/div[1]')
-    assert bool_element_class_does_not_contain(driver, element = test_element, wait = 1, logger = None, string = "test") == True       
+    assert bool_element_class_does_not_contain(driver, element = test_element, wait = 1, logger = None, string = "test") == True    
+    
 def test_bool_element_text_contains():
-    test_page = PageSelene.from_url(driver=driver, url = "http://www.scrapethissite.com/")
+    page = PageSelene.from_url(driver=driver, url = "http://www.scrapethissite.com/")
     test_element = page.find(driver, by = By.XPATH, identifier = '//*[@id="hero"]/div/div/div/a[1]')
     assert bool_element_text_contains(driver, element = test_element, wait = 1, logger = None, string = "Sandbox") == True
     
 def test_bool_element_text_does_not_contain():
-    assert True
+    page = PageSelene.from_url(driver=driver, url = "http://www.scrapethissite.com/")
+    test_element = page.find(driver, by = By.XPATH, identifier = '//*[@id="hero"]/div/div/div/a[1]')
+    assert bool_element_text_does_not_contain(driver, element = test_element, wait = 1, logger = None, string = "Sandbox") == False
     
 def test_bool_new_handle():
-    assert True
-    
+    page.new_tab(driver, url = "http://www.scrapethissite.com/")
+    assert bool_new_handle(driver, n_handles_old = 1, wait = 1, logger = None) == True
+      
 def test_bool_correct_handle():
-    assert True
+    # unclear how to write a test for this, how do we define the expected handle
+    pass
     
-# TEST CRAWLER
-
 def test_crawler_init():
-    assert True
+    assert CrawlerSelene() is not None
 
-
-# TEST DRIVER
 def test_get_driver():
-    assert True
+    driver = get_driver()
+    assert driver.name is not None
     
-def test_stop_driver():
-    assert True
-    
-def test_stop_driver():
-    assert True
-    
+def test_stop_driver():   
+    with pytest.raises(Exception):
+        stop_driver()
+        driver.current_url
+
 def test_restart_driver():
     assert True
     
