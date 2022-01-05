@@ -1,9 +1,7 @@
-# %%
 from selene.core.crawler import Crawler
 from selene.core.selenium.tasks import task_screenshot_to_notebook
 
 
-# %%
 class CrawlerSelene(Crawler):
     """
     A crawler class to assist any workflow which requires selenium webdriver.

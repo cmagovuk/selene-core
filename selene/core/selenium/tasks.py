@@ -1,20 +1,16 @@
-# %%
 from IPython.display import Image, display
 
-# %%
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.common.exceptions import TimeoutException, WebDriverException
 
-# %%
 from selene.core.config import *
 from selene.core.selenium.scripts import *
 from selene.core.selenium.conditions import *
 
 
-# %%
 def task_navigate_to_url(driver, url, string="", wait=WAIT_NORMAL, logger=None):
     """
     Navigate to a new url and check that the url is correct.
@@ -65,7 +61,6 @@ def task_navigate_to_url(driver, url, string="", wait=WAIT_NORMAL, logger=None):
         return bool_url_contains(driver, wait, logger, string)
 
 
-# %%
 def task_navigate_to_url_in_new_tab(
     driver, url, string="", wait=WAIT_NORMAL, logger=None
 ):
@@ -127,7 +122,6 @@ def task_navigate_to_url_in_new_tab(
         return bool_url_contains(driver, wait, logger, string)
 
 
-# %%
 def task_close_tab_return_to_url_and_handle(
     driver, url, handle, string="", wait=WAIT_NORMAL, logger=None
 ):
@@ -186,7 +180,6 @@ def task_close_tab_return_to_url_and_handle(
         return bool_url_contains(driver, wait, logger, string)
 
 
-# %%
 def task_find(parent, by, identifier, wait=WAIT_NORMAL, logger=None):
     """
     Find an element using a By. selector and an identifier.
@@ -232,7 +225,6 @@ def task_find(parent, by, identifier, wait=WAIT_NORMAL, logger=None):
         return None
 
 
-# %%
 def task_find_all(parent, by, identifier, wait=WAIT_NORMAL, logger=None):
     """
     Find a list of elements using a By. selector and an identifier.
@@ -279,7 +271,6 @@ def task_find_all(parent, by, identifier, wait=WAIT_NORMAL, logger=None):
     return parent.find_elements(by, identifier)
 
 
-# %%
 def task_click(driver, by, identifier, wait=WAIT_NORMAL, logger=None):
     """
     Click an element using a By. selector and an identifier.
@@ -313,7 +304,6 @@ def task_click(driver, by, identifier, wait=WAIT_NORMAL, logger=None):
     return script_click_element(driver, element)
 
 
-# %%
 def task_screenshot_to_notebook(driver, width, height, logger):
     """
     Display a browser screenshot in a Jupyter notebook.
@@ -335,7 +325,6 @@ def task_screenshot_to_notebook(driver, width, height, logger):
     display(image)
 
 
-# %%
 def task_screenshot_to_local(driver, dirpath, filestem, logger):
     """
     Save a browser screenshot to a local directory

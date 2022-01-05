@@ -1,4 +1,3 @@
-# %%
 class Element:
     """
     A parent Element class. Both ElementSelene and ElementSoup inherit this class.
