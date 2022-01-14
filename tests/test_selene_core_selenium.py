@@ -102,17 +102,51 @@ def test_stop_driver():
         stop_driver()
         driver.current_url
 
-def test_restart_driver():
-    assert True
+# def test_restart_driver():
+#     restart_driver(driver, wait = 20)
+#     assert driver.name is not None
     
 def test_get_user_agent():
-    assert True
+    assert "Mozilla" in get_user_agent(10)
     
 def test_get_user_agent_random():
-    assert True
+    assert get_user_agent_random() is not None
 
-# TEST ELEMENT
+def test_get_text():
+    page = PageSelene.from_url(driver=driver, url = "http://www.scrapethissite.com/pages/")
+    test_element = page.find(driver, by = By.XPATH, identifier = '//*[@id="pages"]/section/div/div/div/div[1]')
+    assert "Countries of the World" in test_element.get_text()
 
+def test_get_parent():
+    page = PageSelene.from_url(driver=driver, url = "http://www.scrapethissite.com/pages/")
+    test_element = page.find(driver, by = By.XPATH, identifier = '//*[@id="pages"]/section/div/div/div/div[1]')
+    assert "Web Scraping Sandbox" in test_element.get_parent(driver).text
+
+def test_find():
+    page = PageSelene.from_url(driver=driver, url = "https://www.scrapethissite.com/pages/simple/")
+    test_element = page.find(driver, by = By.XPATH, identifier = '//*[@id="countries"]/div/div[4]/div[3]')
+    assert test_element.find(By.CLASS_NAME, identifier = "country-name").text == "Afghanistan"
+
+def test_find_all():
+    pass
+
+def test_get_attribute():
+    pass
+
+def test_has_attribute():
+    pass
+
+def test_click():
+    pass
+
+def test_scroll_down():
+    pass
+
+def test_scroll_to():
+    pass
+
+def test_scroll_to_bottom():
+    pass
 
 # TEST PAGE
 
