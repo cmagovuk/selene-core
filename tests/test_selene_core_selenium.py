@@ -128,16 +128,25 @@ def test_find():
     assert test_element.find(By.CLASS_NAME, identifier = "country-name").text == "Afghanistan"
 
 def test_find_all():
-    pass
+    page = PageSelene.from_url(driver=driver, url = "https://www.scrapethissite.com/pages/simple/")
+    test_element = page.find(driver, by = By.XPATH, identifier = '//*[@id="countries"]')
+    countries = test_element.find_all(By.CLASS_NAME, identifier = "country-name")
+    assert len(countries) > 100
 
 def test_get_attribute():
-    pass
+    page = PageSelene.from_url(driver=driver, url = "https://www.scrapethissite.com/pages/simple/")
+    test_element = page.find(driver, by = By.XPATH, identifier = '//*[@id="countries"]/div/div[4]/div[3]')
+    assert test_element.get_attribute("class") == 'col-md-4 country'
 
 def test_has_attribute():
-    pass
+    page = PageSelene.from_url(driver=driver, url = "https://www.scrapethissite.com/pages/frames/")
+    test_element = page.find(driver, by = By.XPATH, identifier = '//*[@id="frames"]/div/div[3]/div[1]')
+    assert test_element.has_attribute("href")
 
 def test_click():
-    pass
+    page = PageSelene.from_url(driver=driver, url = "https://www.scrapethissite.com/pages/frames/")
+    test_element = page.find(driver, by = By.XPATH, identifier = '//*[@id="frames"]/div/div[3]/div[2]/p/a')
+    assert test_element.click(driver)
 
 def test_scroll_down():
     pass
