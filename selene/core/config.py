@@ -1,4 +1,3 @@
-# %%
 # Different waits for WebdriverWait
 WAIT_TINY = 1e-6
 WAIT_SMALL = 1
@@ -6,7 +5,6 @@ WAIT_NORMAL = 10
 WAIT_BIG = 30
 WAIT_HUGE = 300
 
-# %%
 # A long list of user agents to use in the driver
 USER_AGENTS = [
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36",

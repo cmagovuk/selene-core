@@ -1,4 +1,3 @@
-# %%
 import os
 import time
 from datetime import datetime
@@ -8,7 +7,6 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.common.exceptions import TimeoutException, StaleElementReferenceException
 
-# %%
 from selene.core.page import *
 from selene.core.config import *
 from selene.core.selenium.tasks import *
@@ -17,11 +15,9 @@ from selene.core.selenium.scripts import *
 from selene.core.selenium.element import *
 from selene.core.selenium.conditions import *
 
-# %%
 from selene.core.soup.page import PageSoup
 
 
-# %%
 class PageSelene(Page):
     """
     A page class to assist any workflow which requires selenium webdriver.

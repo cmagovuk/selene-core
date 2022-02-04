@@ -1,8 +1,7 @@
-# %%
 from selene.core.logger import get_logger
+from selene.core.selenium.tasks import task_screenshot_to_notebook
 
 
-# %%
 class Crawler:
     """
     A parent crawler class to assist any worflow.

@@ -1,4 +1,3 @@
-# %%
 def script_get_scroll_height(driver, element=None):
     """
     Execute JavaScript to get the scroll height of either:
@@ -25,7 +24,6 @@ def script_get_scroll_height(driver, element=None):
     return driver.execute_script(script, element)
 
 
-# %%
 def script_get_scroll_position(driver, element=None):
     """
     Execute JavaScript to get the scroll position of either:
@@ -52,7 +50,6 @@ def script_get_scroll_position(driver, element=None):
     return driver.execute_script(script, element)
 
 
-# %%
 def script_scroll_to(driver, position, element=None):
     """
     Execute JavaScript to scroll to a position on either:
@@ -81,7 +78,6 @@ def script_scroll_to(driver, position, element=None):
     return driver.execute_script(script, element, position)
 
 
-# %%
 def script_click_element(driver, element):
     """
     Execute JavaScript to click an element
@@ -103,7 +99,6 @@ def script_click_element(driver, element):
     return driver.execute_script(script, element)
 
 
-# %%
 def script_get_parent(driver, element):
     """
     Execute JavaScript to get the parent of an element
@@ -125,7 +120,6 @@ def script_get_parent(driver, element):
     return driver.execute_script(script, element)
 
 
-# %%
 def script_expand_all_by_class_name(
     driver, identifier, attribute, indicator, clickable=None
 ):

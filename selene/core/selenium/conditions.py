@@ -1,16 +1,13 @@
-# %%
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.common.exceptions import TimeoutException
 
-# %%
 from selene.core.config import *
 from selene.core.selenium.scripts import *
 
 
-# %%
 def bool_url_changed(driver, wait, logger, url, message="URL has not changed."):
     """
     Wait a specified number of seconds until either:
@@ -46,7 +43,6 @@ def bool_url_changed(driver, wait, logger, url, message="URL has not changed."):
         return False
 
 
-# %%
 def bool_url_expected(
     driver, wait, logger, url, message="URL is not the expected URL."
 ):
@@ -84,7 +80,6 @@ def bool_url_expected(
         return False
 
 
-# %%
 def bool_url_unexpected(
     driver, wait, logger, url, message="URL is the unexpected URL."
 ):
@@ -122,7 +117,6 @@ def bool_url_unexpected(
         return False
 
 
-# %%
 def bool_url_contains(
     driver, wait, logger, string, message="URL does not contain the specified string.",
 ):
@@ -162,7 +156,6 @@ def bool_url_contains(
         return False
 
 
-# %%
 def bool_url_does_not_contain(
     driver, wait, logger, string, message="URL contains the specified string."
 ):
@@ -202,7 +195,6 @@ def bool_url_does_not_contain(
         return False
 
 
-# %%
 def bool_visible(driver, by, identifier, wait=WAIT_NORMAL, logger=None):
     """
     Wait a specified number of seconds until either:
@@ -241,7 +233,6 @@ def bool_visible(driver, by, identifier, wait=WAIT_NORMAL, logger=None):
         return False
 
 
-# %%
 def bool_invisible(driver, by, identifier, wait=WAIT_NORMAL, logger=None):
     """
     Wait a specified number of seconds until either:
@@ -280,7 +271,6 @@ def bool_invisible(driver, by, identifier, wait=WAIT_NORMAL, logger=None):
         return False
 
 
-# %%
 def bool_clickable(driver, by, identifier, wait=WAIT_NORMAL, logger=None):
     """
     Wait a specified number of seconds until either:
@@ -319,7 +309,6 @@ def bool_clickable(driver, by, identifier, wait=WAIT_NORMAL, logger=None):
         return False
 
 
-# %%
 def bool_yoffset_changed(
     driver, wait, logger, yoffset, message="Y-offset did not change."
 ):
@@ -361,7 +350,6 @@ def bool_yoffset_changed(
         return False
 
 
-# %%
 def bool_scroll_position_changed(
     driver, element, wait, logger, position, message="Scroll position did not change."
 ):
@@ -405,7 +393,6 @@ def bool_scroll_position_changed(
         return False
 
 
-# %%
 def bool_scroll_height_changed(
     driver, wait, logger, height, element=None, message="Scroll height did not change."
 ):
@@ -449,7 +436,6 @@ def bool_scroll_height_changed(
         return False
 
 
-# %%
 def bool_element_class_contains(
     driver, element, wait, logger, string, message="Element class does not contain"
 ):
@@ -495,7 +481,6 @@ def bool_element_class_contains(
         return False
 
 
-# %%
 def bool_element_class_does_not_contain(
     driver, element, wait, logger, string, message="Element class contains"
 ):
@@ -538,7 +523,6 @@ def bool_element_class_does_not_contain(
         return False
 
 
-# %%
 def bool_element_text_contains(
     driver, element, wait, logger, string, message="Element text does not contain"
 ):
@@ -580,7 +564,6 @@ def bool_element_text_contains(
         return False
 
 
-# %%
 def bool_element_text_does_not_contain(
     driver, element, wait, logger, string, message="Element text contains"
 ):
@@ -622,7 +605,6 @@ def bool_element_text_does_not_contain(
         return False
 
 
-# %%
 def bool_new_handle(
     driver, n_handles_old, wait, logger, message="No new handles found."
 ):
@@ -665,7 +647,6 @@ def bool_new_handle(
         return False
 
 
-# %%
 def bool_correct_handle(driver, handle, wait, logger, message="Incorrect handle."):
     """
     Wait a specified number of seconds until either:
