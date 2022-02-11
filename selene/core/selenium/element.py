@@ -133,7 +133,7 @@ class ElementSelene(Element):
             output : bool
                True of the element has the attribute, False otherwise
         """
-        return self.element.has_attribute(*args, **kwargs)
+        return self.element.get_attribute(*args, **kwargs) is not None
 
     def click(self, driver):
         """
