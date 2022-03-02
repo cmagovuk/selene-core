@@ -13,8 +13,6 @@ We have gathered data from websites (i.e. webscraping) in multiple projects, app
   1. All elements can be represented as Element objects
   2. The base of all Element objects can ultimately derive from inheriting a general Element object.
 
-For concrete examples of how this works, please check out how specific websites have been broken down into Page objects in `selene.websites`, and how they are used in `vignettes.websites`.
-
 ## Features
 1. `selene.core`:
   * General Page and Element objects
