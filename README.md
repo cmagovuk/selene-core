@@ -27,6 +27,8 @@ For concrete examples of how this works, please check out how specific websites 
 - selenium
 - beautifulsoup4
 - lxml
+- ipython
+- numpy
 
 ## Installation
 To install from scratch:
