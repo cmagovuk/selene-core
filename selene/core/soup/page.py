@@ -9,25 +9,27 @@ from ..config import *
 
 from .element import ElementSoup, ElementSoupBlank
 
+
 class PageSoup(Page):
     """
     A page class to assist any workflow which requires BeautifulSoup.
-    
+
     This is really a way to make Selenium WebDriver and BeautifulSoup more interchangeable, in as far as
-    you can instantiate either a PageSoup or a PageSelene object, and the .find and .find_all function work in 
+    you can instantiate either a PageSoup or a PageSelene object, and the .find and .find_all function work in
     similar ways.
-    
+
     Inherits selene.core.page.Page
     """
+
     def __init__(self, url, soup, logger=None):
         """
         Initialise a PageSoup instance from existing, parsed soup.
-        
+
         Parameters
         ----------
             url : str
                 the url of the page
-            soup : 
+            soup :
             logger : logging.Logger
                 a logger instance (see core.logger.py)
         """
@@ -38,12 +40,12 @@ class PageSoup(Page):
     def from_soup(cls, url, soup, logger=None):
         """
         Initialise a PageSoup instance from existing, parsed soup.
-        
+
         Parameters
         ----------
             url : str
                 the url of the page
-            soup : 
+            soup :
             logger : logging.Logger
                 a logger instance (see core.logger.py)
         """
@@ -53,7 +55,7 @@ class PageSoup(Page):
     def from_html(cls, url, html, logger=None):
         """
         Initialise a PageSoup instance from existing html source code.
-        
+
         Parameters
         ----------
             url : str
@@ -70,7 +72,7 @@ class PageSoup(Page):
     def from_request(cls, url, logger=None):
         """
         Initialise a PageSoup instance by parsing a request to a web url.
-        
+
         Parameters
         ----------
             url : str
@@ -91,8 +93,8 @@ class PageSoup(Page):
 
     def find(self, *args, **kwargs):
         """
-        Find and return specific a specific element within the page html 
-        
+        Find and return specific a specific element within the page html
+
         Parameters
         ----------
             element : str
@@ -113,8 +115,8 @@ class PageSoup(Page):
 
     def find_all(self, *args, **kwargs):
         """
-        Find and return all elements within the page html that meet the given criteria 
-        
+        Find and return all elements within the page html that meet the given criteria
+
         Parameters
         ----------
             element : str
@@ -124,7 +126,7 @@ class PageSoup(Page):
         Returns
         ----------
             els : list
-                all  ElementSoup that meet criteria 
+                all  ElementSoup that meet criteria
         """
         self.log(f'find_all: {"; ".join([str(arg) for arg in [*args]])}')
         els = []

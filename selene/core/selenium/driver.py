@@ -7,7 +7,7 @@ from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 from selene.core.config import *
 
 
-def get_driver(width=2560, height=1440, user_agent='default', incognito=False):
+def get_driver(width=2560, height=1440, user_agent="default", incognito=False):
     """
     Get an instance of selenium.webdriver and start browser
 
@@ -49,9 +49,7 @@ def get_driver(width=2560, height=1440, user_agent='default', incognito=False):
     desired_capabilities = DesiredCapabilities.CHROME
     desired_capabilities["goog:loggingPrefs"] = {"browser": "ALL"}
 
-    driver = webdriver.Chrome(
-        options=options, desired_capabilities=desired_capabilities
-    )
+    driver = webdriver.Chrome(options=options, desired_capabilities=desired_capabilities)
     driver.set_window_rect(x=0, y=0, width=width, height=height)
     return driver
 

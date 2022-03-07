@@ -26,7 +26,7 @@ def bool_url_changed(driver, wait, logger, url, message="URL has not changed."):
             the original url
         message : str
             log message (default: "URL has not changed.")
-            
+
     Returns
     ----------
         output : bool
@@ -43,9 +43,7 @@ def bool_url_changed(driver, wait, logger, url, message="URL has not changed."):
         return False
 
 
-def bool_url_expected(
-    driver, wait, logger, url, message="URL is not the expected URL."
-):
+def bool_url_expected(driver, wait, logger, url, message="URL is not the expected URL."):
     """
     Wait a specified number of seconds until either:
         - The browser's url matches the expected url.
@@ -63,7 +61,7 @@ def bool_url_expected(
             the expected url
         message : str
             log message (default: "URL is not the expected URL.")
-            
+
     Returns
     ----------
         output : bool
@@ -80,9 +78,7 @@ def bool_url_expected(
         return False
 
 
-def bool_url_unexpected(
-    driver, wait, logger, url, message="URL is the unexpected URL."
-):
+def bool_url_unexpected(driver, wait, logger, url, message="URL is the unexpected URL."):
     """
     Wait a specified number of seconds until either:
         - The browser's url matches the UNexpected url.
@@ -100,7 +96,7 @@ def bool_url_unexpected(
             the unexpected url
         message : str
             log message (default: "URL is the unexpected URL.")
-            
+
     Returns
     ----------
         output : bool
@@ -118,7 +114,11 @@ def bool_url_unexpected(
 
 
 def bool_url_contains(
-    driver, wait, logger, string, message="URL does not contain the specified string.",
+    driver,
+    wait,
+    logger,
+    string,
+    message="URL does not contain the specified string.",
 ):
     """
     Wait a specified number of seconds until either:
@@ -135,20 +135,18 @@ def bool_url_contains(
             a logger instance (see core.logger.py)
         message : str
             log message (default: "URL does not contain the specified string.")
-            
+
     Returns
     ----------
         output : bool
             True if the url contains the specified string, False otherwise
     """
     if logger:
-        logger.debug(f'bool_url_contains: {string}')
+        logger.debug(f"bool_url_contains: {string}")
     if string == "":
         return False
     try:
-        WebDriverWait(driver, wait).until(
-            method=EC.url_contains(string), message=message
-        )
+        WebDriverWait(driver, wait).until(method=EC.url_contains(string), message=message)
         return True
     except TimeoutException as e:
         if logger:
@@ -174,7 +172,7 @@ def bool_url_does_not_contain(
             a logger instance (see core.logger.py)
         message : str
             log message (default: "URL contains the specified string.")
-            
+
     Returns
     ----------
         output : bool
@@ -213,7 +211,7 @@ def bool_visible(driver, by, identifier, wait=WAIT_NORMAL, logger=None):
             a number of seconds to wait before raising a TimeoutException
         logger : logging.Logger
             a logger instance (see core.logger.py)
-            
+
     Returns
     ----------
         output : bool
@@ -251,7 +249,7 @@ def bool_invisible(driver, by, identifier, wait=WAIT_NORMAL, logger=None):
             a number of seconds to wait before raising a TimeoutException
         logger : logging.Logger
             a logger instance (see core.logger.py)
-            
+
     Returns
     ----------
         output : bool
@@ -289,7 +287,7 @@ def bool_clickable(driver, by, identifier, wait=WAIT_NORMAL, logger=None):
             a number of seconds to wait before raising a TimeoutException
         logger : logging.Logger
             a logger instance (see core.logger.py)
-            
+
     Returns
     ----------
         output : bool
@@ -329,7 +327,7 @@ def bool_yoffset_changed(
             the original y-offset value
         message : str
             log message (default: "Y-offset did not change.")
-            
+
     Returns
     ----------
         output : bool
@@ -373,7 +371,7 @@ def bool_scroll_position_changed(
             the original scroll position value
         message : str
             log message (default: "Scroll position did not change.")
-            
+
     Returns
     ----------
         output : bool
@@ -416,7 +414,7 @@ def bool_scroll_height_changed(
             the scrollable element. If None, then the page itself is the element.
         message : str
             log message (default: "Scroll height did not change.")
-            
+
     Returns
     ----------
         output : bool
@@ -443,7 +441,7 @@ def bool_element_class_contains(
     Wait a specified number of seconds until either:
         - An element's class contains a specified string
         - A TimeoutException is raised
-        
+
     This is useful for cases where, for example, a dropdown element's class contains "expanded"
     only if and when the dropdown has been expanded.
 
@@ -461,7 +459,7 @@ def bool_element_class_contains(
             the string to be found
         message : str
             log message (default: "Element class does not contain {string}")
-            
+
     Returns
     ----------
         output : bool
@@ -503,7 +501,7 @@ def bool_element_class_does_not_contain(
             the string to be found
         message : str
             log message (default: "Element class contains {string}.")
-            
+
     Returns
     ----------
         output : bool
@@ -545,7 +543,7 @@ def bool_element_text_contains(
             the string to be found
         message : str
             log message (default: "Element text does not contain {string}.")
-            
+
     Returns
     ----------
         output : bool
@@ -586,7 +584,7 @@ def bool_element_text_does_not_contain(
             the string to be found
         message : str
             log message (default: "Element text contains {string}.")
-            
+
     Returns
     ----------
         output : bool
@@ -605,14 +603,12 @@ def bool_element_text_does_not_contain(
         return False
 
 
-def bool_new_handle(
-    driver, n_handles_old, wait, logger, message="No new handles found."
-):
+def bool_new_handle(driver, n_handles_old, wait, logger, message="No new handles found."):
     """
     Wait a specified number of seconds until either:
         - The number of window handles (i.e. the number of tabs open) has increased by one
         - A TimeoutException is raised
-        
+
     This is useful when navigating between different tabs.
 
     Parameters
@@ -627,7 +623,7 @@ def bool_new_handle(
             a logger instance (see core.logger.py)
         message : str
             log message (default: "No new handles found.")
-            
+
     Returns
     ----------
         output : bool
@@ -652,7 +648,7 @@ def bool_correct_handle(driver, handle, wait, logger, message="Incorrect handle.
     Wait a specified number of seconds until either:
         - The active handle i.e. tab) is the expected one
         - A TimeoutException is raised
-        
+
     This is useful when navigating between different tabs.
 
     Parameters
@@ -667,7 +663,7 @@ def bool_correct_handle(driver, handle, wait, logger, message="Incorrect handle.
             a logger instance (see core.logger.py)
         message : str
             log message (default: "Incorrect handle.")
-            
+
     Returns
     ----------
         output : bool

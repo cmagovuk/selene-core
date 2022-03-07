@@ -8,10 +8,11 @@ class ElementSoup(Element):
     """
     An element class to wrap beautiful soup functionality for finding and returning attributes from soup objects.
     """
+
     def __init__(self, element, logger=None):
         """
         Initialise an ElementSoup instance
-        
+
          Parameters
         ----------
             element : html object
@@ -25,14 +26,14 @@ class ElementSoup(Element):
     @classmethod
     def from_selene(cls, element_selene, logger=None):
         """
-        Initialise an ElementSoup instance from an ElementSelene object. 
+        Initialise an ElementSoup instance from an ElementSelene object.
         Allow interchangeability between selenium-based on soup-based elements
-        
+
         Parameters
         ----------
             element_selene : selene.core.selenium.ElementSelene
             logger : logging.Logger
-                a logger instance (see core.logger.py)        
+                a logger instance (see core.logger.py)
         """
         html = element_selene.element.get_attribute("innerHTML")
         soup = BeautifulSoup(html, "lxml")
@@ -40,8 +41,8 @@ class ElementSoup(Element):
 
     def find(self, *args, **kwargs):
         """
-        Find and return specific elements within the html 
-        
+        Find and return specific elements within the html
+
         Parameters
         ----------
             element : str
@@ -62,8 +63,8 @@ class ElementSoup(Element):
 
     def find_all(self, *args, **kwargs):
         """
-        Find and return all elements within the html that meet the given criteria 
-        
+        Find and return all elements within the html that meet the given criteria
+
         Parameters
         ----------
             element : str
@@ -73,7 +74,7 @@ class ElementSoup(Element):
         Returns
         ----------
             els : list
-                all  ElementSoup that meet criteria 
+                all  ElementSoup that meet criteria
         """
         self.log(f'find_all: {"; ".join([str(arg) for arg in [*args]])}')
         els = []
@@ -84,15 +85,15 @@ class ElementSoup(Element):
         return els
 
     def get_text(self):
-        """ return text of object """
+        """return text of object"""
         return self.text
 
     def has_attr(self, *args, **kwargs):
-        """ check whether element has a given attribute """
+        """check whether element has a given attribute"""
         return self.element.has_attr(*args, **kwargs)
 
     def get(self, *args, **kwargs):
-        """ return a given attribute of the element """
+        """return a given attribute of the element"""
         return self.element.get(*args, **kwargs)
 
 
@@ -100,8 +101,9 @@ class ElementSoupBlank(ElementSoup):
     """
     A class for blank soup objects. Used in cases where another method has not returned anything
     """
+
     def __init__(self):
-        """ Initialise a ElementSoupBlank object """
+        """Initialise a ElementSoupBlank object"""
         self.element = None
         self.attrs = {"href": None, "id": None, "aria-label": None}
         self.find = lambda *x: ElementSoupBlank()

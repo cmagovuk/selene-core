@@ -11,7 +11,7 @@ def script_get_scroll_height(driver, element=None):
         element : selenium.webdriver.remote.webelement.WebElement
             the element from which to get the scroll height
             (if None, then the scroll height of the page is found).
-            
+
     Returns
     ----------
         output : int
@@ -37,7 +37,7 @@ def script_get_scroll_position(driver, element=None):
         element : selenium.webdriver.remote.webelement.WebElement
             the element from which to get the scroll position
             (if None, then the scroll position of the page is found).
-            
+
     Returns
     ----------
         output : int
@@ -65,7 +65,7 @@ def script_scroll_to(driver, position, element=None):
         element : selenium.webdriver.remote.webelement.WebElement
             the element from which to get the scroll position
             (if None, then the scroll position of the page is found).
-            
+
     Returns
     ----------
         output : bool
@@ -89,7 +89,7 @@ def script_click_element(driver, element):
         element : selenium.webdriver.remote.webelement.WebElement
             the element from which to get the scroll position
             (if None, then the scroll position of the page is found).
-            
+
     Returns
     ----------
         output : bool
@@ -110,7 +110,7 @@ def script_get_parent(driver, element):
         element : selenium.webdriver.remote.webelement.WebElement
             the element from which to get the scroll position
             (if None, then the scroll position of the page is found).
-            
+
     Returns
     ----------
         output : selenium.webdriver.remote.webelement.WebElement
@@ -125,9 +125,9 @@ def script_expand_all_by_class_name(
 ):
     """
     WARNING: EXPERIMENTAL
-    
+
     Execute JavaScript to expand a list of dropdown menus.
-    
+
     Steps:
         - Find dropdowns by finding all elements with a class name specified with identifier.
         - For each dropdown found:
@@ -151,7 +151,7 @@ def script_expand_all_by_class_name(
             the indicator **within** the attribute, which will indicate whether it is expanded or not
         'clickable' : str
             the class name of the element within the dropdown which you have to click to expand the dropdown
-            
+
     Returns
     ----------
         output : bool

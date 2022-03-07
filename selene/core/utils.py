@@ -12,7 +12,7 @@ def get_domain(url):
     ----------
         url : str
             the url to be trimmed
-            
+
     Returns
     ----------
         domain : str
@@ -29,7 +29,7 @@ def random_wait(_func=None, *, seconds_min=0, seconds_max=1):
     Wraps core.Page, core.selenium.Page and core.Soup.Page functions in order to
     pause a number of seconds (between seconds_min and seconds_max), before
     executing the function.
-    
+
     Sometimes this is handy for when scraping jobs get blocked due to too many
     requests in a short period of time.
     """
@@ -55,21 +55,23 @@ def random_wait(_func=None, *, seconds_min=0, seconds_max=1):
 
 def validateUrl(url):
     # Regex to check for a valid URL
-    reg_exp = ("((http|https)://)(www.)?" +
-             "[a-zA-Z0-9@:%._\\+~#?&//=]" +
-             "{2,256}\\.[a-z]" +
-             "{2,6}\\b([-a-zA-Z0-9@:%" +
-             "._\\+~#?&//=]*)")
-     
+    reg_exp = (
+        "((http|https)://)(www.)?"
+        + "[a-zA-Z0-9@:%._\\+~#?&//=]"
+        + "{2,256}\\.[a-z]"
+        + "{2,6}\\b([-a-zA-Z0-9@:%"
+        + "._\\+~#?&//=]*)"
+    )
+
     # Compile the ReGex
     compiled = re.compile(reg_exp)
- 
-    #return false if empty string
-    if (url == None):
+
+    # return false if empty string
+    if url == None:
         return False
-   
-    #return True if there is a match
-    if(re.search(compiled, url)):
+
+    # return True if there is a match
+    if re.search(compiled, url):
         return True
     else:
         return False
