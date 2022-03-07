@@ -11,14 +11,14 @@ class ElementSelene(Element):
         - provide extra functionality
         - make it easier to crawlers to change between handling
         Selenium workflows and BeautifulSoup workflows.
-    
+
     Inherits selene.core.element.Element
     """
 
     def __init__(self, element, logger=None):
         """
         Initialise an ElementSelene instance.
-        
+
         Parameters
         ----------
             element : selenium.webdriver.remote.webelement.WebElement object
@@ -34,9 +34,9 @@ class ElementSelene(Element):
     def get_text(self):
         """
         Get the element's text
-        
+
         TODO this is redundant, but removing it might break some things
-                
+
         Returns
         ----------
             text : str
@@ -46,7 +46,7 @@ class ElementSelene(Element):
     def get_parent(self, driver):
         """
         Get the element's parent
-                
+
         Returns
         ----------
             out : ElementSelene object wrapping the parent element
@@ -58,7 +58,7 @@ class ElementSelene(Element):
         This:
             - wraps core.selenium.tasks.task_find
             - finds only elements which are **within** this element.
-        
+
         Parameters
         ----------
             by : selenium.webdriver.common.by.By
@@ -67,7 +67,7 @@ class ElementSelene(Element):
                 see https://selenium-python.readthedocs.io/locating-elements.html
             wait : int
                 a number of seconds to wait before raising a TimeoutException
-                
+
         Returns
         ----------
             output : None or core.selenium.element.ElementSelene
@@ -88,7 +88,7 @@ class ElementSelene(Element):
         This:
             - wraps core.selenium.tasks.task_find_all
             - finds only elements which are **within** this element.
-        
+
         Parameters
         ----------
             by : selenium.webdriver.common.by.By
@@ -97,7 +97,7 @@ class ElementSelene(Element):
                 see https://selenium-python.readthedocs.io/locating-elements.html
             wait : int
                 a number of seconds to wait before raising a TimeoutException
-                
+
         Returns
         ----------
             output : list
@@ -116,7 +116,7 @@ class ElementSelene(Element):
         """
         Gets an attribute from the element. E.g. self.get_attribute('href') would
         return the hyperlink.
-        
+
         Returns
         ----------
             output : str
@@ -127,18 +127,18 @@ class ElementSelene(Element):
     def has_attribute(self, *args, **kwargs):
         """
         Check whether the element contains a specified attribute.
-        
+
         Returns
         ----------
             output : bool
                True of the element has the attribute, False otherwise
         """
-        return self.element.has_attribute(*args, **kwargs)
+        return self.element.get_attribute(*args, **kwargs) is not None
 
     def click(self, driver):
         """
         Click the element.
-        
+
         Returns
         ----------
             output : bool
@@ -149,14 +149,14 @@ class ElementSelene(Element):
     def scroll_down(self, driver, wait=WAIT_NORMAL):
         """
         Scroll down the element IF the element has a scrollbar.
-        
+
         Parameters
         ----------
             driver : selenium.webdriver
                 a selenium webdriver instance
             wait : int
                 a number of seconds to wait before raising a TimeoutException
-                
+
         Returns
         ----------
             output : bool
@@ -175,14 +175,14 @@ class ElementSelene(Element):
     def scroll_to(self, driver, position_new, wait=WAIT_NORMAL):
         """
         Scroll to a new position on the element IF the element has a scrollbar.
-        
+
         Parameters
         ----------
             driver : selenium.webdriver
                 a selenium webdriver instance
             wait : int
                 a number of seconds to wait before raising a TimeoutException
-                
+
         Returns
         ----------
             output : bool
@@ -197,14 +197,14 @@ class ElementSelene(Element):
     def scroll_to_bottom(self, driver, wait=WAIT_NORMAL):
         """
         Scroll to the bottom of the element IF the element has a scrollbar.
-        
+
         Parameters
         ----------
             driver : selenium.webdriver
                 a selenium webdriver instance
             wait : int
                 a number of seconds to wait before raising a TimeoutException
-                
+
         Returns
         ----------
             output : bool

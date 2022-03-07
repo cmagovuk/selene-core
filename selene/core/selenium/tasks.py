@@ -14,7 +14,7 @@ from selene.core.selenium.conditions import *
 def task_navigate_to_url(driver, url, string="", wait=WAIT_NORMAL, logger=None):
     """
     Navigate to a new url and check that the url is correct.
-    
+
     Checking the correct url can be done in 2 ways:
         1. Checking for an exact match
         2. Checking whether the url contains a specified string.
@@ -31,7 +31,7 @@ def task_navigate_to_url(driver, url, string="", wait=WAIT_NORMAL, logger=None):
             a number of seconds to wait before raising a TimeoutException
         logger : logging.Logger
             a logger instance (see core.logger.py)
-            
+
     Returns
     ----------
         output : bool
@@ -66,7 +66,7 @@ def task_navigate_to_url_in_new_tab(
 ):
     """
     Navigate to a new url in a new tab, and check that the url is correct.
-    
+
     Checking the correct url can be done in 2 ways:
         1. Checking for an exact match
         2. Checking whether the url contains a specified string.
@@ -83,7 +83,7 @@ def task_navigate_to_url_in_new_tab(
             a number of seconds to wait before raising a TimeoutException
         logger : logging.Logger
             a logger instance (see core.logger.py)
-            
+
     Returns
     ----------
         output : bool
@@ -127,7 +127,7 @@ def task_close_tab_return_to_url_and_handle(
 ):
     """
     Close the current tab and check that the driver is back at the expected handle and url.
-    
+
     Checking the correct url can be done in 2 ways:
         1. Checking for an exact match
         2. Checking whether the url contains a specified string.
@@ -146,7 +146,7 @@ def task_close_tab_return_to_url_and_handle(
             a number of seconds to wait before raising a TimeoutException
         logger : logging.Logger
             a logger instance (see core.logger.py)
-            
+
     Returns
     ----------
         output : bool
@@ -183,20 +183,20 @@ def task_close_tab_return_to_url_and_handle(
 def task_find(parent, by, identifier, wait=WAIT_NORMAL, logger=None):
     """
     Find an element using a By. selector and an identifier.
-    
+
     For more info, see:
     https://selenium-python.readthedocs.io/locating-elements.html
-    
+
     If the operation is to find an element on the whole page, then
     the parent variable is a Selenium Webdriver instance (usually named driver).
-    
+
     If the operation is to find an element on the whole page, then
     the parent variable is a Selenium WebElement instance
     (NOT a core.selenium.element.Element instance).
 
     Parameters
     ----------
-        parent : EITHER selenium.webdriver OR selenium.webdriver.remote.webelement.WebElement 
+        parent : EITHER selenium.webdriver OR selenium.webdriver.remote.webelement.WebElement
             where to search for the element
         by : selenium.webdriver.common.by.By
             see https://selenium-python.readthedocs.io/locating-elements.html
@@ -206,7 +206,7 @@ def task_find(parent, by, identifier, wait=WAIT_NORMAL, logger=None):
             a number of seconds to wait before raising a TimeoutException
         logger : logging.Logger
             a logger instance (see core.logger.py)
-            
+
     Returns
     ----------
         output : [None, selenium.webdriver.remote.webelement.WebElement]
@@ -228,20 +228,20 @@ def task_find(parent, by, identifier, wait=WAIT_NORMAL, logger=None):
 def task_find_all(parent, by, identifier, wait=WAIT_NORMAL, logger=None):
     """
     Find a list of elements using a By. selector and an identifier.
-    
+
     For more info, see:
     https://selenium-python.readthedocs.io/locating-elements.html
-    
+
     If the operation is to find an element on the whole page, then
     the parent variable is a Selenium Webdriver instance (usually named driver).
-    
+
     If the operation is to find an element on the whole page, then
     the parent variable is a Selenium WebElement instance
     (NOT a core.selenium.element.Element instance).
 
     Parameters
     ----------
-        parent : EITHER selenium.webdriver OR selenium.webdriver.remote.webelement.WebElement 
+        parent : EITHER selenium.webdriver OR selenium.webdriver.remote.webelement.WebElement
             where to search for the element
         by : selenium.webdriver.common.by.By
             see https://selenium-python.readthedocs.io/locating-elements.html
@@ -251,7 +251,7 @@ def task_find_all(parent, by, identifier, wait=WAIT_NORMAL, logger=None):
             a number of seconds to wait before raising a TimeoutException
         logger : logging.Logger
             a logger instance (see core.logger.py)
-            
+
     Returns
     ----------
         output : list
@@ -274,7 +274,7 @@ def task_find_all(parent, by, identifier, wait=WAIT_NORMAL, logger=None):
 def task_click(driver, by, identifier, wait=WAIT_NORMAL, logger=None):
     """
     Click an element using a By. selector and an identifier.
-    
+
     For more info, see:
     https://selenium-python.readthedocs.io/locating-elements.html
 
@@ -290,7 +290,7 @@ def task_click(driver, by, identifier, wait=WAIT_NORMAL, logger=None):
             a number of seconds to wait before raising a TimeoutException
         logger : logging.Logger
             a logger instance (see core.logger.py)
-            
+
     Returns
     ----------
         output : bool
@@ -307,7 +307,7 @@ def task_click(driver, by, identifier, wait=WAIT_NORMAL, logger=None):
 def task_screenshot_to_notebook(driver, width, height, logger):
     """
     Display a browser screenshot in a Jupyter notebook.
-    
+
     Parameters
     ----------
         driver : selenium.webdriver
@@ -328,7 +328,7 @@ def task_screenshot_to_notebook(driver, width, height, logger):
 def task_screenshot_to_local(driver, dirpath, filestem, logger):
     """
     Save a browser screenshot to a local directory
-    
+
     Parameters
     ----------
         driver : selenium.webdriver

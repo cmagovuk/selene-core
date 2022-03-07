@@ -6,7 +6,8 @@ REQUIREMENTS = [
     "selenium",
     "beautifulsoup4",
     "lxml",
-    "ipython"
+    "ipython",
+    "requests"
 ]
 
 REQUIREMENTS_TEST = ["coverage", "interrogate", "pytest", "pytest-cov", "black"]

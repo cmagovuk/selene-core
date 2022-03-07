@@ -31,7 +31,7 @@ def get_logger(
             the path to a directory to save the log (if to_file is True)
         filename : str
             the path to a file to save the log (if to_file is True)
-            
+
     Returns
     ----------
         logger : logging.Logger

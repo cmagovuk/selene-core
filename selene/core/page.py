@@ -9,7 +9,7 @@ class Page:
     def __init__(self, url, logger, id_page=0):
         """
         Initialise Page.
-       
+
         Parameters
         ----------
             url : str
@@ -27,7 +27,7 @@ class Page:
     def log(self, message, level="DEBUG"):
         """
         Output a log message, with the appropriate loglevel (default=DEBUG).
-       
+
         Parameters
         ----------
             message : str

@@ -10,7 +10,7 @@ class Crawler:
     def __init__(self, id_crawler="Crawler", debug=True):
         """
         Initialise Crawler.
-       
+
         Parameters
         ----------
             id_crawler : str
@@ -29,7 +29,7 @@ class Crawler:
     def log(self, message, level="DEBUG"):
         """
         Output a log message, with the appropriate loglevel (default=DEBUG).
-       
+
         Parameters
         ----------
             message : str
@@ -53,7 +53,7 @@ class Crawler:
         """
         Display a thumbnail-sized screenshot to a Jupyter notebook,
         only if the crawler is in debug mode.
-        
+
         Parameters
         ----------
             driver : selenium.webdriver
