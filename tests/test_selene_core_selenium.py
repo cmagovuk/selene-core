@@ -102,9 +102,9 @@ def test_stop_driver():
         stop_driver()
         driver.current_url
 
-# def test_restart_driver():
-#     restart_driver(driver, wait = 20)
-#     assert driver.name is not None
+def test_restart_driver():
+    driver = restart_driver(driver, wait = 10)
+    assert driver.name is not None
     
 def test_get_user_agent():
     assert "Mozilla" in get_user_agent(10)
