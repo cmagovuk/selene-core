@@ -103,6 +103,7 @@ def test_stop_driver():
         driver.current_url
 
 def test_restart_driver():
+    driver = get_driver()
     driver = restart_driver(driver, wait = 10)
     assert driver.name is not None
     
