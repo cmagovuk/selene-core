@@ -159,9 +159,29 @@ def test_scroll_to_bottom():
     pass
 
 # TEST PAGE
-
+def test_close_all_tabs_except_specified_tab():
+    url = 'https://www.scrapethissite.com/pages/simple/'
+    url2 = 'https://www.scrapethissite.com/pages/frames/'
+    page = PageSelene.from_url(driver, url)
+    keep = driver.window_handles[0]
+    page = PageSelene.new_tab(driver, url2)
+    page.close_all_tabs_except_specified_tab(driver, keep)
+    assert len(driver.window_handles) == 1
 
 # TEST SCRIPTS
 
 
 # TEST TASKS
+def test_task_close_tab_return_to_url_and_handle():
+    url = 'https://www.scrapethissite.com/pages/simple/'
+    url2 = 'https://www.scrapethissite.com/pages/frames/'
+    page = PageSelene.from_url(driver, url)
+    keep = driver.window_handles[0]
+    page = PageSelene.new_tab(driver, url2)
+    task_close_tab_return_to_url_and_handle(driver, url, keep)
+    errors = []
+    if len(driver.window_handles) != 1:
+        errors.append(1)
+    if driver.current_url != url:
+        errors.append(1)       
+    assert len(errors) == 0
