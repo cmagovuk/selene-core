@@ -76,11 +76,11 @@ def validateUrl(url):
         return True
     else:
         return False
-    
-    
-def mouse_move(driver, max_mouse_moves = 10):
-    """performs mouse move, for help with bot mitigation, partially ported from OpenWPM """
-    
+
+
+def mouse_move(driver, max_mouse_moves=10):
+    """performs mouse move, for help with bot mitigation, partially ported from OpenWPM"""
+
     # bot mitigation: move the mouse randomly around a number of times
     window_size = driver.get_window_size()
     num_moves = 0
