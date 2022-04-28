@@ -3,11 +3,13 @@ import time
 import numpy as np
 from selenium import webdriver
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
-
+from pyvirtualdisplay import Display
 from selene.core.config import *
 
 
-def get_driver(width=2560, height=1440, user_agent="default", incognito=False):
+def get_driver(width=2560, height=1440, 
+               user_agent="default", incognito=False,
+               use_display=False):
     """
     Get an instance of selenium.webdriver and start browser
 
@@ -24,6 +26,8 @@ def get_driver(width=2560, height=1440, user_agent="default", incognito=False):
             Otherwise, the specified user agent is used.
         incognito : bool
             whether or not to start the browser in incognito mode
+        use_display: bool
+            whether or not to use a virtual display
 
     Returns
     ----------
@@ -44,6 +48,9 @@ def get_driver(width=2560, height=1440, user_agent="default", incognito=False):
         options.add_argument(f"--user-agent={user_agent}")
     elif user_agent:
         options.add_argument(f"--user-agent={user_agent}")
+    if use_display:
+        display = Display(visible=False, size=(width, height))
+        display.start()
 
     # enable browser logging
     desired_capabilities = DesiredCapabilities.CHROME
@@ -54,7 +61,7 @@ def get_driver(width=2560, height=1440, user_agent="default", incognito=False):
     return driver
 
 
-def stop_driver(driver):
+def stop_driver(driver, display=None):
     """
     Stop and close the selenium.webdriver instance
 
@@ -62,7 +69,11 @@ def stop_driver(driver):
     ----------
         driver : selenium.webdriver
              the selenium webdriver instance to stop
+        display : pyvirtualdisplay.Display optional
+             if using a pyvirtual display, display to stop
     """
+    if display != None:
+        display.stop()
     driver.close()
     driver.quit()
 
