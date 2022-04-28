@@ -7,7 +7,8 @@ REQUIREMENTS = [
     "beautifulsoup4",
     "lxml",
     "ipython",
-    "requests"
+    "requests",
+    "pyvirtualdisplay"
 ]
 
 REQUIREMENTS_TEST = ["coverage", "interrogate", "pytest", "pytest-cov", "black"]
