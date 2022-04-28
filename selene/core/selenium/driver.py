@@ -7,9 +7,9 @@ from pyvirtualdisplay import Display
 from selene.core.config import *
 
 
-def get_driver(width=2560, height=1440, 
-               user_agent="default", incognito=False,
-               use_display=False):
+def get_driver(
+    width=2560, height=1440, user_agent="default", incognito=False, use_display=False
+):
     """
     Get an instance of selenium.webdriver and start browser
 
