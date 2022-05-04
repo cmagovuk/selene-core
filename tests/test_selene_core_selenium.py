@@ -164,3 +164,5 @@ def test_scroll_to_bottom():
 
 
 # TEST TASKS
+def test_mouse_move():
+    mouse_move(driver)

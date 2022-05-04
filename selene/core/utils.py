@@ -2,7 +2,6 @@ import re
 import time
 import functools
 import numpy as np
-from selenium.webdriver.common.action_chains import ActionChains
 
 
 def get_domain(url):
@@ -76,28 +75,3 @@ def validateUrl(url):
         return True
     else:
         return False
-
-
-def mouse_move(driver, max_mouse_moves=10):
-    """performs mouse move, for help with bot mitigation, partially ported from OpenWPM"""
-
-    # bot mitigation: move the mouse randomly around a number of times
-    window_size = driver.get_window_size()
-    num_moves = 0
-    num_fails = 0
-    while num_moves < max_mouse_moves + 1 and num_fails < max_mouse_moves:
-        try:
-            if num_moves == 0:  # move to the center of the screen
-                x = int(round(window_size["height"] / 2))
-                y = int(round(window_size["width"] / 2))
-            else:  # move a random amount in some direction
-                move_max = random.randint(0, 500)
-                x = random.randint(-move_max, move_max)
-                y = random.randint(-move_max, move_max)
-            action = ActionChains(webdriver)
-            action.move_by_offset(x, y)
-            action.perform()
-            num_moves += 1
-        except MoveTargetOutOfBoundsException:
-            num_fails += 1
-            pass
