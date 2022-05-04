@@ -11,6 +11,8 @@ from selene.core.config import *
 from selene.core.selenium.scripts import *
 from selene.core.selenium.conditions import *
 
+import random
+
 
 def task_navigate_to_url(driver, url, string="", wait=WAIT_NORMAL, logger=None):
     """
@@ -367,7 +369,7 @@ def mouse_move(driver, max_mouse_moves=10):
                 move_max = random.randint(0, 500)
                 x = random.randint(-move_max, move_max)
                 y = random.randint(-move_max, move_max)
-            action = ActionChains(webdriver)
+            action = ActionChains(driver)
             action.move_by_offset(x, y)
             action.perform()
             num_moves += 1
