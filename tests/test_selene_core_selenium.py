@@ -12,6 +12,7 @@ from selene.core.selenium.scripts import *
 from selene.core.selenium.driver import *
 from selene.core.selenium.page import *
 from selene.core.selenium.crawler import *
+from selene.core.selenium.tasks import *
 
 # initialise the driver
 driver = get_driver()
@@ -165,4 +166,4 @@ def test_scroll_to_bottom():
 
 # TEST TASKS
 def test_mouse_move():
-    mouse_move(driver)
+    assert mouse_move(driver) >= 1

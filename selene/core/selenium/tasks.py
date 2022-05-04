@@ -371,6 +371,7 @@ def mouse_move(driver, max_mouse_moves=10):
             action.move_by_offset(x, y)
             action.perform()
             num_moves += 1
-        except MoveTargetOutOfBoundsException:
+        except:
             num_fails += 1
             pass
+    return num_moves
