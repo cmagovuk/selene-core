@@ -351,7 +351,7 @@ def task_screenshot_to_local(driver, dirpath, filestem, logger):
     filename = f"{str_datetime}_{filestem}.png"
     filepath = f"{dirpath}/{filename}"
     driver.save_screenshot(filepath)
-    
+
 
 def mouse_move(driver, max_mouse_moves=10):
     """performs mouse move, for help with bot mitigation, partially ported from OpenWPM"""
@@ -360,7 +360,7 @@ def mouse_move(driver, max_mouse_moves=10):
     window_size = driver.get_window_size()
     num_moves = 0
     num_fails = 0
-    while num_moves < max_mouse_moves + 1 and num_fails < max_mouse_moves:
+    while num_moves < max_mouse_moves and num_fails < max_mouse_moves:
         try:
             if num_moves == 0:  # move to the center of the screen
                 x = int(round(window_size["height"] / 2))
