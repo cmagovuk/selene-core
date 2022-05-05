@@ -55,12 +55,12 @@ def get_driver(
 
     driver = webdriver.Chrome(options=options, desired_capabilities=desired_capabilities)
     driver.set_window_rect(x=0, y=0, width=width, height=height)
-    
+
     if use_display:
         display = Display(visible=False, size=(width, height))
         display.start()
         return driver, display
-    
+
     return driver
 
 
