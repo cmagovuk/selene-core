@@ -101,11 +101,20 @@ def test_stop_driver():
     with pytest.raises(Exception):
         stop_driver()
         driver.current_url
-
-def test_restart_driver():
-    driver = get_driver()
-    driver = restart_driver(driver, wait = 10)
+        
+def test_get_driver_display():
+    driver, display = get_driver(use_display=True)
     assert driver.name is not None
+    assert display is not None
+    
+def test_stop_driver_display():   
+    with pytest.raises(Exception):
+        stop_driver(display=display)
+        driver.current_url
+
+# def test_restart_driver():
+#     restart_driver(driver, wait = 20)
+#     assert driver.name is not None
     
 def test_get_user_agent():
     assert "Mozilla" in get_user_agent(10)
@@ -150,38 +159,21 @@ def test_click():
     assert test_element.click(driver)
 
 def test_scroll_down():
-    pass
+    page = PageSelene.from_url(driver=driver, url = "https://www.scrapethissite.com/pages/simple/")
+    assert page.scroll_down(driver) is True
 
 def test_scroll_to():
-    pass
+    page = PageSelene.from_url(driver=driver, url = "https://www.scrapethissite.com/pages/simple/")
+    assert page.scroll_to(driver, position_new = 50) is True
 
 def test_scroll_to_bottom():
-    pass
+    page = PageSelene.from_url(driver=driver, url = "https://www.scrapethissite.com/pages/simple/")
+    assert page.scroll_to_bottom(driver) is True
 
 # TEST PAGE
-def test_close_all_tabs_except_specified_tab():
-    url = 'https://www.scrapethissite.com/pages/simple/'
-    url2 = 'https://www.scrapethissite.com/pages/frames/'
-    page = PageSelene.from_url(driver, url)
-    keep = driver.window_handles[0]
-    page = PageSelene.new_tab(driver, url2)
-    page.close_all_tabs_except_specified_tab(driver, keep)
-    assert len(driver.window_handles) == 1
+
 
 # TEST SCRIPTS
 
 
 # TEST TASKS
-def test_task_close_tab_return_to_url_and_handle():
-    url = 'https://www.scrapethissite.com/pages/simple/'
-    url2 = 'https://www.scrapethissite.com/pages/frames/'
-    page = PageSelene.from_url(driver, url)
-    keep = driver.window_handles[0]
-    page = PageSelene.new_tab(driver, url2)
-    task_close_tab_return_to_url_and_handle(driver, url, keep)
-    errors = []
-    if len(driver.window_handles) != 1:
-        errors.append(1)
-    if driver.current_url != url:
-        errors.append(1)       
-    assert len(errors) == 0

@@ -365,6 +365,8 @@ class PageSelene(Page):
         ----------
             driver : selenium.webdriver
                 a selenium webdriver instance
+            position_new : int
+                y position in pixels
             wait : int
                 a number of seconds to wait before raising a TimeoutException
 
