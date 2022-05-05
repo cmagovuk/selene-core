@@ -48,9 +48,6 @@ def get_driver(
         options.add_argument(f"--user-agent={user_agent}")
     elif user_agent:
         options.add_argument(f"--user-agent={user_agent}")
-    if use_display:
-        display = Display(visible=False, size=(width, height))
-        display.start()
 
     # enable browser logging
     desired_capabilities = DesiredCapabilities.CHROME
@@ -58,6 +55,12 @@ def get_driver(
 
     driver = webdriver.Chrome(options=options, desired_capabilities=desired_capabilities)
     driver.set_window_rect(x=0, y=0, width=width, height=height)
+    
+    if use_display:
+        display = Display(visible=False, size=(width, height))
+        display.start()
+        return driver, display
+    
     return driver
 
 
