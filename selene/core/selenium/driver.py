@@ -42,7 +42,7 @@ def get_driver(
             selenium.webdriver instance
     """
     options = webdriver.ChromeOptions()
-    # options.add_argument("--headless")
+    options.add_argument("--headless")
     options.add_argument("--no-sandbox")
     options.add_argument("--disable-dev-shm-usage")
     if incognito:
