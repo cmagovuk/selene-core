@@ -8,7 +8,7 @@ from selene.core.config import *
 
 
 def get_driver(
-    width=2560, height=1440, user_agent="default", incognito=False, use_display=False
+    width=2560, height=1440, user_agent="default", incognito=False, disable_gpu=False, use_display=False
 ):
     """
     Get an instance of selenium.webdriver and start browser
@@ -26,6 +26,8 @@ def get_driver(
             Otherwise, the specified user agent is used.
         incognito : bool
             whether or not to start the browser in incognito mode
+        disable_gpu : bool
+            whether or not to disable GPU
         use_display: bool
             whether or not to use a virtual display
 
@@ -40,6 +42,8 @@ def get_driver(
     options.add_argument("--disable-dev-shm-usage")
     if incognito:
         options.add_argument("--incognito")
+    if disable_gpu:
+        options.add_argument("--disable-gpu")
     if user_agent and user_agent == "random":
         user_agent = get_user_agent_random()
         options.add_argument(f"--user-agent={user_agent}")
