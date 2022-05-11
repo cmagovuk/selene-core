@@ -8,7 +8,12 @@ from selene.core.config import *
 
 
 def get_driver(
-    width=2560, height=1440, user_agent="default", incognito=False, disable_gpu=False, use_display=False
+    width=2560,
+    height=1440,
+    user_agent="default",
+    incognito=False,
+    disable_gpu=False,
+    use_display=False,
 ):
     """
     Get an instance of selenium.webdriver and start browser
@@ -37,7 +42,7 @@ def get_driver(
             selenium.webdriver instance
     """
     options = webdriver.ChromeOptions()
-    options.add_argument("--headless")
+    # options.add_argument("--headless")
     options.add_argument("--no-sandbox")
     options.add_argument("--disable-dev-shm-usage")
     if incognito:
