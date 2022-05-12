@@ -12,6 +12,7 @@ from selene.core.selenium.scripts import *
 from selene.core.selenium.driver import *
 from selene.core.selenium.page import *
 from selene.core.selenium.crawler import *
+from selene.core.selenium.tasks import *
 
 # initialise the driver
 driver = get_driver()
@@ -49,12 +50,12 @@ def test_bool_yoffset_changed():
     page.scroll_down(driver, wait = 1)
     assert bool_yoffset_changed(driver, wait = 1, yoffset = orig_offset, logger = None) == True
     
-# def test_bool_scroll_position_changed():
-#     page = PageSelene.from_url(driver=driver, url = "http://www.scrapethissite.com/pages/frames/")
-#     el = page.find(driver, by = By.ID, identifier = 'iframe')
-#     orig_pos = script_get_scroll_position(driver, el)
-#     el.scroll_to_bottom(driver)
-#     assert bool_scroll_position_changed(driver, element = el, wait = 1, position = orig_pos) == True
+def test_bool_scroll_position_changed():
+    page = PageSelene.from_url(driver=driver, url = "http://www.scrapethissite.com/pages/frames/")
+    el = page.find(driver, by = By.ID, identifier = 'iframe')
+    orig_pos = script_get_scroll_position(driver, el)
+    el.scroll_to_bottom(driver)
+    assert bool_scroll_position_changed(driver, element = el, wait = 1, position = orig_pos) == True
     
 def test_bool_scroll_height_changed():
     page = PageSelene.from_url(driver=driver, url = "http://www.scrapethissite.com/pages/forms/")
@@ -170,10 +171,54 @@ def test_scroll_to_bottom():
     page = PageSelene.from_url(driver=driver, url = "https://www.scrapethissite.com/pages/simple/")
     assert page.scroll_to_bottom(driver) is True
 
-# TEST PAGE
+def test_expand_scroll_height():
+    page = PageSelene.from_url(driver=driver, url = "https://www.scrapethissite.com/pages/forms/")
+    orig_offset = driver.execute_script("return window.pageYOffset")
+    page.expand_scroll_height(driver)
+    assert bool_yoffset_changed(driver, wait = 1, yoffset = orig_offset, logger = None) == True
 
+def test_screenshot_to_local():
+    page = PageSelene.from_url(driver=driver, url = "https://www.scrapethissite.com/pages/simple/")
+    page.screenshot_to_local(driver, "./", "test")
 
-# TEST SCRIPTS
+#     @staticmethod
+#     def close_all_tabs_except_specified_tab(driver, handle_keep, attempts=3):
+#         """
+#         Closes all open tabs EXCEPT for the tab given by the specified handle.
 
+#         Useful for cleanup of any open tabs.
 
-# TEST TASKS
+#         It has an attempts variable, in case it doesn't work first time.
+
+#         Parameters
+#         ----------
+#             driver : selenium.webdriver
+#                 a selenium webdriver instance
+#             handle_keep : str
+#                 the tab/handle to not close.
+#             attempts : int
+#                 a number of attempts before returning False
+
+#         Returns
+#         ----------
+#             output : bool
+#                 True if the operation was successful, False otherwise
+#         """
+#         if attempts == 0:
+#             return False
+#         elif handle_keep not in driver.window_handles:
+#             return False
+#         for handle in driver.window_handles:
+#             if handle != handle_keep:
+#                 driver.switch_to.window(handle)
+#                 driver.close()
+#                 driver.switch_to.window(handle_keep)
+
+#         if (
+#             len(driver.window_handles) == 1
+#             and driver.current_window_handle == handle_keep
+#         ):
+#             return True
+#         return close_all_tabs_except_current_tab(
+#             driver, handle_keep, attempts=attempts - 1
+#         )

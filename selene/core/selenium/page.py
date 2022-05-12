@@ -457,10 +457,10 @@ class PageSelene(Page):
         ----------
             driver : selenium.webdriver
                 a selenium webdriver instance
-            width : int
-                the width of the image
-            height : int
-                the height of the image
+            dirpath : str
+                directory to save file
+            filestem : str
+                a string to add to a datetime to create the filename
             logger : logging.Logger
                 a logger instance (see core.logger.py)
         """

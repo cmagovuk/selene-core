@@ -26,12 +26,6 @@ def test_crawler_logging():
     assert crawler.log('test') is None
     
     
-# def test_crawler_screenshot():
-#     crawler = Crawler()
-#     driver = get_driver()
-#     assert crawler.screenshot_to_notebook(driver) is None
-    
-    
 def test_element_init():
     el = "test_element"
     logger = get_logger()
@@ -82,17 +76,15 @@ def test_utils_get_domain():
     assert get_domain(url) == "www.scrapethissite.com"
     
     
-# def test_random_wait():
-#     def test_func():
-#         print("test function")   
-    
-#     start_time = time.time()
-      
-#     random_wait(_func = test_func(), seconds_min=2, seconds_max=3)
-    
-#     end_time = time.time()
-#     time_elapsed = end_time - start_time
-#     assert time_elapsed > 2
+def test_random_wait():
+    @random_wait(seconds_min=2, seconds_max=3)
+    def test_func(x):
+        print(x)   
+    start_time = time.time()  
+    test_func("test")
+    end_time = time.time()
+    time_elapsed = end_time - start_time
+    assert time_elapsed >= 2
       
 
 def test_validate_url():
