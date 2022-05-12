@@ -72,7 +72,7 @@ def test_bool_element_class_does_not_contain():
     page = PageSelene.from_url(driver=driver, url = "http://www.scrapethissite.com/pages/")
     test_element = page.find(driver, by = By.XPATH, identifier = '//*[@id="pages"]/section/div/div/div/div[1]')
     assert bool_element_class_does_not_contain(driver, element = test_element, wait = 1, logger = None, string = "test") == True    
-    
+   
 def test_bool_element_text_contains():
     page = PageSelene.from_url(driver=driver, url = "http://www.scrapethissite.com/")
     test_element = page.find(driver, by = By.XPATH, identifier = '//*[@id="hero"]/div/div/div/a[1]')
@@ -113,9 +113,9 @@ def test_stop_driver_display():
         stop_driver(display=display)
         driver.current_url
 
-# def test_restart_driver():
-#     restart_driver(driver, wait = 20)
-#     assert driver.name is not None
+def test_restart_driver():
+    restart_driver(driver, wait = 20)
+    assert driver.name is not None
     
 def test_get_user_agent():
     assert "Mozilla" in get_user_agent(10)

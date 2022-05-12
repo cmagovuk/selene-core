@@ -7,9 +7,10 @@ from selene.core.selenium.page import *
 
 # initialise the driver, get a page, get its soup
 driver = get_driver()
-url = "https://www.scrapethissite.com/"
-page = PageSelene.from_url(driver=driver, url = url)
+url = "https://www.scrapethissite.com/pages/simple/"
+page = PageSelene.from_url(driver = driver, url = url)
 soup = page.page_soup
+element = soup.find('div', {'class': 'col-md-6 text-right'})
 
 def test_page_soup_from_soup():
     page_from_soup = PageSoup.from_soup(url = url, soup = soup)
@@ -24,28 +25,28 @@ def test_page_soup_from_request():
     assert page_from_request is not None
 
 def test_page_soup_find():
-    pass
+    assert "There are" in soup.find('div', {'class': 'col-md-6'}).text
 
 def test_page_soup_find_all():
-    pass
-
-def test_element_from_selene():
-    pass
+    assert len(soup.find_all('h3', {'class': 'country-name'})) > 200
 
 def test_element_find():
-    pass
+    assert element.find('a', {'class': 'data-attribution'}) is not None
 
 def test_element_find_all():
-    pass
+    el = soup.find('div', {'class': 'col-md-4 country'})
+    spans = el.find_all('span')
+    assert len(spans) > 1
 
 def test_get_text():
-    pass
+    assert "Data via" in element.get_text()
 
 def test_has_attr():
-    pass
+    assert element.find('a', {'class': 'data-attribution'}).has_attr("href")
 
 def test_get():
-    pass
-
+    assert element.find('a', {'class': 'data-attribution'}).get("href")
+    
 def test_element_blank():
-    pass
+    element_blank = ElementSoupBlank()
+    assert element_blank.text is None
