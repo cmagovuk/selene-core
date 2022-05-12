@@ -178,5 +178,13 @@ def test_expand_scroll_height():
     assert bool_yoffset_changed(driver, wait = 1, yoffset = orig_offset, logger = None) == True
 
 def test_screenshot_to_local():
-    page = PageSelene.from_url(driver=driver, url = "https://www.scrapethissite.com/pages/simple/")
     page.screenshot_to_local(driver, "./", "test")
+    
+def test_close_all_tabs_except_specified_tab():
+    tab_to_keep = driver.current_window_handle
+    page_form = PageSelene.new_tab(driver=driver, url = "https://www.scrapethissite.com/pages/forms/")
+    page_form.close_all_tabs_except_specified_tab(driver, handle_keep = tab_to_keep)
+    handles = driver.window_handles
+    assert len(handles) == 1
+    assert handles[0] == tab_to_keep
+    

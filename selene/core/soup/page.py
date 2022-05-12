@@ -86,8 +86,7 @@ class PageSoup(Page):
             "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8",
         }
         with requests.Session() as session:
-            self.log(f"navigate to: {self.url}")
-            page = session.get(self.url, headers=headers).content.decode()
+            page = session.get(url, headers=headers).content.decode()
             soup = BeautifulSoup(page, "lxml")
             return cls(url, soup, logger)
 
