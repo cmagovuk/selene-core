@@ -3,35 +3,23 @@
 
 .. toctree::
    :maxdepth: 1
-   :caption: Simple element retrieval
+   :caption: The basics
    :hidden:
 
-   basics/element_retrieval
-    
-.. toctree::
-   :maxdepth: 1
-   :caption: Dynamic scraping
-   :hidden:
-    
-   basics/clicking_and_scrolling
-
-.. toctree::
-   :maxdepth: 1
-   :caption: Crawling a website
-   :hidden:
-    
-   basics/crawlers
+   basics/element_retrieval.ipynb
+   basics/clicking_and_scrolling.ipynb
+   basics/crawlers.ipynb
    
 .. toctree::
    :maxdepth: 1
-   :caption: Building website specific functionality
+   :caption: Website-specific functionality
    :hidden:
     
-   websites/websites 
+   websites/websites.ipynb
 
 .. toctree::
    :maxdepth: 1
-   :caption: Contributing to this Repository
+   :caption: Contributing to this repository
    :hidden:
     
    contributing
