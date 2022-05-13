@@ -8,7 +8,6 @@
 
    basics/element_retrieval.ipynb
    basics/clicking_and_scrolling.ipynb
-   basics/crawlers.ipynb
    
 .. toctree::
    :maxdepth: 1
