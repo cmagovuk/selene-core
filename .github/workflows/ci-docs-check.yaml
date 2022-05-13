@@ -1,0 +1,44 @@
+name: CI-check-docs
+
+on:
+  pull_request:
+    branches: [ master ]
+    
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Get Token
+        uses: cmagovuk/github-app-installation-token-action@v2
+        id: installationToken
+        with: 
+          appId: ${{ secrets.TALOS_V2_APP_ID }}
+          installationId: ${{secrets.TALOS_V2_INSTALLATION_ID }}
+          privateKey: ${{ secrets.TALOS_V2_PRIVATE_KEY }}
+      - name: Setup git
+        run: |
+          git config --global url."https://github.com/".insteadOf git@github.com:
+          git config --global url."https://".insteadOf git://
+          git config --global url."https://x-access-token:${{ steps.installationToken.outputs.token }}@github.com/".insteadOf "https://github.com/"
+      - name: Install pandoc
+        run: |
+          sudo apt-get install pandoc
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
+      - name: Install requirements
+        run: |
+          sudo apt-get install -y graphviz graphviz-dev
+          python -m pip install -r docs/requirements.txt
+      # NOTE could use https://github.com/quarto-dev/quarto-actions
+      # TODO is there a way to not pin quarto?
+      - name: Install quarto
+        run: |
+          wget https://github.com/quarto-dev/quarto-cli/releases/download/v0.9.345/quarto-0.9.345-linux-amd64.deb
+          sudo dpkg -i quarto-0.9.345-linux-amd64.deb
+      - name: Make documentation HTML
+        run: |
+          cd docs
+          make html
