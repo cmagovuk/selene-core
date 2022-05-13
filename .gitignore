@@ -5,7 +5,6 @@
 *.egg
 *.pyc
 *.pyo
-*.ipynb
 *.lock
 *.dirlock
 *.csv
@@ -14,3 +13,4 @@
 
 /vignettes/**/*.Rmd
 /selene/**/*.Rmd
+/selene/**/*.ipynb
