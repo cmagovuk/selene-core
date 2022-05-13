@@ -1,0 +1,10 @@
+diagrams
+graphviz
+insipid-sphinx-theme
+ipykernel
+ipywidgets
+jupytext
+nbsphinx
+sphinx
+sphinx-diagrams
+sphinx-rtd-theme
