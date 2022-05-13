@@ -6,28 +6,28 @@
    :caption: Simple element retrieval
    :hidden:
 
-   basics/test
+   basics/element_retrieval
     
 .. toctree::
    :maxdepth: 1
    :caption: Dynamic scraping
    :hidden:
     
-   basics/test_click
+   basics/clicking_and_scrolling
 
 .. toctree::
    :maxdepth: 1
    :caption: Crawling a website
    :hidden:
     
-   basics/crawler
+   basics/crawlers
    
 .. toctree::
    :maxdepth: 1
    :caption: Building website specific functionality
    :hidden:
     
-   websites/website 
+   websites/websites 
 
 .. toctree::
    :maxdepth: 1
