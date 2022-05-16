@@ -17,7 +17,7 @@ This is the "relevant" high-level folder structure for this repository:
 │   ├── build                 <- Placeholder for built docs.
 │   ├── source                <- Documentation scripts.
 │   │   ├── index.rst         <- Main file.
-│   │   ├── contributing.rst  <- How to docs.
+│   │   ├── contributing.md  <- How to docs.
 │   │   └── etc.
 │   └── etc.                  <- Other necessary files.
 │
@@ -30,10 +30,16 @@ It can be helpful to build and serve the documentation locally in order to QA an
 
 1. Clone `git@github.com:cmagovuk/selene-core.git`.
 2. Activate the py39 conda environment
+   
    `conda activate py39`
+   
 3. Navigate to the docs directory (the one with the Makefile), install requirements, pull submodules and build the html
+   
    `cd selene-core/docs`
+   
    `make requirements`
+   
    `make html`
 5. Staying in the same directory, build and run the docker image which serves the documentation
+   
    `make serve`
