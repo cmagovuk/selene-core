@@ -1,4 +1,4 @@
-selene package
+Selene selenium-based functionality
 ======================
 
 Submodules

@@ -1,16 +1,8 @@
-selene package
+Selene core functionality and parent objects
 ======================
 
 Submodules
 ----------
-
-selene.core.config module
---------------------------
-
-.. automodule:: selene.core.config
-   :members:
-   :undoc-members:
-   :show-inheritance:
 
 selene.core.crawler module
 ---------------------------

@@ -1,4 +1,4 @@
-selene package
+Selene soup-based functionality
 ======================
 
 Submodules
