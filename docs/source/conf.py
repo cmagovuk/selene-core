@@ -22,7 +22,7 @@ author = "CMA DaTA Unit"
 copyright = "2022, " + author
 
 # The full version, including alpha/beta/rc tags
-release = "0.1.0"
+release = "1.0.0"
 
 
 # -- General configuration ---------------------------------------------------
@@ -46,7 +46,6 @@ templates_path = ["_templates"]
 # directories to ignore when looking for source files.
 # This pattern also affects html_static_path and html_extra_path.
 exclude_patterns = ["build", "**.ipynb_checkpoints"]
-# exclude_patterns = ["build", "circe/api/circe.rst"]
 
 # Support for notebook formats other than .ipynb
 nbsphinx_custom_formats = {
