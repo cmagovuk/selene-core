@@ -32,6 +32,7 @@ selene API from docstrings.
 
 .. toctree::
    :maxdepth: 1
+   :caption: API
    :glob:
 
    api/*
