@@ -22,3 +22,18 @@
    :hidden:
     
    contributing
+   
+.. _API:
+
+API
+---
+
+selene API from docstrings.
+
+.. toctree::
+   :maxdepth: 1
+   :glob:
+
+   api/*
+
+.. include:: ../../CHANGELOG.rst
