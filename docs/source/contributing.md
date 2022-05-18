@@ -40,6 +40,7 @@ It can be helpful to build and serve the documentation locally in order to QA an
    `make requirements`
    
    `make html`
+   
 5. Staying in the same directory, build and run the docker image which serves the documentation
    
    `make serve`
