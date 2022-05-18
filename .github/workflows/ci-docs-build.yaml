@@ -49,19 +49,9 @@ jobs:
       - name: Commit documentation changes
         run: |
           rm -r ~/.gitconfig
-          # deinit all submodules from .gitmodules
-          git submodule deinit .
-          # remove all submodules (`git rm`) from .gitmodules
-          git submodule | cut -c43- | while read -r line; do (git rm "$line"); done
-          # delete all submodule sections from .git/config (`git config --local --remove-section`) by fetching those from .git/config
-          git config --local -l | grep submodule | sed -e 's/^\(submodule\.[^.]*\)\(.*\)/\1/g' | while read -r line; do (git config --local --remove-section "$line"); done
-          # manually remove leftovers
-          rm -f ../.gitmodules
-          rm -rf ../.git/modules
-          rm -rf ./source
           git config --global user.email "you@example.com"
           git config --global user.name "GithubAction"
           git config --global url."https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/".insteadOf "https://github.com/"
-          git add -f .
+          git add .
           git commit -m "Update documentation"
-          git push -f origin HEAD:pages
+          git push -f origin HEAD:docs
