@@ -1,29 +1,21 @@
-ledatoolz.path package
+selene package
 ======================
 
 Submodules
 ----------
 
-ledatoolz.path.leda module
+selene.core.soup.element module
 --------------------------
 
-.. automodule:: ledatoolz.path.leda
+.. automodule:: selene.core.soup.element
    :members:
    :undoc-members:
    :show-inheritance:
 
-ledatoolz.path.local module
+selene.core.soup.page module
 ---------------------------
 
-.. automodule:: ledatoolz.path.local
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-ledatoolz.path.s3 module
-------------------------
-
-.. automodule:: ledatoolz.path.s3
+.. automodule:: selene.core.soup.page
    :members:
    :undoc-members:
    :show-inheritance:
@@ -31,7 +23,7 @@ ledatoolz.path.s3 module
 Module contents
 ---------------
 
-.. automodule:: ledatoolz.path
+.. automodule:: selene.core.soup
    :members:
    :undoc-members:
    :show-inheritance:
