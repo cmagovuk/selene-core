@@ -1,7 +1,7 @@
 Selene - the CMA DaTA unit's webscraping package
 ================================================
 
-A framework for more efficient, consistent and maintainable webscraping. Wraps and combines both Selenium Webdriver and BeautifulSoup.
+A framework for more efficient, consistent and maintainable object-oriented webscraping. Wraps and combines both Selenium Webdriver and BeautifulSoup.
 
 **Motivation**
 
