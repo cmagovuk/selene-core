@@ -29,7 +29,8 @@ jobs:
           python-version: 3.9
       - name: Install requirements
         run: |
-          python -m pip install -r docs/requirements.txt
+          cd docs
+          make requirements
       - name: Make documentation HTML
         run: |
           cd docs
@@ -42,6 +43,6 @@ jobs:
           git config --global user.email "you@example.com"
           git config --global user.name "GithubAction"
           git config --global url."https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/".insteadOf "https://github.com/"
-          git add .
+          git add -f .
           git commit -m "Update documentation"
           git push -f origin HEAD:docs
