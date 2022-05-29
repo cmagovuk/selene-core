@@ -20,9 +20,6 @@ help:
     
 requirements:    
 	pip install -r requirements.txt
-	wget https://github.com/quarto-dev/quarto-cli/releases/download/v0.9.345/quarto-0.9.345-linux-amd64.deb
-	sudo dpkg -i quarto-0.9.345-linux-amd64.deb
-	rm quarto-0.9.345-linux-amd64.deb
        
 serve:
-	docker run -p 80:80 -v $(PWD)/build/html:/usr/share/nginx/html nginx:alpine
+	docker run -d -p 80:80 -v $(PWD)/build/html:/usr/share/nginx/html nginx:alpine
