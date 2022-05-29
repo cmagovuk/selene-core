@@ -2,7 +2,7 @@ name: CI-build-docs
 
 on:
   push:
-    branches: [ master, docs-ci ]
+    branches: [ master, documentation ]
     
 jobs:
   build-and-deploy:
