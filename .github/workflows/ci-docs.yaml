@@ -3,7 +3,8 @@ name: CI-build-docs
 on:
   push:
     branches: [ master, documentation ]
-    
+  pull_request: # no filters on pull requests
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -29,29 +30,20 @@ jobs:
           python-version: 3.9
       - name: Install requirements
         run: |
-          sudo apt-get install -y graphviz graphviz-dev
-          python -m pip install -r docs/requirements.txt
-      # NOTE could use https://github.com/quarto-dev/quarto-actions
-      # TODO is there a way to not pin quarto?
-      - name: Install quarto
-        run: |
-          wget https://github.com/quarto-dev/quarto-cli/releases/download/v0.9.345/quarto-0.9.345-linux-amd64.deb
-          sudo dpkg -i quarto-0.9.345-linux-amd64.deb
-      - name: Pull submodules
-        run: |
-          git submodule update --init --recursive
-          git submodule update --recursive --remote
+          cd docs
+          make requirements
       - name: Make documentation HTML
         run: |
           cd docs
           make html
       # NOTE could use https://github.com/peaceiris/actions-gh-pages
       - name: Commit documentation changes
+        if: github.event_name == 'push'
         run: |
           rm -r ~/.gitconfig
           git config --global user.email "you@example.com"
           git config --global user.name "GithubAction"
           git config --global url."https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/".insteadOf "https://github.com/"
-          git add .
+          git add -f .
           git commit -m "Update documentation"
           git push -f origin HEAD:docs

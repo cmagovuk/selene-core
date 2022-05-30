@@ -36,7 +36,6 @@ extensions = [
     "sphinx.ext.mathjax",
     "sphinx.ext.napoleon",
     "sphinx.ext.viewcode",
-    "sphinx_diagrams",
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -48,11 +47,9 @@ templates_path = ["_templates"]
 exclude_patterns = ["build", "**.ipynb_checkpoints"]
 
 # Support for notebook formats other than .ipynb
-nbsphinx_custom_formats = {
-    ".pct.py": ["jupytext.reads", {"fmt": "py:percent"}],
-    ".md": ["jupytext.reads", {"fmt": "qmd"}],
-    ".qmd": ["jupytext.reads", {"fmt": "qmd"}],
-}
+# nbsphinx_custom_formats = {
+#     ".md": ["jupytext.reads", {"fmt": "qmd"}],
+# }
 
 nbsphinx_kernel_name = "python3"
 

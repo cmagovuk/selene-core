@@ -11,6 +11,4 @@
 *.parquet
 *.pdf
 
-/vignettes/**/*.Rmd
-/selene/**/*.Rmd
-/selene/**/*.ipynb
+docs/build/*
