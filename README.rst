@@ -5,7 +5,7 @@ A framework for more efficient, consistent and maintainable object-oriented webs
 
 **Motivation**
 
-We have gathered data from websites (i.e. webscraping) in multiple projects, applying multiple methodologies and never building upon what we have done previously. Selene introduces a methodology which can be used as the basis for new webscraping projects, and can be easily maintained and improved over time.
+The CMA DaTA unit had gathered data from websites (i.e. webscraping) in multiple projects, applying multiple methodologies and never building upon what we have done previously. Selene introduces a methodology which can be used as the basis for new webscraping projects, and can be easily maintained and improved over time.
 
 **Principles**
 
@@ -31,19 +31,24 @@ We have gathered data from websites (i.e. webscraping) in multiple projects, app
 * lxml
 * ipython
 * numpy
+* requests
 
 **Installation**
 
 To install from scratch:
 
-1. Load conda environment:
-
-``conda activate py39``
-
-2. Install Chrome and chromedriver:
+1. Install Chrome and chromedriver:
 
 ``bash env-setup.sh``
 
-3. Install:
+2. Install:
 
 ``pip install .``
+
+**Contributing to selene**
+
+The CMA welcomes contributions to selene. If you spot a bug, or think of a potential enhancement to selene - please describe it in an issue using the given template. If you plan on working on the fix / enhancement itself, please assign yourself to the issue and work on a pull request. Otherwise, the DaTA unit will triage the issue and assign some resource to it as appropriate. Any pull requests will need to pass CI (see tox.ini file) and be signed off by an admin.
+
+Notes on pull requests:
+* All code must be in black code style. Run ``black -l 90`` on the new files
+* Any new functions written will require unit test coverage
