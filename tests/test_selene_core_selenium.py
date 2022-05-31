@@ -102,6 +102,16 @@ def test_stop_driver():
     with pytest.raises(Exception):
         stop_driver()
         driver.current_url
+        
+def test_get_driver_display():
+    driver, display = get_driver(use_display=True)
+    assert driver.name is not None
+    assert display is not None
+    
+def test_stop_driver_display():   
+    with pytest.raises(Exception):
+        stop_driver(display=display)
+        driver.current_url
 
 # def test_restart_driver():
 #     restart_driver(driver, wait = 20)
