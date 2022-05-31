@@ -54,7 +54,7 @@ def random_wait(_func=None, *, seconds_min=0, seconds_max=1):
 
 
 def validateUrl(url):
-    """ Regex to check for a valid URL """
+    """Regex to check for a valid URL"""
     reg_exp = (
         "((http|https)://)(www.)?"
         + "[a-zA-Z0-9@:%._\\+~#?&//=]"
