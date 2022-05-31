@@ -7,12 +7,13 @@ REQUIREMENTS = [
     "beautifulsoup4",
     "lxml",
     "ipython",
-    "requests"
+    "requests",
+    "pyvirtualdisplay"
 ]
 
 REQUIREMENTS_TEST = ["coverage", "interrogate", "pytest", "pytest-cov", "black"]
 
-__version__ = "0.0.9"
+__version__ = "0.1.0"
 
 setup(
     name="selene",

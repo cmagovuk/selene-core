@@ -188,3 +188,5 @@ def test_close_all_tabs_except_specified_tab():
     assert len(handles) == 1
     assert handles[0] == tab_to_keep
     
+def test_mouse_move():
+    assert mouse_move(driver) >= 1
