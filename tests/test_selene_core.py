@@ -70,7 +70,9 @@ def test_utils_get_domain():
 def test_random_wait():
     @random_wait(seconds_min=2, seconds_max=3)
     def test_func(x):
-        print(x)   
+        print(x)
+    test_url = "https://www.scrapethissite.com/"
+    page = Page(url=test_url, logger = get_logger())
     start_time = time.time()  
     test_func(page)
     end_time = time.time()
