@@ -8,3 +8,10 @@ and this project adheres to `Semantic Versioning <https://semver.org/spec/v2.0.0
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Port from previous respository with some additionial testing etc
+
+`v1.0.0 <https://github.com/cmagovuk/selene-core/releases/tag/v1.0.0>`_ - 2022-06-08
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+- Increase test coverage
+- Add documentation
+- Add new features for virtual display driver option and mouse move for bot mitigation
