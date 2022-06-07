@@ -3,7 +3,8 @@ Selene - the CMA DaTA unit's webscraping package
 
 A framework for more efficient, consistent and maintainable object-oriented webscraping. Wraps and combines both Selenium Webdriver and BeautifulSoup.
 
-**Principles**
+Principles
+~~~~~~~~
 
 1. Websites are best represented using an Object-Oriented Programming approach.
 2. All websites are made out of pages.
@@ -13,14 +14,16 @@ A framework for more efficient, consistent and maintainable object-oriented webs
 6. All elements can be represented as Element objects
 7. The base of all Element objects can ultimately derive from inheriting a general Element object.
 
-**Features**
+Features
+~~~~~~~~
 
 1. `selene.core`:
   * General Page and Element objects
   * Selenium-based Page and Element objects with functions to wrap Selenium Webdriver.
   * Soup-based Page and Element objects with functions to wrap BeautifulSoup.
   
-**Installation**
+Installation
+~~~~~~~~
 
 To install from scratch:
 
