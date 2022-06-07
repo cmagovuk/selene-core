@@ -18,7 +18,14 @@
 
 .. toctree::
    :maxdepth: 1
-   :caption: Contributing to this repository
+   :caption: Contributing
+   :hidden:
+    
+   contributing_code
+   
+.. toctree::
+   :maxdepth: 1
+   :caption: Adding documentation
    :hidden:
     
    contributing
