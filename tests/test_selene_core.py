@@ -16,40 +16,28 @@ from selene.core.utils import *
 
 from selene.core.selenium.driver import *
 
-
 def test_crawler_init():
     assert Crawler() is not None
-    
-    
+       
 def test_crawler_logging():
     crawler = Crawler()
     assert crawler.log('test') is None
-    
-    
-# def test_crawler_screenshot():
-#     crawler = Crawler()
-#     driver = get_driver()
-#     assert crawler.screenshot_to_notebook(driver) is None
-    
     
 def test_element_init():
     el = "test_element"
     logger = get_logger()
     element = Element(el, logger)
     assert element.element == "test_element"
-    
-    
+        
 def test_element_logging():
     el = "test_element"
     element = Element(el, logger = get_logger())
     assert element.log('test') is None
-    
-    
+       
 def test_logger_init():
     logger = get_logger()
     assert logger is not None
-    
-    
+       
 def test_logger_to_file():
     logger = get_logger(to_file=True, 
                         dirpath=".",
@@ -59,13 +47,11 @@ def test_logger_to_file():
     crawler.log('test')
     assert os.path.isfile("./test_logger.log")
     
-
 def test_page_init():
     test_url = "https://www.scrapethissite.com/"
     page = Page(url=test_url, logger = get_logger())
     assert page is not None
     
-
 def test_page_logging():
     test_url = "https://www.scrapethissite.com/"
     logger = get_logger(to_file=True, 
@@ -80,22 +66,19 @@ def test_page_logging():
 def test_utils_get_domain():
     url = "https://www.scrapethissite.com/"
     assert get_domain(url) == "www.scrapethissite.com"
-    
-    
-# def test_random_wait():
-#     def test_func():
-#         print("test function")   
-    
-#     start_time = time.time()
       
-#     random_wait(_func = test_func(), seconds_min=2, seconds_max=3)
-    
-#     end_time = time.time()
-#     time_elapsed = end_time - start_time
-#     assert time_elapsed > 2
+def test_random_wait():
+    @random_wait(seconds_min=2, seconds_max=3)
+    def test_func(x):
+        print(x)
+    test_url = "https://www.scrapethissite.com/"
+    page = Page(url=test_url, logger = get_logger())
+    start_time = time.time()  
+    test_func(page)
+    end_time = time.time()
+    time_elapsed = end_time - start_time
+    assert time_elapsed >= 2
       
-
 def test_validate_url():
     url = "https://www.scrapethissite.com/"
     assert validateUrl(url) is True
-

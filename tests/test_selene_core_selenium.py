@@ -55,7 +55,7 @@ def test_bool_yoffset_changed():
 #     el = page.find(driver, by = By.ID, identifier = 'iframe')
 #     orig_pos = script_get_scroll_position(driver, el)
 #     el.scroll_to_bottom(driver)
-#     assert bool_scroll_position_changed(driver, element = el, wait = 1, position = orig_pos) == True
+#     assert bool_scroll_position_changed(driver, element = el, wait = 1, position = orig_pos, logger = None) == True
     
 def test_bool_scroll_height_changed():
     page = PageSelene.from_url(driver=driver, url = "http://www.scrapethissite.com/pages/forms/")
@@ -72,7 +72,7 @@ def test_bool_element_class_does_not_contain():
     page = PageSelene.from_url(driver=driver, url = "http://www.scrapethissite.com/pages/")
     test_element = page.find(driver, by = By.XPATH, identifier = '//*[@id="pages"]/section/div/div/div/div[1]')
     assert bool_element_class_does_not_contain(driver, element = test_element, wait = 1, logger = None, string = "test") == True    
-    
+   
 def test_bool_element_text_contains():
     page = PageSelene.from_url(driver=driver, url = "http://www.scrapethissite.com/")
     test_element = page.find(driver, by = By.XPATH, identifier = '//*[@id="hero"]/div/div/div/a[1]')
@@ -113,9 +113,10 @@ def test_stop_driver_display():
         stop_driver(display=display)
         driver.current_url
 
-# def test_restart_driver():
-#     restart_driver(driver, wait = 20)
-#     assert driver.name is not None
+def test_restart_driver():
+    driver = get_driver()
+    new_driver = restart_driver(driver, wait = 20)
+    assert new_driver.name is not None
     
 def test_get_user_agent():
     assert "Mozilla" in get_user_agent(10)
@@ -160,20 +161,33 @@ def test_click():
     assert test_element.click(driver)
 
 def test_scroll_down():
-    pass
+    page = PageSelene.from_url(driver=driver, url = "https://www.scrapethissite.com/pages/simple/")
+    assert page.scroll_down(driver) is True
 
 def test_scroll_to():
-    pass
+    page = PageSelene.from_url(driver=driver, url = "https://www.scrapethissite.com/pages/simple/")
+    assert page.scroll_to(driver, position_new = 50) is True
 
 def test_scroll_to_bottom():
-    pass
+    page = PageSelene.from_url(driver=driver, url = "https://www.scrapethissite.com/pages/simple/")
+    assert page.scroll_to_bottom(driver) is True
 
-# TEST PAGE
+def test_expand_scroll_height():
+    page = PageSelene.from_url(driver=driver, url = "https://www.scrapethissite.com/pages/forms/")
+    orig_offset = driver.execute_script("return window.pageYOffset")
+    page.expand_scroll_height(driver)
+    assert bool_yoffset_changed(driver, wait = 1, yoffset = orig_offset, logger = None) == True
 
-
-# TEST SCRIPTS
-
-
-# TEST TASKS
+def test_screenshot_to_local():
+    page.screenshot_to_local(driver, "./", "test")
+    
+def test_close_all_tabs_except_specified_tab():
+    tab_to_keep = driver.current_window_handle
+    page_form = PageSelene.new_tab(driver=driver, url = "https://www.scrapethissite.com/pages/forms/")
+    page_form.close_all_tabs_except_specified_tab(driver, handle_keep = tab_to_keep)
+    handles = driver.window_handles
+    assert len(handles) == 1
+    assert handles[0] == tab_to_keep
+    
 def test_mouse_move():
     assert mouse_move(driver) >= 1
