@@ -1,10 +1,12 @@
 .. include:: ../../README.rst
 
+User guides
+~~~~~~~~~~~
 
 .. toctree::
    :maxdepth: 1
    :caption: The basics
-   :hidden:
+   :glob:
 
    basics/element_retrieval.ipynb
    basics/clicking_and_scrolling.ipynb
@@ -12,30 +14,29 @@
 .. toctree::
    :maxdepth: 1
    :caption: Website-specific functionality
-   :hidden:
+   :glob:
     
    websites/websites.ipynb
+   
+Getting involved
+~~~~~~~~~~~
 
 .. toctree::
    :maxdepth: 1
    :caption: Contributing
-   :hidden:
+   :glob:
     
    contributing_code
    
 .. toctree::
    :maxdepth: 1
    :caption: Adding documentation
-   :hidden:
+   :glob:
     
    contributing
-   
-.. _API:
 
-API
----
-
-selene API from docstrings.
+API and version history
+~~~~~~~~~~~
 
 .. toctree::
    :maxdepth: 1
