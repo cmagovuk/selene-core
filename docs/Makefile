@@ -21,5 +21,8 @@ help:
 requirements:    
 	pip install -r requirements.txt
        
-serve:
+serve-start:
 	docker run -d -p 80:80 -v $(PWD)/build/html:/usr/share/nginx/html nginx:alpine
+   
+serve-stop:
+	docker kill $$(docker ps | grep nginx | cut -d" " -f1)
