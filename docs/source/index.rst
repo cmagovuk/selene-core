@@ -32,5 +32,6 @@
    :maxdepth: 1
    :caption: API
    :glob:
+   :hidden:
 
    api/*
