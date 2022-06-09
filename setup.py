@@ -7,7 +7,8 @@ REQUIREMENTS = [
     "beautifulsoup4",
     "lxml",
     "ipython",
-    "requests"
+    "requests",
+    "pyvirtualdisplay"
 ]
 
 REQUIREMENTS_TEST = ["coverage", "interrogate", "pytest", "pytest-cov", "black"]
@@ -19,7 +20,6 @@ setup(
     version=__version__,
     packages=find_packages(),
     install_requires=REQUIREMENTS,
-    tests_require=REQUIREMENTS + ["pytest", "pytest-runner"],
     extras_require={
         "tests": REQUIREMENTS_TEST
     },

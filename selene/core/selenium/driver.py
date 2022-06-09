@@ -3,11 +3,18 @@ import time
 import numpy as np
 from selenium import webdriver
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
-
+from pyvirtualdisplay import Display
 from selene.core.config import *
 
 
-def get_driver(width=2560, height=1440, user_agent="default", incognito=False):
+def get_driver(
+    width=2560,
+    height=1440,
+    user_agent="default",
+    incognito=False,
+    disable_gpu=False,
+    use_display=False,
+):
     """
     Get an instance of selenium.webdriver and start browser
 
@@ -24,6 +31,10 @@ def get_driver(width=2560, height=1440, user_agent="default", incognito=False):
             Otherwise, the specified user agent is used.
         incognito : bool
             whether or not to start the browser in incognito mode
+        disable_gpu : bool
+            whether or not to disable GPU
+        use_display: bool
+            whether or not to use a virtual display
 
     Returns
     ----------
@@ -36,6 +47,8 @@ def get_driver(width=2560, height=1440, user_agent="default", incognito=False):
     options.add_argument("--disable-dev-shm-usage")
     if incognito:
         options.add_argument("--incognito")
+    if disable_gpu:
+        options.add_argument("--disable-gpu")
     if user_agent and user_agent == "random":
         user_agent = get_user_agent_random()
         options.add_argument(f"--user-agent={user_agent}")
@@ -51,10 +64,16 @@ def get_driver(width=2560, height=1440, user_agent="default", incognito=False):
 
     driver = webdriver.Chrome(options=options, desired_capabilities=desired_capabilities)
     driver.set_window_rect(x=0, y=0, width=width, height=height)
+
+    if use_display:
+        display = Display(visible=False, size=(width, height))
+        display.start()
+        return driver, display
+
     return driver
 
 
-def stop_driver(driver):
+def stop_driver(driver, display=None):
     """
     Stop and close the selenium.webdriver instance
 
@@ -62,7 +81,11 @@ def stop_driver(driver):
     ----------
         driver : selenium.webdriver
              the selenium webdriver instance to stop
+        display : pyvirtualdisplay.Display optional
+             if using a pyvirtual display, display to stop
     """
+    if display != None:
+        display.stop()
     driver.close()
     driver.quit()
 
