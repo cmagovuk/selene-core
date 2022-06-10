@@ -80,7 +80,7 @@ class PageSoup(Page):
             logger : logging.Logger
                 a logger instance (see core.logger.py)
         """
-        user_agent = np.random.choice(USER_AGENTS)
+        user_agent = str(np.random.choice(USER_AGENTS))
         headers = {
             "User-Agent": user_agent,
             "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8",
