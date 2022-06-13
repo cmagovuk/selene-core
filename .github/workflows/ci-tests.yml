@@ -1,4 +1,4 @@
-name: CI-selene
+name: CI-run-tests
 
 # Controls when the workflow will run
 on:
@@ -19,16 +19,11 @@ jobs:
     runs-on: ubuntu-latest
     env:
       PACKAGE: "selene"
-
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-      
-      - name: Extract branch name
-        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
-        id: extract_branch
-        
+      # Set up git
       - name: Get Token
         uses: cmagovuk/github-app-installation-token-action@v2
         id: installationToken
@@ -36,24 +31,20 @@ jobs:
           appId: ${{ secrets.TALOS_V2_APP_ID }}
           installationId: ${{secrets.TALOS_V2_INSTALLATION_ID }}
           privateKey: ${{ secrets.TALOS_V2_PRIVATE_KEY }}
-          
       - name: Setup git
         run: |
           git config --global url."https://github.com/".insteadOf git@github.com:
           git config --global url."https://".insteadOf git://
           git config --global url."https://x-access-token:${{ steps.installationToken.outputs.token }}@github.com/".insteadOf "https://github.com/"
-      
       # Set up python using default action
       - name: Setup Python
         uses: actions/setup-python@v2
         with:
           python-version: 3.9
-        
       # Install / upgrade tox for testing
       - name: Install testing dependencies
         run: |
           python -m pip install --upgrade pip black tox
-          
       # Run tox 
       - name: Test selene
         run: |
