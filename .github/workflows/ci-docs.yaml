@@ -21,9 +21,9 @@ jobs:
 #         run: |
 #           git config --global url."https://x-access-token:${{ steps.installationToken.outputs.token }}@github.com/".insteadOf "https://github.com/"
 #           git config --global url."https://x-access-token:${{ steps.installationToken.outputs.token }}@github.com/".insteadOf "git@github.com:"
-#       - name: Install pandoc
-#         run: |
-#           sudo apt-get install pandoc
+      - name: Install pandoc
+        run: |
+          sudo apt-get install pandoc
       - name: Setup Python
         uses: actions/setup-python@v2
         with:
