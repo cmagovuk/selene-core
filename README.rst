@@ -3,6 +3,8 @@ Selene
 
 A framework for efficient, consistent and maintainable object-oriented webscraping. Wraps and combines both Selenium Webdriver and BeautifulSoup.
 
+`Selene documentation<https://ubiquitous-spoon-638667f8.pages.github.io/>`_.
+
 Principles
 ~~~~~~~~~~
 
