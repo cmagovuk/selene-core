@@ -136,4 +136,4 @@ def get_user_agent_random():
         user_agent : str
             The selected user agent
     """
-    return np.random.choice(USER_AGENTS)
+    return str(np.random.choice(USER_AGENTS))
