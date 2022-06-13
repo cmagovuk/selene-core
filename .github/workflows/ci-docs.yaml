@@ -2,7 +2,7 @@ name: CI-build-docs
 
 on:
   push:
-    branches: [ master ]
+    branches: [ master, docs-fixes ]
   pull_request: # no filters on pull requests
 
 jobs:
