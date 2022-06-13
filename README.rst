@@ -31,8 +31,8 @@ Installation
 
 To install from scratch
 
-1. Install Chrome and chromedriver
+* Install Chrome and chromedriver
     ``bash env-setup.sh``
 
-2. Install
+* Install
     ``pip install .``
