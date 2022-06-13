@@ -2,12 +2,10 @@ name: CI-run-tests
 
 # Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the master branch
+  # Triggers the workflow on push to master or pull request events
   push:
     branches: [ master ]
   pull_request:
-    branches: [ master ]
-
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
@@ -23,29 +21,16 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-      # Set up git
-      - name: Get Token
-        uses: cmagovuk/github-app-installation-token-action@v2
-        id: installationToken
-        with: 
-          appId: ${{ secrets.TALOS_V2_APP_ID }}
-          installationId: ${{secrets.TALOS_V2_INSTALLATION_ID }}
-          privateKey: ${{ secrets.TALOS_V2_PRIVATE_KEY }}
-      - name: Setup git
-        run: |
-          git config --global url."https://github.com/".insteadOf git@github.com:
-          git config --global url."https://".insteadOf git://
-          git config --global url."https://x-access-token:${{ steps.installationToken.outputs.token }}@github.com/".insteadOf "https://github.com/"
       # Set up python using default action
       - name: Setup Python
         uses: actions/setup-python@v2
         with:
           python-version: 3.9
-      # Install / upgrade tox for testing
+      # Install / upgrade tox etc for testing
       - name: Install testing dependencies
         run: |
           python -m pip install --upgrade pip black tox
-      # Run tox 
+      # Run tests 
       - name: Test selene
         run: |
           cd ${{ env.PACKAGE }}
