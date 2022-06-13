@@ -21,13 +21,18 @@ Features
 * Selenium-based Page and Element objects with methods that wrap Selenium Webdriver.
 * Soup-based Page and Element objects with methods that wrap BeautifulSoup.
   
+How to use it
+~~~~~~~~~~~~~
+
+Selene is a framework. It provides base Classes that can be used to create website-specific ``Page`` and ``Element`` objects by sub-classing the base Classes. Please refer to the `documentation <websites/websites.html>`_ for an example of how this is done.
+
 Installation
 ~~~~~~~~~~~~
 
-To install from scratch:
+To install from scratch
 
-1. Install Chrome and chromedriver:
+1. Install Chrome and chromedriver
     ``bash env-setup.sh``
 
-2. Install:
+2. Install
     ``pip install .``
