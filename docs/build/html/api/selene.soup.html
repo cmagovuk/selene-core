@@ -1,0 +1,373 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Selene soup-based functionality &#8212; Selene</title>
+    <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/insipid.css" />
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script defer src="../_static/insipid.js"></script>
+    <script defer src="../_static/insipid-sidebar.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Selene selenium-based functionality" href="selene.selenium.html" />
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+  </head><body>
+    <script type="text/javascript">
+        document.body.classList.add('js');
+    </script>
+    <input type="checkbox" id="sidebar-checkbox" style="display: none;">
+    <label id="overlay" for="sidebar-checkbox"></label>
+    <div class="sidebar-resize-handle"></div>
+    <script type="text/javascript">
+        try {
+            let sidebar = localStorage.getItem('sphinx-sidebar');
+            const sidebar_width = localStorage.getItem('sphinx-sidebar-width');
+            if (sidebar_width) {
+                document.documentElement.style.setProperty('--sidebar-width', sidebar_width);
+            }
+            // show sidebar on wide screen
+            if (!sidebar && window.matchMedia('(min-width: 100rem)').matches) {
+                sidebar = 'visible';
+                // NB: We don't store the value in localStorage!
+            }
+            if (sidebar === 'visible') {
+                document.getElementById('sidebar-checkbox').checked = true;
+            }
+        } catch(e) {
+            console.info(e);
+        }
+    </script>
+    <header id="topbar-placeholder">
+      <div id="topbar">
+        <div id="titlebar">
+          <div class="buttons">
+            <label for="sidebar-checkbox" id="sidebar-button" role="button" tabindex="0" aria-controls="sphinxsidebar" accesskey="M">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"/></svg>
+            </label>
+            <button id="search-button" type="button" title="Search" aria-label="Search" aria-expanded="false" aria-controls="search-form" accesskey="S">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+            </button>
+          </div>
+          <div class="title">
+            <a class="parent" href="../index.html" accesskey="U">Selene</a>
+            <a class="top" href="#">Selene soup-based functionality</a>
+          </div>
+          <div class="buttons">
+            <button id="fullscreen-button" type="button" aria-hidden="true">
+              <span class="enable">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M212.686 315.314L120 408l32.922 31.029c15.12 15.12 4.412 40.971-16.97 40.971h-112C10.697 480 0 469.255 0 456V344c0-21.382 25.803-32.09 40.922-16.971L72 360l92.686-92.686c6.248-6.248 16.379-6.248 22.627 0l25.373 25.373c6.249 6.248 6.249 16.378 0 22.627zm22.628-118.628L328 104l-32.922-31.029C279.958 57.851 290.666 32 312.048 32h112C437.303 32 448 42.745 448 56v112c0 21.382-25.803 32.09-40.922 16.971L376 152l-92.686 92.686c-6.248 6.248-16.379 6.248-22.627 0l-25.373-25.373c-6.249-6.248-6.249-16.378 0-22.627z"/></svg>
+              </span>
+              <span class="disable">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M4.686 427.314L104 328l-32.922-31.029C55.958 281.851 66.666 256 88.048 256h112C213.303 256 224 266.745 224 280v112c0 21.382-25.803 32.09-40.922 16.971L152 376l-99.314 99.314c-6.248 6.248-16.379 6.248-22.627 0L4.686 449.941c-6.248-6.248-6.248-16.379 0-22.627zM443.314 84.686L344 184l32.922 31.029c15.12 15.12 4.412 40.971-16.97 40.971h-112C234.697 256 224 245.255 224 232V120c0-21.382 25.803-32.09 40.922-16.971L296 136l99.314-99.314c6.248-6.248 16.379-6.248 22.627 0l25.373 25.373c6.248 6.248 6.248 16.379 0 22.627z"/></svg>
+              </span>
+            </button>
+          </div>
+        </div>
+        <div id="searchbox" role="search">
+          <form id="search-form" class="search" style="display: none" action="../search.html" method="get">
+            <input type="search" name="q" placeholder="Search ..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
+            <button>Go</button>
+          </form>
+        </div>
+      </div>
+    </header>
+    <nav>
+      <a href="selene.selenium.html" class="nav-icon previous" title="previous:&#13;Selene selenium-based functionality" aria-label="Previous topic" accesskey="P" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M31.7 239l136-136c9.4-9.4 24.6-9.4 33.9 0l22.6 22.6c9.4 9.4 9.4 24.6 0 33.9L127.9 256l96.4 96.4c9.4 9.4 9.4 24.6 0 33.9L201.7 409c-9.4 9.4-24.6 9.4-33.9 0l-136-136c-9.5-9.4-9.5-24.6-.1-34z"/></svg>
+      </a>
+    </nav>
+
+    <nav class="relbar">
+      <a class="previous" href="selene.selenium.html" aria-label="Previous topic" >
+        <div class="icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M257.5 445.1l-22.2 22.2c-9.4 9.4-24.6 9.4-33.9 0L7 273c-9.4-9.4-9.4-24.6 0-33.9L201.4 44.7c9.4-9.4 24.6-9.4 33.9 0l22.2 22.2c9.5 9.5 9.3 25-.4 34.3L136.6 216H424c13.3 0 24 10.7 24 24v32c0 13.3-10.7 24-24 24H136.6l120.5 114.8c9.8 9.3 10 24.8.4 34.3z"/></svg>
+        </div>
+        <div class="title">
+          <span class="text">
+            <span class="direction">previous</span>
+            Selene selenium-based functionality
+          </span>
+        </div>
+      </a>
+    </nav>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+<section id="selene-soup-based-functionality">
+<h1>Selene soup-based functionality<a class="headerlink" href="#selene-soup-based-functionality" title="Permalink to this heading">¶</a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="selene-core-soup-element-module">
+<h2>selene.core.soup.element module<a class="headerlink" href="#selene-core-soup-element-module" title="Permalink to this heading">¶</a></h2>
+<span class="target" id="module-selene.core.soup.element"></span><dl class="py class">
+<dt class="sig sig-object py" id="selene.core.soup.element.ElementSoup">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">selene.core.soup.element.</span></span><span class="sig-name descname"><span class="pre">ElementSoup</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">element</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/selene/core/soup/element.html#ElementSoup"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#selene.core.soup.element.ElementSoup" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="selene.core.html#selene.core.element.Element" title="selene.core.element.Element"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a></p>
+<p>An element class to wrap beautiful soup functionality for finding and returning attributes from soup objects.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="selene.core.soup.element.ElementSoup.find">
+<span class="sig-name descname"><span class="pre">find</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/selene/core/soup/element.html#ElementSoup.find"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#selene.core.soup.element.ElementSoup.find" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find and return specific elements within the html</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>element</strong> (<em>str</em>) – the type of html element searched for e.g. ‘div’</p></li>
+<li><p><strong>attributes</strong> (<em>dict</em>) – attributes of the searched element e.g. {“class”: “text-1”}</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>el</strong></p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#selene.core.soup.element.ElementSoup" title="selene.core.soup.element.ElementSoup">ElementSoup</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="selene.core.soup.element.ElementSoup.find_all">
+<span class="sig-name descname"><span class="pre">find_all</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/selene/core/soup/element.html#ElementSoup.find_all"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#selene.core.soup.element.ElementSoup.find_all" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find and return all elements within the html that meet the given criteria</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>element</strong> (<em>str</em>) – the type of html element searched for e.g. ‘div’</p></li>
+<li><p><strong>attributes</strong> (<em>dict</em>) – attributes of the searched element e.g. {“class”: “text-1”}</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>els</strong> – all  ElementSoup that meet criteria</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="selene.core.soup.element.ElementSoup.from_selene">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_selene</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">element_selene</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/selene/core/soup/element.html#ElementSoup.from_selene"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#selene.core.soup.element.ElementSoup.from_selene" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialise an ElementSoup instance from an ElementSelene object.
+Allow interchangeability between selenium-based on soup-based elements</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>element_selene</strong> (<em>selene.core.selenium.ElementSelene</em>) – </p></li>
+<li><p><strong>logger</strong> (<em>logging.Logger</em>) – a logger instance (see core.logger.py)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="selene.core.soup.element.ElementSoup.get">
+<span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/selene/core/soup/element.html#ElementSoup.get"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#selene.core.soup.element.ElementSoup.get" title="Permalink to this definition">¶</a></dt>
+<dd><p>return a given attribute of the element</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="selene.core.soup.element.ElementSoup.get_text">
+<span class="sig-name descname"><span class="pre">get_text</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/selene/core/soup/element.html#ElementSoup.get_text"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#selene.core.soup.element.ElementSoup.get_text" title="Permalink to this definition">¶</a></dt>
+<dd><p>return text of object</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="selene.core.soup.element.ElementSoup.has_attr">
+<span class="sig-name descname"><span class="pre">has_attr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/selene/core/soup/element.html#ElementSoup.has_attr"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#selene.core.soup.element.ElementSoup.has_attr" title="Permalink to this definition">¶</a></dt>
+<dd><p>check whether element has a given attribute</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="selene.core.soup.element.ElementSoupBlank">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">selene.core.soup.element.</span></span><span class="sig-name descname"><span class="pre">ElementSoupBlank</span></span><a class="reference internal" href="../_modules/selene/core/soup/element.html#ElementSoupBlank"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#selene.core.soup.element.ElementSoupBlank" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#selene.core.soup.element.ElementSoup" title="selene.core.soup.element.ElementSoup"><code class="xref py py-class docutils literal notranslate"><span class="pre">ElementSoup</span></code></a></p>
+<p>A class for blank soup objects. Used in cases where another method has not returned anything</p>
+</dd></dl>
+
+</section>
+<section id="selene-core-soup-page-module">
+<h2>selene.core.soup.page module<a class="headerlink" href="#selene-core-soup-page-module" title="Permalink to this heading">¶</a></h2>
+<span class="target" id="module-selene.core.soup.page"></span><dl class="py class">
+<dt class="sig sig-object py" id="selene.core.soup.page.PageSoup">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">selene.core.soup.page.</span></span><span class="sig-name descname"><span class="pre">PageSoup</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">soup</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/selene/core/soup/page.html#PageSoup"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#selene.core.soup.page.PageSoup" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="selene.core.html#id0" title="selene.core.page.Page"><code class="xref py py-class docutils literal notranslate"><span class="pre">Page</span></code></a></p>
+<p>A page class to assist any workflow which requires BeautifulSoup.</p>
+<p>This is really a way to make Selenium WebDriver and BeautifulSoup more interchangeable, in as far as
+you can instantiate either a PageSoup or a PageSelene object, and the .find and .find_all function work in
+similar ways.</p>
+<p>Inherits selene.core.page.Page</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="selene.core.soup.page.PageSoup.find">
+<span class="sig-name descname"><span class="pre">find</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/selene/core/soup/page.html#PageSoup.find"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#selene.core.soup.page.PageSoup.find" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find and return specific a specific element within the page html</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>element</strong> (<em>str</em>) – the type of html element searched for e.g. ‘div’</p></li>
+<li><p><strong>attributes</strong> (<em>dict</em>) – attributes of the searched element e.g. {“class”: “text-1”}</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>el</strong></p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#selene.core.soup.element.ElementSoup" title="selene.core.soup.element.ElementSoup">ElementSoup</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="selene.core.soup.page.PageSoup.find_all">
+<span class="sig-name descname"><span class="pre">find_all</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/selene/core/soup/page.html#PageSoup.find_all"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#selene.core.soup.page.PageSoup.find_all" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find and return all elements within the page html that meet the given criteria</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>element</strong> (<em>str</em>) – the type of html element searched for e.g. ‘div’</p></li>
+<li><p><strong>attributes</strong> (<em>dict</em>) – attributes of the searched element e.g. {“class”: “text-1”}</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>els</strong> – all  ElementSoup that meet criteria</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="selene.core.soup.page.PageSoup.from_html">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_html</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">html</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/selene/core/soup/page.html#PageSoup.from_html"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#selene.core.soup.page.PageSoup.from_html" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialise a PageSoup instance from existing html source code.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>url</strong> (<em>str</em>) – the url of the page</p></li>
+<li><p><strong>html</strong> (<em>str</em>) – the html code to parse</p></li>
+<li><p><strong>logger</strong> (<em>logging.Logger</em>) – a logger instance (see core.logger.py)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="selene.core.soup.page.PageSoup.from_request">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_request</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/selene/core/soup/page.html#PageSoup.from_request"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#selene.core.soup.page.PageSoup.from_request" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialise a PageSoup instance by parsing a request to a web url.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>url</strong> (<em>str</em>) – the url of the page</p></li>
+<li><p><strong>logger</strong> (<em>logging.Logger</em>) – a logger instance (see core.logger.py)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="selene.core.soup.page.PageSoup.from_soup">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_soup</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">soup</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/selene/core/soup/page.html#PageSoup.from_soup"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#selene.core.soup.page.PageSoup.from_soup" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialise a PageSoup instance from existing, parsed soup.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>url</strong> (<em>str</em>) – the url of the page</p></li>
+<li><p><strong>soup</strong> – </p></li>
+<li><p><strong>logger</strong> (<em>logging.Logger</em>) – a logger instance (see core.logger.py)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-selene.core.soup">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-selene.core.soup" title="Permalink to this heading">¶</a></h2>
+</section>
+</section>
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+
+          <div class="sidebar-resize-handle"></div>
+
+<h3><a href="../index.html">Table of Contents</a></h3>
+<p class="caption" role="heading"><span class="caption-text">The basics</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../basics/element_retrieval.html">Gathering data from a webpage with selene</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../basics/clicking_and_scrolling.html">Clicking and scrolling</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Website-specific functionality</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../websites/websites.html">Building website-specific functionality</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Contributing</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../contributing_code.html">Contributing code to selene</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Writing documentation and user guides</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="selene.core.html">Selene core functionality and parent objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="selene.selenium.html">Selene selenium-based functionality</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Selene soup-based functionality</a></li>
+</ul>
+
+<hr class="docutils" />
+<ul>
+  <li class="toctree-l1"><a class="reference internal" href="../genindex.html" accesskey="I">General Index</a></li>
+  <li class="toctree-l1"><a class="reference internal" href="../py-modindex.html">Python Module Index</a></li>
+</ul>
+<div id="ethical-ad-placement"></div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+
+    <nav class="relbar">
+      <a class="previous" href="selene.selenium.html" aria-label="Previous topic" >
+        <div class="icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M257.5 445.1l-22.2 22.2c-9.4 9.4-24.6 9.4-33.9 0L7 273c-9.4-9.4-9.4-24.6 0-33.9L201.4 44.7c9.4-9.4 24.6-9.4 33.9 0l22.2 22.2c9.5 9.5 9.3 25-.4 34.3L136.6 216H424c13.3 0 24 10.7 24 24v32c0 13.3-10.7 24-24 24H136.6l120.5 114.8c9.8 9.3 10 24.8.4 34.3z"/></svg>
+        </div>
+        <div class="title">
+          <span class="text">
+            <span class="direction">previous</span>
+            Selene selenium-based functionality
+          </span>
+        </div>
+      </a>
+    </nav>
+
+    <footer role="contentinfo">
+      &#169; Copyright 2022, CMA DaTA Unit.
+      Created using <a class="reference external" href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.1.
+      <a class="reference external" href="https://insipid-sphinx-theme.readthedocs.io/">Insipid Theme</a>.
+<a class="reference internal" href="../_sources/api/selene.soup.rst.txt" rel="nofollow">Show Source</a>.
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,1824 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Selene selenium-based functionality &#8212; Selene</title>
+    <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/insipid.css" />
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script defer src="../_static/insipid.js"></script>
+    <script defer src="../_static/insipid-sidebar.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Selene soup-based functionality" href="selene.soup.html" />
+    <link rel="prev" title="Selene core functionality and parent objects" href="selene.core.html" />
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+  </head><body>
+    <script type="text/javascript">
+        document.body.classList.add('js');
+    </script>
+    <input type="checkbox" id="sidebar-checkbox" style="display: none;">
+    <label id="overlay" for="sidebar-checkbox"></label>
+    <div class="sidebar-resize-handle"></div>
+    <script type="text/javascript">
+        try {
+            let sidebar = localStorage.getItem('sphinx-sidebar');
+            const sidebar_width = localStorage.getItem('sphinx-sidebar-width');
+            if (sidebar_width) {
+                document.documentElement.style.setProperty('--sidebar-width', sidebar_width);
+            }
+            // show sidebar on wide screen
+            if (!sidebar && window.matchMedia('(min-width: 100rem)').matches) {
+                sidebar = 'visible';
+                // NB: We don't store the value in localStorage!
+            }
+            if (sidebar === 'visible') {
+                document.getElementById('sidebar-checkbox').checked = true;
+            }
+        } catch(e) {
+            console.info(e);
+        }
+    </script>
+    <header id="topbar-placeholder">
+      <div id="topbar">
+        <div id="titlebar">
+          <div class="buttons">
+            <label for="sidebar-checkbox" id="sidebar-button" role="button" tabindex="0" aria-controls="sphinxsidebar" accesskey="M">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"/></svg>
+            </label>
+            <button id="search-button" type="button" title="Search" aria-label="Search" aria-expanded="false" aria-controls="search-form" accesskey="S">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+            </button>
+          </div>
+          <div class="title">
+            <a class="parent" href="../index.html" accesskey="U">Selene</a>
+            <a class="top" href="#">Selene selenium-based functionality</a>
+          </div>
+          <div class="buttons">
+            <button id="fullscreen-button" type="button" aria-hidden="true">
+              <span class="enable">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M212.686 315.314L120 408l32.922 31.029c15.12 15.12 4.412 40.971-16.97 40.971h-112C10.697 480 0 469.255 0 456V344c0-21.382 25.803-32.09 40.922-16.971L72 360l92.686-92.686c6.248-6.248 16.379-6.248 22.627 0l25.373 25.373c6.249 6.248 6.249 16.378 0 22.627zm22.628-118.628L328 104l-32.922-31.029C279.958 57.851 290.666 32 312.048 32h112C437.303 32 448 42.745 448 56v112c0 21.382-25.803 32.09-40.922 16.971L376 152l-92.686 92.686c-6.248 6.248-16.379 6.248-22.627 0l-25.373-25.373c-6.249-6.248-6.249-16.378 0-22.627z"/></svg>
+              </span>
+              <span class="disable">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M4.686 427.314L104 328l-32.922-31.029C55.958 281.851 66.666 256 88.048 256h112C213.303 256 224 266.745 224 280v112c0 21.382-25.803 32.09-40.922 16.971L152 376l-99.314 99.314c-6.248 6.248-16.379 6.248-22.627 0L4.686 449.941c-6.248-6.248-6.248-16.379 0-22.627zM443.314 84.686L344 184l32.922 31.029c15.12 15.12 4.412 40.971-16.97 40.971h-112C234.697 256 224 245.255 224 232V120c0-21.382 25.803-32.09 40.922-16.971L296 136l99.314-99.314c6.248-6.248 16.379-6.248 22.627 0l25.373 25.373c6.248 6.248 6.248 16.379 0 22.627z"/></svg>
+              </span>
+            </button>
+          </div>
+        </div>
+        <div id="searchbox" role="search">
+          <form id="search-form" class="search" style="display: none" action="../search.html" method="get">
+            <input type="search" name="q" placeholder="Search ..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
+            <button>Go</button>
+          </form>
+        </div>
+      </div>
+    </header>
+    <nav>
+      <a href="selene.core.html" class="nav-icon previous" title="previous:&#13;Selene core functionality and parent objects" aria-label="Previous topic" accesskey="P" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M31.7 239l136-136c9.4-9.4 24.6-9.4 33.9 0l22.6 22.6c9.4 9.4 9.4 24.6 0 33.9L127.9 256l96.4 96.4c9.4 9.4 9.4 24.6 0 33.9L201.7 409c-9.4 9.4-24.6 9.4-33.9 0l-136-136c-9.5-9.4-9.5-24.6-.1-34z"/></svg>
+      </a>
+      <a href="selene.soup.html" class="nav-icon next" title="next:&#13;Selene soup-based functionality" aria-label="Next topic" accesskey="N" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M224.3 273l-136 136c-9.4 9.4-24.6 9.4-33.9 0l-22.6-22.6c-9.4-9.4-9.4-24.6 0-33.9l96.4-96.4-96.4-96.4c-9.4-9.4-9.4-24.6 0-33.9L54.3 103c9.4-9.4 24.6-9.4 33.9 0l136 136c9.5 9.4 9.5 24.6.1 34z"/></svg>
+      </a>
+    </nav>
+
+    <nav class="relbar">
+      <a class="previous" href="selene.core.html" aria-label="Previous topic" >
+        <div class="icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M257.5 445.1l-22.2 22.2c-9.4 9.4-24.6 9.4-33.9 0L7 273c-9.4-9.4-9.4-24.6 0-33.9L201.4 44.7c9.4-9.4 24.6-9.4 33.9 0l22.2 22.2c9.5 9.5 9.3 25-.4 34.3L136.6 216H424c13.3 0 24 10.7 24 24v32c0 13.3-10.7 24-24 24H136.6l120.5 114.8c9.8 9.3 10 24.8.4 34.3z"/></svg>
+        </div>
+        <div class="title">
+          <span class="text">
+            <span class="direction">previous</span>
+            Selene core functionality and parent objects
+          </span>
+        </div>
+      </a>
+      <a class="next" href="selene.soup.html" aria-label="Next topic" >
+        <div class="title">
+          <span class="text">
+            <span class="direction">next</span>
+            Selene soup-based functionality
+          </span>
+        </div>
+        <div class="icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M190.5 66.9l22.2-22.2c9.4-9.4 24.6-9.4 33.9 0L441 239c9.4 9.4 9.4 24.6 0 33.9L246.6 467.3c-9.4 9.4-24.6 9.4-33.9 0l-22.2-22.2c-9.5-9.5-9.3-25 .4-34.3L311.4 296H24c-13.3 0-24-10.7-24-24v-32c0-13.3 10.7-24 24-24h287.4L190.9 101.2c-9.8-9.3-10-24.8-.4-34.3z"/></svg>
+        </div>
+      </a>
+    </nav>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+<section id="selene-selenium-based-functionality">
+<h1>Selene selenium-based functionality<a class="headerlink" href="#selene-selenium-based-functionality" title="Permalink to this heading">¶</a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="selene-core-selenium-conditions-module">
+<h2>selene.core.selenium.conditions module<a class="headerlink" href="#selene-core-selenium-conditions-module" title="Permalink to this heading">¶</a></h2>
+<span class="target" id="module-selene.core.selenium.conditions"></span><dl class="py function">
+<dt class="sig sig-object py" id="selene.core.selenium.conditions.bool_clickable">
+<span class="sig-prename descclassname"><span class="pre">selene.core.selenium.conditions.</span></span><span class="sig-name descname"><span class="pre">bool_clickable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">driver</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">by</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">identifier</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wait</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/selene/core/selenium/conditions.html#bool_clickable"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#selene.core.selenium.conditions.bool_clickable" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt>Wait a specified number of seconds until either:</dt><dd><ul class="simple">
+<li><p>A found element is clickable</p></li>
+<li><p>A TimeoutException is raised</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>driver</strong> (<em>selenium.webdriver</em>) – a selenium webdriver instance</p></li>
+<li><p><strong>by</strong> (<em>selenium.webdriver.common.by.By</em>) – see <a class="reference external" href="https://selenium-python.readthedocs.io/locating-elements.html">https://selenium-python.readthedocs.io/locating-elements.html</a></p></li>
+<li><p><strong>identifier</strong> (<em>str</em>) – see <a class="reference external" href="https://selenium-python.readthedocs.io/locating-elements.html">https://selenium-python.readthedocs.io/locating-elements.html</a></p></li>
+<li><p><strong>wait</strong> (<em>int</em>) – a number of seconds to wait before raising a TimeoutException</p></li>
+<li><p><strong>logger</strong> (<em>logging.Logger</em>) – a logger instance (see core.logger.py)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>output</strong> – True if the element is clickable, False otherwise</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="selene.core.selenium.conditions.bool_correct_handle">
+<span class="sig-prename descclassname"><span class="pre">selene.core.selenium.conditions.</span></span><span class="sig-name descname"><span class="pre">bool_correct_handle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">driver</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">handle</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wait</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Incorrect</span> <span class="pre">handle.'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/selene/core/selenium/conditions.html#bool_correct_handle"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#selene.core.selenium.conditions.bool_correct_handle" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt>Wait a specified number of seconds until either:</dt><dd><ul class="simple">
+<li><p>The active handle i.e. tab) is the expected one</p></li>
+<li><p>A TimeoutException is raised</p></li>
+</ul>
+</dd>
+</dl>
+<p>This is useful when navigating between different tabs.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>driver</strong> (<em>selenium.webdriver</em>) – a selenium webdriver instance</p></li>
+<li><p><strong>handle</strong> (<em>str</em>) – the expected handle</p></li>
+<li><p><strong>wait</strong> (<em>int</em>) – a number of seconds to wait before raising a TimeoutException</p></li>
+<li><p><strong>logger</strong> (<em>logging.Logger</em>) – a logger instance (see core.logger.py)</p></li>
+<li><p><strong>message</strong> (<em>str</em>) – log message (default: “Incorrect handle.”)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>output</strong> – True if the active handle is the same as the expected handle, False otherwise</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="selene.core.selenium.conditions.bool_element_class_contains">
+<span class="sig-prename descclassname"><span class="pre">selene.core.selenium.conditions.</span></span><span class="sig-name descname"><span class="pre">bool_element_class_contains</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">driver</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">element</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wait</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">string</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Element</span> <span class="pre">class</span> <span class="pre">does</span> <span class="pre">not</span> <span class="pre">contain'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/selene/core/selenium/conditions.html#bool_element_class_contains"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#selene.core.selenium.conditions.bool_element_class_contains" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt>Wait a specified number of seconds until either:</dt><dd><ul class="simple">
+<li><p>An element’s class contains a specified string</p></li>
+<li><p>A TimeoutException is raised</p></li>
+</ul>
+</dd>
+</dl>
+<p>This is useful for cases where, for example, a dropdown element’s class contains “expanded”
+only if and when the dropdown has been expanded.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>driver</strong> (<em>selenium.webdriver</em>) – a selenium webdriver instance</p></li>
+<li><p><strong>element</strong> (<em>core.selenium.element.Element</em>) – the instance of the Element class representing the web element</p></li>
+<li><p><strong>wait</strong> (<em>int</em>) – a number of seconds to wait before raising a TimeoutException</p></li>
+<li><p><strong>logger</strong> (<em>logging.Logger</em>) – a logger instance (see core.logger.py)</p></li>
+<li><p><strong>string</strong> (<em>str</em>) – the string to be found</p></li>
+<li><p><strong>message</strong> (<em>str</em>) – log message (default: “Element class does not contain {string}”)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>output</strong> – True if the element’s class contains the string, False otherwise</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="selene.core.selenium.conditions.bool_element_class_does_not_contain">
+<span class="sig-prename descclassname"><span class="pre">selene.core.selenium.conditions.</span></span><span class="sig-name descname"><span class="pre">bool_element_class_does_not_contain</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">driver</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">element</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wait</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">string</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Element</span> <span class="pre">class</span> <span class="pre">contains'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/selene/core/selenium/conditions.html#bool_element_class_does_not_contain"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#selene.core.selenium.conditions.bool_element_class_does_not_contain" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt>Wait a specified number of seconds until either:</dt><dd><ul class="simple">
+<li><p>An element’s text contains a specified string</p></li>
+<li><p>A TimeoutException is raised</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>driver</strong> (<em>selenium.webdriver</em>) – a selenium webdriver instance</p></li>
+<li><p><strong>element</strong> (<em>core.selenium.element.Element</em>) – the instance of the Element class representing the web element</p></li>
+<li><p><strong>wait</strong> (<em>int</em>) – a number of seconds to wait before raising a TimeoutException</p></li>
+<li><p><strong>logger</strong> (<em>logging.Logger</em>) – a logger instance (see core.logger.py)</p></li>
+<li><p><strong>string</strong> (<em>str</em>) – the string to be found</p></li>
+<li><p><strong>message</strong> (<em>str</em>) – log message (default: “Element class contains {string}.”)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>output</strong> – True if the element’s class contains the string, False otherwise</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="selene.core.selenium.conditions.bool_element_text_contains">
+<span class="sig-prename descclassname"><span class="pre">selene.core.selenium.conditions.</span></span><span class="sig-name descname"><span class="pre">bool_element_text_contains</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">driver</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">element</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wait</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">string</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Element</span> <span class="pre">text</span> <span class="pre">does</span> <span class="pre">not</span> <span class="pre">contain'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/selene/core/selenium/conditions.html#bool_element_text_contains"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#selene.core.selenium.conditions.bool_element_text_contains" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt>Wait a specified number of seconds until either:</dt><dd><ul class="simple">
+<li><p>An element’s text contains a specified string</p></li>
+<li><p>A TimeoutException is raised</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>driver</strong> (<em>selenium.webdriver</em>) – a selenium webdriver instance</p></li>
+<li><p><strong>element</strong> (<em>core.selenium.element.Element</em>) – the instance of the Element class representing the web element</p></li>
+<li><p><strong>wait</strong> (<em>int</em>) – a number of seconds to wait before raising a TimeoutException</p></li>
+<li><p><strong>logger</strong> (<em>logging.Logger</em>) – a logger instance (see core.logger.py)</p></li>
+<li><p><strong>string</strong> (<em>str</em>) – the string to be found</p></li>
+<li><p><strong>message</strong> (<em>str</em>) – log message (default: “Element text does not contain {string}.”)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>output</strong> – True if the element’s text contains the string, False otherwise</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="selene.core.selenium.conditions.bool_element_text_does_not_contain">
+<span class="sig-prename descclassname"><span class="pre">selene.core.selenium.conditions.</span></span><span class="sig-name descname"><span class="pre">bool_element_text_does_not_contain</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">driver</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">element</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wait</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">string</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Element</span> <span class="pre">text</span> <span class="pre">contains'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/selene/core/selenium/conditions.html#bool_element_text_does_not_contain"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#selene.core.selenium.conditions.bool_element_text_does_not_contain" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt>Wait a specified number of seconds until either:</dt><dd><ul class="simple">
+<li><p>An element’s text DOES NOT contain a specified string</p></li>
+<li><p>A TimeoutException is raised</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>driver</strong> (<em>selenium.webdriver</em>) – a selenium webdriver instance</p></li>
+<li><p><strong>element</strong> (<em>core.selenium.element.Element</em>) – the instance of the Element class representing the web element</p></li>
+<li><p><strong>wait</strong> (<em>int</em>) – a number of seconds to wait before raising a TimeoutException</p></li>
+<li><p><strong>logger</strong> (<em>logging.Logger</em>) – a logger instance (see core.logger.py)</p></li>
+<li><p><strong>string</strong> (<em>str</em>) – the string to be found</p></li>
+<li><p><strong>message</strong> (<em>str</em>) – log message (default: “Element text contains {string}.”)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>output</strong> – True if the element’s text does not contain the string, False otherwise</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="selene.core.selenium.conditions.bool_invisible">
+<span class="sig-prename descclassname"><span class="pre">selene.core.selenium.conditions.</span></span><span class="sig-name descname"><span class="pre">bool_invisible</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">driver</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">by</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">identifier</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wait</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/selene/core/selenium/conditions.html#bool_invisible"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#selene.core.selenium.conditions.bool_invisible" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt>Wait a specified number of seconds until either:</dt><dd><ul class="simple">
+<li><p>A found element is NOT visible</p></li>
+<li><p>A TimeoutException is raised</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>driver</strong> (<em>selenium.webdriver</em>) – a selenium webdriver instance</p></li>
+<li><p><strong>by</strong> (<em>selenium.webdriver.common.by.By</em>) – see <a class="reference external" href="https://selenium-python.readthedocs.io/locating-elements.html">https://selenium-python.readthedocs.io/locating-elements.html</a></p></li>
+<li><p><strong>identifier</strong> (<em>str</em>) – see <a class="reference external" href="https://selenium-python.readthedocs.io/locating-elements.html">https://selenium-python.readthedocs.io/locating-elements.html</a></p></li>
+<li><p><strong>wait</strong> (<em>int</em>) – a number of seconds to wait before raising a TimeoutException</p></li>
+<li><p><strong>logger</strong> (<em>logging.Logger</em>) – a logger instance (see core.logger.py)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>output</strong> – True if the element is invisible, False otherwise</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="selene.core.selenium.conditions.bool_new_handle">
+<span class="sig-prename descclassname"><span class="pre">selene.core.selenium.conditions.</span></span><span class="sig-name descname"><span class="pre">bool_new_handle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">driver</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_handles_old</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wait</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'No</span> <span class="pre">new</span> <span class="pre">handles</span> <span class="pre">found.'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/selene/core/selenium/conditions.html#bool_new_handle"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#selene.core.selenium.conditions.bool_new_handle" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt>Wait a specified number of seconds until either:</dt><dd><ul class="simple">
+<li><p>The number of window handles (i.e. the number of tabs open) has increased by one</p></li>
+<li><p>A TimeoutException is raised</p></li>
+</ul>
+</dd>
+</dl>
+<p>This is useful when navigating between different tabs.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>driver</strong> (<em>selenium.webdriver</em>) – a selenium webdriver instance</p></li>
+<li><p><strong>n_handles_old</strong> (<em>int</em>) – the previous number of existing window handles</p></li>
+<li><p><strong>wait</strong> (<em>int</em>) – a number of seconds to wait before raising a TimeoutException</p></li>
+<li><p><strong>logger</strong> (<em>logging.Logger</em>) – a logger instance (see core.logger.py)</p></li>
+<li><p><strong>message</strong> (<em>str</em>) – log message (default: “No new handles found.”)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>output</strong> – True if the number of handles has increased by one, False otherwise</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="selene.core.selenium.conditions.bool_scroll_height_changed">
+<span class="sig-prename descclassname"><span class="pre">selene.core.selenium.conditions.</span></span><span class="sig-name descname"><span class="pre">bool_scroll_height_changed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">driver</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wait</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">element</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Scroll</span> <span class="pre">height</span> <span class="pre">did</span> <span class="pre">not</span> <span class="pre">change.'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/selene/core/selenium/conditions.html#bool_scroll_height_changed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#selene.core.selenium.conditions.bool_scroll_height_changed" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt>Wait a specified number of seconds until either:</dt><dd><ul class="simple">
+<li><p>The page OR an element’s scroll height changes. This is what changes
+if the height of the page or element increases due to dynamically-generated content.</p></li>
+<li><p>A TimeoutException is raised</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>driver</strong> (<em>selenium.webdriver</em>) – a selenium webdriver instance</p></li>
+<li><p><strong>wait</strong> (<em>int</em>) – a number of seconds to wait before raising a TimeoutException</p></li>
+<li><p><strong>logger</strong> (<em>logging.Logger</em>) – a logger instance (see core.logger.py)</p></li>
+<li><p><strong>height</strong> (<em>float</em>) – the original scroll height value</p></li>
+<li><p><strong>element</strong> (<em>EITHER selenium.webdriver.remote.webelement.WebElement OR core.selenium.element.Element OR None</em>) – the scrollable element. If None, then the page itself is the element.</p></li>
+<li><p><strong>message</strong> (<em>str</em>) – log message (default: “Scroll height did not change.”)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>output</strong> – True if the scroll height has changed, False otherwise</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="selene.core.selenium.conditions.bool_scroll_position_changed">
+<span class="sig-prename descclassname"><span class="pre">selene.core.selenium.conditions.</span></span><span class="sig-name descname"><span class="pre">bool_scroll_position_changed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">driver</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">element</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wait</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">position</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Scroll</span> <span class="pre">position</span> <span class="pre">did</span> <span class="pre">not</span> <span class="pre">change.'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/selene/core/selenium/conditions.html#bool_scroll_position_changed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#selene.core.selenium.conditions.bool_scroll_position_changed" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt>Wait a specified number of seconds until either:</dt><dd><ul class="simple">
+<li><p>An element’s scroll position changes. This is what changes
+as you scroll down a scrollable element.</p></li>
+<li><p>A TimeoutException is raised</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>driver</strong> (<em>selenium.webdriver</em>) – a selenium webdriver instance</p></li>
+<li><p><strong>element</strong> (<em>EITHER selenium.webdriver.remote.webelement.WebElement OR core.selenium.element.Element</em>) – the scrollable element</p></li>
+<li><p><strong>wait</strong> (<em>int</em>) – a number of seconds to wait before raising a TimeoutException</p></li>
+<li><p><strong>logger</strong> (<em>logging.Logger</em>) – a logger instance (see core.logger.py)</p></li>
+<li><p><strong>position</strong> (<em>float</em>) – the original scroll position value</p></li>
+<li><p><strong>message</strong> (<em>str</em>) – log message (default: “Scroll position did not change.”)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>output</strong> – True if the element’s scroll position has changed, False otherwise</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="selene.core.selenium.conditions.bool_url_changed">
+<span class="sig-prename descclassname"><span class="pre">selene.core.selenium.conditions.</span></span><span class="sig-name descname"><span class="pre">bool_url_changed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">driver</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wait</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">url</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'URL</span> <span class="pre">has</span> <span class="pre">not</span> <span class="pre">changed.'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/selene/core/selenium/conditions.html#bool_url_changed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#selene.core.selenium.conditions.bool_url_changed" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt>Wait a specified number of seconds until either:</dt><dd><ul class="simple">
+<li><p>The browser’s url changes.</p></li>
+<li><p>A TimeoutException is raised</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>driver</strong> (<em>selenium.webdriver</em>) – a selenium webdriver instance</p></li>
+<li><p><strong>wait</strong> (<em>int</em>) – a number of seconds to wait before raising a TimeoutException</p></li>
+<li><p><strong>logger</strong> (<em>logging.Logger</em>) – a logger instance (see core.logger.py)</p></li>
+<li><p><strong>url</strong> (<em>str</em>) – the original url</p></li>
+<li><p><strong>message</strong> (<em>str</em>) – log message (default: “URL has not changed.”)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>output</strong> – True if the url changes, False otherwise</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="selene.core.selenium.conditions.bool_url_contains">
+<span class="sig-prename descclassname"><span class="pre">selene.core.selenium.conditions.</span></span><span class="sig-name descname"><span class="pre">bool_url_contains</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">driver</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wait</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">string</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'URL</span> <span class="pre">does</span> <span class="pre">not</span> <span class="pre">contain</span> <span class="pre">the</span> <span class="pre">specified</span> <span class="pre">string.'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/selene/core/selenium/conditions.html#bool_url_contains"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#selene.core.selenium.conditions.bool_url_contains" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt>Wait a specified number of seconds until either:</dt><dd><ul class="simple">
+<li><p>The browser’s url contains a specified string.</p></li>
+<li><p>A TimeoutException is raised</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>driver</strong> (<em>selenium.webdriver</em>) – a selenium webdriver instance</p></li>
+<li><p><strong>wait</strong> (<em>int</em>) – a number of seconds to wait before raising a TimeoutException</p></li>
+<li><p><strong>logger</strong> (<em>logging.Logger</em>) – a logger instance (see core.logger.py)</p></li>
+<li><p><strong>message</strong> (<em>str</em>) – log message (default: “URL does not contain the specified string.”)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>output</strong> – True if the url contains the specified string, False otherwise</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="selene.core.selenium.conditions.bool_url_does_not_contain">
+<span class="sig-prename descclassname"><span class="pre">selene.core.selenium.conditions.</span></span><span class="sig-name descname"><span class="pre">bool_url_does_not_contain</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">driver</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wait</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">string</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'URL</span> <span class="pre">contains</span> <span class="pre">the</span> <span class="pre">specified</span> <span class="pre">string.'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/selene/core/selenium/conditions.html#bool_url_does_not_contain"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#selene.core.selenium.conditions.bool_url_does_not_contain" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt>Wait a specified number of seconds until either:</dt><dd><ul class="simple">
+<li><p>The browser’s url DOES NOT contain a specified string.</p></li>
+<li><p>A TimeoutException is raised</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>driver</strong> (<em>selenium.webdriver</em>) – a selenium webdriver instance</p></li>
+<li><p><strong>wait</strong> (<em>int</em>) – a number of seconds to wait before raising a TimeoutException</p></li>
+<li><p><strong>logger</strong> (<em>logging.Logger</em>) – a logger instance (see core.logger.py)</p></li>
+<li><p><strong>message</strong> (<em>str</em>) – log message (default: “URL contains the specified string.”)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>output</strong> – True if the url does not contain the specified string, False otherwise</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="selene.core.selenium.conditions.bool_url_expected">
+<span class="sig-prename descclassname"><span class="pre">selene.core.selenium.conditions.</span></span><span class="sig-name descname"><span class="pre">bool_url_expected</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">driver</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wait</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">url</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'URL</span> <span class="pre">is</span> <span class="pre">not</span> <span class="pre">the</span> <span class="pre">expected</span> <span class="pre">URL.'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/selene/core/selenium/conditions.html#bool_url_expected"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#selene.core.selenium.conditions.bool_url_expected" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt>Wait a specified number of seconds until either:</dt><dd><ul class="simple">
+<li><p>The browser’s url matches the expected url.</p></li>
+<li><p>A TimeoutException is raised</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>driver</strong> (<em>selenium.webdriver</em>) – a selenium webdriver instance</p></li>
+<li><p><strong>wait</strong> (<em>int</em>) – a number of seconds to wait before raising a TimeoutException</p></li>
+<li><p><strong>logger</strong> (<em>logging.Logger</em>) – a logger instance (see core.logger.py)</p></li>
+<li><p><strong>url</strong> (<em>str</em>) – the expected url</p></li>
+<li><p><strong>message</strong> (<em>str</em>) – log message (default: “URL is not the expected URL.”)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>output</strong> – True if the url is the expected url, False otherwise</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="selene.core.selenium.conditions.bool_url_unexpected">
+<span class="sig-prename descclassname"><span class="pre">selene.core.selenium.conditions.</span></span><span class="sig-name descname"><span class="pre">bool_url_unexpected</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">driver</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wait</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">url</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'URL</span> <span class="pre">is</span> <span class="pre">the</span> <span class="pre">unexpected</span> <span class="pre">URL.'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/selene/core/selenium/conditions.html#bool_url_unexpected"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#selene.core.selenium.conditions.bool_url_unexpected" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt>Wait a specified number of seconds until either:</dt><dd><ul class="simple">
+<li><p>The browser’s url matches the UNexpected url.</p></li>
+<li><p>A TimeoutException is raised</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>driver</strong> (<em>selenium.webdriver</em>) – a selenium webdriver instance</p></li>
+<li><p><strong>wait</strong> (<em>int</em>) – a number of seconds to wait before raising a TimeoutException</p></li>
+<li><p><strong>logger</strong> (<em>logging.Logger</em>) – a logger instance (see core.logger.py)</p></li>
+<li><p><strong>url</strong> (<em>str</em>) – the unexpected url</p></li>
+<li><p><strong>message</strong> (<em>str</em>) – log message (default: “URL is the unexpected URL.”)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>output</strong> – True if the url is the unexpected url, False otherwise</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="selene.core.selenium.conditions.bool_visible">
+<span class="sig-prename descclassname"><span class="pre">selene.core.selenium.conditions.</span></span><span class="sig-name descname"><span class="pre">bool_visible</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">driver</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">by</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">identifier</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wait</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/selene/core/selenium/conditions.html#bool_visible"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#selene.core.selenium.conditions.bool_visible" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt>Wait a specified number of seconds until either:</dt><dd><ul class="simple">
+<li><p>A found element is visible</p></li>
+<li><p>A TimeoutException is raised</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>driver</strong> (<em>selenium.webdriver</em>) – a selenium webdriver instance</p></li>
+<li><p><strong>by</strong> (<em>selenium.webdriver.common.by.By</em>) – see <a class="reference external" href="https://selenium-python.readthedocs.io/locating-elements.html">https://selenium-python.readthedocs.io/locating-elements.html</a></p></li>
+<li><p><strong>identifier</strong> (<em>str</em>) – see <a class="reference external" href="https://selenium-python.readthedocs.io/locating-elements.html">https://selenium-python.readthedocs.io/locating-elements.html</a></p></li>
+<li><p><strong>wait</strong> (<em>int</em>) – a number of seconds to wait before raising a TimeoutException</p></li>
+<li><p><strong>logger</strong> (<em>logging.Logger</em>) – a logger instance (see core.logger.py)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>output</strong> – True if the element is visible, False otherwise</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="selene.core.selenium.conditions.bool_yoffset_changed">
+<span class="sig-prename descclassname"><span class="pre">selene.core.selenium.conditions.</span></span><span class="sig-name descname"><span class="pre">bool_yoffset_changed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">driver</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wait</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yoffset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Y-offset</span> <span class="pre">did</span> <span class="pre">not</span> <span class="pre">change.'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/selene/core/selenium/conditions.html#bool_yoffset_changed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#selene.core.selenium.conditions.bool_yoffset_changed" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt>Wait a specified number of seconds until either:</dt><dd><ul class="simple">
+<li><p>The y-offset changes. This is what changes as you scroll down a page</p></li>
+<li><p>A TimeoutException is raised</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>driver</strong> (<em>selenium.webdriver</em>) – a selenium webdriver instance</p></li>
+<li><p><strong>wait</strong> (<em>int</em>) – a number of seconds to wait before raising a TimeoutException</p></li>
+<li><p><strong>logger</strong> (<em>logging.Logger</em>) – a logger instance (see core.logger.py)</p></li>
+<li><p><strong>yoffset</strong> (<em>float</em>) – the original y-offset value</p></li>
+<li><p><strong>message</strong> (<em>str</em>) – log message (default: “Y-offset did not change.”)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>output</strong> – True if the y-offset has changed, False otherwise</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="selene-core-selenium-crawler-module">
+<h2>selene.core.selenium.crawler module<a class="headerlink" href="#selene-core-selenium-crawler-module" title="Permalink to this heading">¶</a></h2>
+<span class="target" id="module-selene.core.selenium.crawler"></span><dl class="py class">
+<dt class="sig sig-object py" id="selene.core.selenium.crawler.CrawlerSelene">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">selene.core.selenium.crawler.</span></span><span class="sig-name descname"><span class="pre">CrawlerSelene</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id_crawler</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Crawler'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">debug</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/selene/core/selenium/crawler.html#CrawlerSelene"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#selene.core.selenium.crawler.CrawlerSelene" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="selene.core.html#selene.core.crawler.Crawler" title="selene.core.crawler.Crawler"><code class="xref py py-class docutils literal notranslate"><span class="pre">Crawler</span></code></a></p>
+<p>A crawler class to assist any workflow which requires selenium webdriver.</p>
+<p>Inherits selene.core.crawler.Crawler</p>
+</dd></dl>
+
+</section>
+<section id="selene-core-selenium-driver-module">
+<h2>selene.core.selenium.driver module<a class="headerlink" href="#selene-core-selenium-driver-module" title="Permalink to this heading">¶</a></h2>
+<span class="target" id="module-selene.core.selenium.driver"></span><dl class="py function">
+<dt class="sig sig-object py" id="selene.core.selenium.driver.get_driver">
+<span class="sig-prename descclassname"><span class="pre">selene.core.selenium.driver.</span></span><span class="sig-name descname"><span class="pre">get_driver</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2560</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1440</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user_agent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'default'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">incognito</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">disable_gpu</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_display</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/selene/core/selenium/driver.html#get_driver"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#selene.core.selenium.driver.get_driver" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get an instance of selenium.webdriver and start browser</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>width</strong> (<em>int</em>) – the width of the browser</p></li>
+<li><p><strong>height</strong> (<em>int</em>) – the height of the browser</p></li>
+<li><p><strong>user_agent</strong> – If False, then no user agent is used.
+If ‘default’, then a default user agent is used.
+If ‘random’, then a random user agent is  selected.
+Otherwise, the specified user agent is used.</p></li>
+<li><p><strong>incognito</strong> (<em>bool</em>) – whether or not to start the browser in incognito mode</p></li>
+<li><p><strong>disable_gpu</strong> (<em>bool</em>) – whether or not to disable GPU</p></li>
+<li><p><strong>use_display</strong> (<em>bool</em>) – whether or not to use a virtual display</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>driver</strong> – selenium.webdriver instance</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>selenium.webdriver</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="selene.core.selenium.driver.get_user_agent">
+<span class="sig-prename descclassname"><span class="pre">selene.core.selenium.driver.</span></span><span class="sig-name descname"><span class="pre">get_user_agent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">i</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/selene/core/selenium/driver.html#get_user_agent"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#selene.core.selenium.driver.get_user_agent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a specific user agent string from core.config.USER_AGENTS</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>i</strong> (<em>int</em>) – the list index</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>user_agent</strong> – The selected user agent</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="selene.core.selenium.driver.get_user_agent_random">
+<span class="sig-prename descclassname"><span class="pre">selene.core.selenium.driver.</span></span><span class="sig-name descname"><span class="pre">get_user_agent_random</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/selene/core/selenium/driver.html#get_user_agent_random"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#selene.core.selenium.driver.get_user_agent_random" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a random user agent string from core.config.USER_AGENTS</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>user_agent</strong> – The selected user agent</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="selene.core.selenium.driver.restart_driver">
+<span class="sig-prename descclassname"><span class="pre">selene.core.selenium.driver.</span></span><span class="sig-name descname"><span class="pre">restart_driver</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">driver</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wait</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">30</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/selene/core/selenium/driver.html#restart_driver"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#selene.core.selenium.driver.restart_driver" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stop and close the selenium.webdriver instance, wait for a specified
+number of seconds, then start a new instance</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>driver</strong> (<em>selenium.webdriver</em>) – the selenium webdriver instance to stop</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>driver</strong> – The new selenium.webdriver instance</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>selenium.webdriver</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="selene.core.selenium.driver.stop_driver">
+<span class="sig-prename descclassname"><span class="pre">selene.core.selenium.driver.</span></span><span class="sig-name descname"><span class="pre">stop_driver</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">driver</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">display</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/selene/core/selenium/driver.html#stop_driver"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#selene.core.selenium.driver.stop_driver" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stop and close the selenium.webdriver instance</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>driver</strong> (<em>selenium.webdriver</em>) – the selenium webdriver instance to stop</p></li>
+<li><p><strong>display</strong> (<em>pyvirtualdisplay.Display optional</em>) – if using a pyvirtual display, display to stop</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="selene-core-selenium-element-module">
+<h2>selene.core.selenium.element module<a class="headerlink" href="#selene-core-selenium-element-module" title="Permalink to this heading">¶</a></h2>
+<span class="target" id="module-selene.core.selenium.element"></span><dl class="py class">
+<dt class="sig sig-object py" id="selene.core.selenium.element.ElementSelene">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">selene.core.selenium.element.</span></span><span class="sig-name descname"><span class="pre">ElementSelene</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">element</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/selene/core/selenium/element.html#ElementSelene"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#selene.core.selenium.element.ElementSelene" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="selene.core.html#selene.core.element.Element" title="selene.core.element.Element"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a></p>
+<p>An element class to wrap a selenium.webdriver.remote.webelement.WebElement object,
+in order to:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>provide extra functionality</p></li>
+<li><p>make it easier to crawlers to change between handling</p></li>
+</ul>
+<p>Selenium workflows and BeautifulSoup workflows.</p>
+</div></blockquote>
+<p>Inherits selene.core.element.Element</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="selene.core.selenium.element.ElementSelene.click">
+<span class="sig-name descname"><span class="pre">click</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">driver</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/selene/core/selenium/element.html#ElementSelene.click"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#selene.core.selenium.element.ElementSelene.click" title="Permalink to this definition">¶</a></dt>
+<dd><p>Click the element.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>output</strong> – True if the operation was successful, False otherwise</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="selene.core.selenium.element.ElementSelene.find">
+<span class="sig-name descname"><span class="pre">find</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">by</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">identifier</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wait</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/selene/core/selenium/element.html#ElementSelene.find"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#selene.core.selenium.element.ElementSelene.find" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt>This:</dt><dd><ul class="simple">
+<li><p>wraps core.selenium.tasks.task_find</p></li>
+<li><p>finds only elements which are <strong>within</strong> this element.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>by</strong> (<em>selenium.webdriver.common.by.By</em>) – see <a class="reference external" href="https://selenium-python.readthedocs.io/locating-elements.html">https://selenium-python.readthedocs.io/locating-elements.html</a></p></li>
+<li><p><strong>identifier</strong> (<em>str</em>) – see <a class="reference external" href="https://selenium-python.readthedocs.io/locating-elements.html">https://selenium-python.readthedocs.io/locating-elements.html</a></p></li>
+<li><p><strong>wait</strong> (<em>int</em>) – a number of seconds to wait before raising a TimeoutException</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>output</strong> – returns the element if an element is found, None otherwise</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None or <a class="reference internal" href="#selene.core.selenium.element.ElementSelene" title="selene.core.selenium.element.ElementSelene">core.selenium.element.ElementSelene</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="selene.core.selenium.element.ElementSelene.find_all">
+<span class="sig-name descname"><span class="pre">find_all</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">by</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">identifier</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wait</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/selene/core/selenium/element.html#ElementSelene.find_all"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#selene.core.selenium.element.ElementSelene.find_all" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt>This:</dt><dd><ul class="simple">
+<li><p>wraps core.selenium.tasks.task_find_all</p></li>
+<li><p>finds only elements which are <strong>within</strong> this element.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>by</strong> (<em>selenium.webdriver.common.by.By</em>) – see <a class="reference external" href="https://selenium-python.readthedocs.io/locating-elements.html">https://selenium-python.readthedocs.io/locating-elements.html</a></p></li>
+<li><p><strong>identifier</strong> (<em>str</em>) – see <a class="reference external" href="https://selenium-python.readthedocs.io/locating-elements.html">https://selenium-python.readthedocs.io/locating-elements.html</a></p></li>
+<li><p><strong>wait</strong> (<em>int</em>) – a number of seconds to wait before raising a TimeoutException</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>output</strong> – returns the elements if one or more element is found, an empty list otherwise</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="selene.core.selenium.element.ElementSelene.get_attribute">
+<span class="sig-name descname"><span class="pre">get_attribute</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/selene/core/selenium/element.html#ElementSelene.get_attribute"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#selene.core.selenium.element.ElementSelene.get_attribute" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets an attribute from the element. E.g. self.get_attribute(‘href’) would
+return the hyperlink.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>output</strong> – the attribute</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="selene.core.selenium.element.ElementSelene.get_parent">
+<span class="sig-name descname"><span class="pre">get_parent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">driver</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/selene/core/selenium/element.html#ElementSelene.get_parent"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#selene.core.selenium.element.ElementSelene.get_parent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the element’s parent</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>out</strong></p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>ElementSelene object wrapping the parent element</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="selene.core.selenium.element.ElementSelene.get_text">
+<span class="sig-name descname"><span class="pre">get_text</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/selene/core/selenium/element.html#ElementSelene.get_text"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#selene.core.selenium.element.ElementSelene.get_text" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the element’s text</p>
+<p>TODO this is redundant, but removing it might break some things</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>text</strong></p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="selene.core.selenium.element.ElementSelene.has_attribute">
+<span class="sig-name descname"><span class="pre">has_attribute</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/selene/core/selenium/element.html#ElementSelene.has_attribute"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#selene.core.selenium.element.ElementSelene.has_attribute" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check whether the element contains a specified attribute.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>output</strong> – True of the element has the attribute, False otherwise</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="selene.core.selenium.element.ElementSelene.scroll_down">
+<span class="sig-name descname"><span class="pre">scroll_down</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">driver</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wait</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/selene/core/selenium/element.html#ElementSelene.scroll_down"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#selene.core.selenium.element.ElementSelene.scroll_down" title="Permalink to this definition">¶</a></dt>
+<dd><p>Scroll down the element IF the element has a scrollbar.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>driver</strong> (<em>selenium.webdriver</em>) – a selenium webdriver instance</p></li>
+<li><p><strong>wait</strong> (<em>int</em>) – a number of seconds to wait before raising a TimeoutException</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>output</strong> – True if the operation was successful, False otherwise</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="selene.core.selenium.element.ElementSelene.scroll_to">
+<span class="sig-name descname"><span class="pre">scroll_to</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">driver</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">position_new</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wait</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/selene/core/selenium/element.html#ElementSelene.scroll_to"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#selene.core.selenium.element.ElementSelene.scroll_to" title="Permalink to this definition">¶</a></dt>
+<dd><p>Scroll to a new position on the element IF the element has a scrollbar.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>driver</strong> (<em>selenium.webdriver</em>) – a selenium webdriver instance</p></li>
+<li><p><strong>wait</strong> (<em>int</em>) – a number of seconds to wait before raising a TimeoutException</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>output</strong> – True if the operation was successful, False otherwise</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="selene.core.selenium.element.ElementSelene.scroll_to_bottom">
+<span class="sig-name descname"><span class="pre">scroll_to_bottom</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">driver</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wait</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/selene/core/selenium/element.html#ElementSelene.scroll_to_bottom"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#selene.core.selenium.element.ElementSelene.scroll_to_bottom" title="Permalink to this definition">¶</a></dt>
+<dd><p>Scroll to the bottom of the element IF the element has a scrollbar.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>driver</strong> (<em>selenium.webdriver</em>) – a selenium webdriver instance</p></li>
+<li><p><strong>wait</strong> (<em>int</em>) – a number of seconds to wait before raising a TimeoutException</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>output</strong> – True if the operation was successful, False otherwise</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="selene-core-selenium-page-module">
+<h2>selene.core.selenium.page module<a class="headerlink" href="#selene-core-selenium-page-module" title="Permalink to this heading">¶</a></h2>
+<span class="target" id="module-selene.core.selenium.page"></span><dl class="py class">
+<dt class="sig sig-object py" id="selene.core.selenium.page.PageSelene">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">selene.core.selenium.page.</span></span><span class="sig-name descname"><span class="pre">PageSelene</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">driver</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">url</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/selene/core/selenium/page.html#PageSelene"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#selene.core.selenium.page.PageSelene" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="selene.core.html#id0" title="selene.core.page.Page"><code class="xref py py-class docutils literal notranslate"><span class="pre">Page</span></code></a></p>
+<p>A page class to assist any workflow which requires selenium webdriver.</p>
+<ul class="simple">
+<li><p>A website is made out of pages.</p></li>
+<li><p>Dynamically-generated pages require Selenium Webdriver.</p></li>
+<li><p>Each page will need general functionality (e.g. finding and element, scrolling etc.).</p></li>
+<li><p>Inheriting this class provides that general functionality</p></li>
+</ul>
+<p>NOTE 1: Generally, the way to use this object is to initalise using the from_url() method,
+as this will attach the url to the page AND navigate to the url.</p>
+<p>NOTE 2: Any PageSelene object will also contain a PageSoup object (see core.soup.page).
+This is an attempt to allow both the use of Selenium (for dynamic elements)
+and BeautifulSoup (for static elements) when scraping.</p>
+<p>Inherits selene.core.page.Page</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="selene.core.selenium.page.PageSelene.click">
+<span class="sig-name descname"><span class="pre">click</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">driver</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">by</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">identifier</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wait</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/selene/core/selenium/page.html#PageSelene.click"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#selene.core.selenium.page.PageSelene.click" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find and click an element on the page.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>driver</strong> (<em>selenium.webdriver</em>) – a selenium webdriver instance</p></li>
+<li><p><strong>by</strong> (<em>selenium.webdriver.common.by.By</em>) – see <a class="reference external" href="https://selenium-python.readthedocs.io/locating-elements.html">https://selenium-python.readthedocs.io/locating-elements.html</a></p></li>
+<li><p><strong>identifier</strong> (<em>str</em>) – see <a class="reference external" href="https://selenium-python.readthedocs.io/locating-elements.html">https://selenium-python.readthedocs.io/locating-elements.html</a></p></li>
+<li><p><strong>wait</strong> (<em>int</em>) – a number of seconds to wait before raising a TimeoutException</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>output</strong> – True if the operation was successful, False otherwise</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="selene.core.selenium.page.PageSelene.close_all_tabs_except_specified_tab">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">close_all_tabs_except_specified_tab</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">driver</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">handle_keep</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attempts</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/selene/core/selenium/page.html#PageSelene.close_all_tabs_except_specified_tab"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#selene.core.selenium.page.PageSelene.close_all_tabs_except_specified_tab" title="Permalink to this definition">¶</a></dt>
+<dd><p>Closes all open tabs EXCEPT for the tab given by the specified handle.</p>
+<p>Useful for cleanup of any open tabs.</p>
+<p>It has an attempts variable, in case it doesn’t work first time.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>driver</strong> (<em>selenium.webdriver</em>) – a selenium webdriver instance</p></li>
+<li><p><strong>handle_keep</strong> (<em>str</em>) – the tab/handle to not close.</p></li>
+<li><p><strong>attempts</strong> (<em>int</em>) – a number of attempts before returning False</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>output</strong> – True if the operation was successful, False otherwise</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="selene.core.selenium.page.PageSelene.expand_scroll_height">
+<span class="sig-name descname"><span class="pre">expand_scroll_height</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">driver</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wait</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/selene/core/selenium/page.html#PageSelene.expand_scroll_height"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#selene.core.selenium.page.PageSelene.expand_scroll_height" title="Permalink to this definition">¶</a></dt>
+<dd><p>Keep scrolling to the bottom of the page, as the page dynamically
+expands due to the continued scrolling.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>driver</strong> (<em>selenium.webdriver</em>) – a selenium webdriver instance</p></li>
+<li><p><strong>wait</strong> (<em>int</em>) – a number of seconds to wait before raising a TimeoutException</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>output</strong> – True if the operation was successful, False otherwise</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="selene.core.selenium.page.PageSelene.find">
+<span class="sig-name descname"><span class="pre">find</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">driver</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">by</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">identifier</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wait</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/selene/core/selenium/page.html#PageSelene.find"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#selene.core.selenium.page.PageSelene.find" title="Permalink to this definition">¶</a></dt>
+<dd><dl>
+<dt>This:</dt><dd><ul class="simple">
+<li><p>wraps core.selenium.tasks.task_find</p></li>
+<li><p>returns the result, not as a selenium.webdriver.remote.webelement.WebElement object,</p></li>
+</ul>
+<p>but instead as a core.selenium.element.ElementSelene wrapper object, which gives added functionality.</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>driver</strong> (<em>selenium.webdriver</em>) – a selenium webdriver instance</p></li>
+<li><p><strong>by</strong> (<em>selenium.webdriver.common.by.By</em>) – see <a class="reference external" href="https://selenium-python.readthedocs.io/locating-elements.html">https://selenium-python.readthedocs.io/locating-elements.html</a></p></li>
+<li><p><strong>identifier</strong> (<em>str</em>) – see <a class="reference external" href="https://selenium-python.readthedocs.io/locating-elements.html">https://selenium-python.readthedocs.io/locating-elements.html</a></p></li>
+<li><p><strong>wait</strong> (<em>int</em>) – a number of seconds to wait before raising a TimeoutException</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>output</strong> – returns the element if an element is found, None otherwise</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None or <a class="reference internal" href="#selene.core.selenium.element.ElementSelene" title="selene.core.selenium.element.ElementSelene">core.selenium.element.ElementSelene</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="selene.core.selenium.page.PageSelene.find_all">
+<span class="sig-name descname"><span class="pre">find_all</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">driver</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">by</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">identifier</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wait</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/selene/core/selenium/page.html#PageSelene.find_all"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#selene.core.selenium.page.PageSelene.find_all" title="Permalink to this definition">¶</a></dt>
+<dd><dl>
+<dt>This:</dt><dd><ul class="simple">
+<li><p>wraps core.selenium.tasks.task_find_all</p></li>
+<li><p>returns the result, not as a list of selenium.webdriver.remote.webelement.WebElement objects,</p></li>
+</ul>
+<p>but instead as a list of core.selenium.element.ElementSelene wrapper objects, which gives added functionality.</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>driver</strong> (<em>selenium.webdriver</em>) – a selenium webdriver instance</p></li>
+<li><p><strong>by</strong> (<em>selenium.webdriver.common.by.By</em>) – see <a class="reference external" href="https://selenium-python.readthedocs.io/locating-elements.html">https://selenium-python.readthedocs.io/locating-elements.html</a></p></li>
+<li><p><strong>identifier</strong> (<em>str</em>) – see <a class="reference external" href="https://selenium-python.readthedocs.io/locating-elements.html">https://selenium-python.readthedocs.io/locating-elements.html</a></p></li>
+<li><p><strong>wait</strong> (<em>int</em>) – a number of seconds to wait before raising a TimeoutException</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>output</strong> – returns the elements if one or more element is found, an empty list otherwise</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="selene.core.selenium.page.PageSelene.find_all_soup">
+<span class="sig-name descname"><span class="pre">find_all_soup</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/selene/core/selenium/page.html#PageSelene.find_all_soup"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#selene.core.selenium.page.PageSelene.find_all_soup" title="Permalink to this definition">¶</a></dt>
+<dd><p>Each PageSelene object contains a PageSoup object.
+This wraps the core.soup.page.PageSoup.find_all function, so it
+can use BeautifulSoup to find elements.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>output</strong> – the list of ElementSoup instances relating to the found webelements</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="selene.core.selenium.page.PageSelene.find_soup">
+<span class="sig-name descname"><span class="pre">find_soup</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/selene/core/selenium/page.html#PageSelene.find_soup"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#selene.core.selenium.page.PageSelene.find_soup" title="Permalink to this definition">¶</a></dt>
+<dd><p>Each PageSelene object contains a PageSoup object.
+This wraps the core.soup.page.PageSoup.find function, so it
+can use BeautifulSoup to find elements.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>output</strong> – the ElementSoup instance relating to the found webelement</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="selene.soup.html#selene.core.soup.element.ElementSoup" title="selene.core.soup.element.ElementSoup">core.soup.element.ElementSoup</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="selene.core.selenium.page.PageSelene.from_url">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_url</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">driver</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">url</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">string</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/selene/core/selenium/page.html#PageSelene.from_url"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#selene.core.selenium.page.PageSelene.from_url" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialise a PageSelene instance and navigate to the instance’s specified url</p>
+<dl class="simple">
+<dt>Checking the correct url can be done in 2 ways:</dt><dd><ol class="arabic simple">
+<li><p>Checking for an exact match</p></li>
+<li><p>Checking whether the url contains a specified string.</p></li>
+</ol>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>driver</strong> (<em>selenium.webdriver</em>) – the initialised webdriver instance</p></li>
+<li><p><strong>url</strong> (<em>str</em>) – the url of the page</p></li>
+<li><p><strong>string</strong> (<em>str</em>) – a specified string for the new url to contain</p></li>
+<li><p><strong>logger</strong> (<em>logging.Logger</em>) – a logger instance (see core.logger.py)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="selene.core.selenium.page.PageSelene.get_page_soup">
+<span class="sig-name descname"><span class="pre">get_page_soup</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">driver</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/selene/core/selenium/page.html#PageSelene.get_page_soup"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#selene.core.selenium.page.PageSelene.get_page_soup" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a PageSoup object (see core.soup.page) with the current source html code
+as found by the webdriver instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>driver</strong> (<em>selenium.webdriver</em>) – the initialised webdriver instance</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>output</strong> – PageSoup object initialised using the page’s source html code.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="selene.soup.html#selene.core.soup.page.PageSoup" title="selene.core.soup.page.PageSoup">PageSoup</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="selene.core.selenium.page.PageSelene.navigate_to_url">
+<span class="sig-name descname"><span class="pre">navigate_to_url</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">driver</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">url</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">string</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wait</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/selene/core/selenium/page.html#PageSelene.navigate_to_url"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#selene.core.selenium.page.PageSelene.navigate_to_url" title="Permalink to this definition">¶</a></dt>
+<dd><p>This wraps core.selenium.tasks.task_navigate_to_url</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>driver</strong> (<em>selenium.webdriver</em>) – a selenium webdriver instance</p></li>
+<li><p><strong>url</strong> (<em>str</em>) – the url to navigate to</p></li>
+<li><p><strong>string</strong> (<em>str</em>) – a specified string for the new url to contain</p></li>
+<li><p><strong>wait</strong> (<em>int</em>) – a number of seconds to wait before raising a TimeoutException</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>output</strong> – True if the operation was successful, False otherwise</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="selene.core.selenium.page.PageSelene.new_tab">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">new_tab</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">driver</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">url</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">string</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/selene/core/selenium/page.html#PageSelene.new_tab"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#selene.core.selenium.page.PageSelene.new_tab" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialise a PageSelene instance and navigate to the instance’s specified url in a new tab</p>
+<dl class="simple">
+<dt>Checking the correct url can be done in 2 ways:</dt><dd><ol class="arabic simple">
+<li><p>Checking for an exact match</p></li>
+<li><p>Checking whether the url contains a specified string.</p></li>
+</ol>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>driver</strong> (<em>selenium.webdriver</em>) – the initialised webdriver instance</p></li>
+<li><p><strong>url</strong> (<em>str</em>) – the url of the page</p></li>
+<li><p><strong>string</strong> (<em>str</em>) – a specified string for the new url to contain</p></li>
+<li><p><strong>logger</strong> (<em>logging.Logger</em>) – a logger instance (see core.logger.py)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="selene.core.selenium.page.PageSelene.refresh">
+<span class="sig-name descname"><span class="pre">refresh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">driver</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wait</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/selene/core/selenium/page.html#PageSelene.refresh"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#selene.core.selenium.page.PageSelene.refresh" title="Permalink to this definition">¶</a></dt>
+<dd><p>Refresh the page by refreshing the driver and re-initialising the PageSelene object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>driver</strong> (<em>selenium.webdriver</em>) – the initialised webdriver instance</p></li>
+<li><p><strong>wait</strong> (<em>int</em>) – a number of seconds to wait before re-initialising</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>output</strong> – re-initialised PageSelene object</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#selene.core.selenium.page.PageSelene" title="selene.core.selenium.page.PageSelene">PageSelene</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="selene.core.selenium.page.PageSelene.refresh_until_true">
+<span class="sig-name descname"><span class="pre">refresh_until_true</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">driver</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">func</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">message</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attempts</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/selene/core/selenium/page.html#PageSelene.refresh_until_true"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#selene.core.selenium.page.PageSelene.refresh_until_true" title="Permalink to this definition">¶</a></dt>
+<dd><p>This wraps other functions such as self.find.</p>
+<p>If the wrapped function returns anything other than False or None, then this function returns True.</p>
+<p>If the wrapped function returns False or None,
+then this function calls self.refresh. It does so for a number of attempts. If all attempts fail,
+then this function returns False</p>
+<p>This becomes useful if a web page did not load properly, and therefore needs to be refreshed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>driver</strong> (<em>selenium.webdriver</em>) – the initialised webdriver instance</p></li>
+<li><p><strong>func</strong> (<em>function</em>) – the function to be wrapped</p></li>
+<li><p><strong>message</strong> (<em>str</em>) – the error message to print to the logs</p></li>
+<li><p><strong>attempts</strong> (<em>int</em>) – the number of attempts before returning False</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>output</strong> – False if the function fails a specified number of times; True if it succeeds</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="selene.core.selenium.page.PageSelene.screenshot_to_local">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">screenshot_to_local</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">driver</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dirpath</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filestem</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/selene/core/selenium/page.html#PageSelene.screenshot_to_local"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#selene.core.selenium.page.PageSelene.screenshot_to_local" title="Permalink to this definition">¶</a></dt>
+<dd><p>This wraps core.selenium.tasks.screenshot_to_local</p>
+<p>Save a browser screenshot to a local directory</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>driver</strong> (<em>selenium.webdriver</em>) – a selenium webdriver instance</p></li>
+<li><p><strong>dirpath</strong> (<em>str</em>) – directory to save file</p></li>
+<li><p><strong>filestem</strong> (<em>str</em>) – a string to add to a datetime to create the filename</p></li>
+<li><p><strong>logger</strong> (<em>logging.Logger</em>) – a logger instance (see core.logger.py)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="selene.core.selenium.page.PageSelene.screenshot_to_notebook">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">screenshot_to_notebook</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">driver</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">600</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">400</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/selene/core/selenium/page.html#PageSelene.screenshot_to_notebook"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#selene.core.selenium.page.PageSelene.screenshot_to_notebook" title="Permalink to this definition">¶</a></dt>
+<dd><p>This wraps core.selenium.tasks.task_screenshot_to_notebook</p>
+<p>Display a browser screenshot in a Jupyter notebook.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>driver</strong> (<em>selenium.webdriver</em>) – a selenium webdriver instance</p></li>
+<li><p><strong>width</strong> (<em>int</em>) – the width of the image</p></li>
+<li><p><strong>height</strong> (<em>int</em>) – the height of the image</p></li>
+<li><p><strong>logger</strong> (<em>logging.Logger</em>) – a logger instance (see core.logger.py)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="selene.core.selenium.page.PageSelene.scroll_down">
+<span class="sig-name descname"><span class="pre">scroll_down</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">driver</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wait</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/selene/core/selenium/page.html#PageSelene.scroll_down"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#selene.core.selenium.page.PageSelene.scroll_down" title="Permalink to this definition">¶</a></dt>
+<dd><p>Scroll down the page.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>driver</strong> (<em>selenium.webdriver</em>) – a selenium webdriver instance</p></li>
+<li><p><strong>wait</strong> (<em>int</em>) – a number of seconds to wait before raising a TimeoutException</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>output</strong> – True if the operation was successful, False otherwise</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="selene.core.selenium.page.PageSelene.scroll_to">
+<span class="sig-name descname"><span class="pre">scroll_to</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">driver</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">position_new</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wait</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/selene/core/selenium/page.html#PageSelene.scroll_to"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#selene.core.selenium.page.PageSelene.scroll_to" title="Permalink to this definition">¶</a></dt>
+<dd><p>Scroll to a new position on the page.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>driver</strong> (<em>selenium.webdriver</em>) – a selenium webdriver instance</p></li>
+<li><p><strong>position_new</strong> (<em>int</em>) – y position in pixels</p></li>
+<li><p><strong>wait</strong> (<em>int</em>) – a number of seconds to wait before raising a TimeoutException</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>output</strong> – True if the operation was successful, False otherwise</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="selene.core.selenium.page.PageSelene.scroll_to_bottom">
+<span class="sig-name descname"><span class="pre">scroll_to_bottom</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">driver</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wait</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/selene/core/selenium/page.html#PageSelene.scroll_to_bottom"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#selene.core.selenium.page.PageSelene.scroll_to_bottom" title="Permalink to this definition">¶</a></dt>
+<dd><p>Scroll to the bottom of the page.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>driver</strong> (<em>selenium.webdriver</em>) – a selenium webdriver instance</p></li>
+<li><p><strong>wait</strong> (<em>int</em>) – a number of seconds to wait before raising a TimeoutException</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>output</strong> – True if the operation was successful, False otherwise</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="selene-core-selenium-scripts-module">
+<h2>selene.core.selenium.scripts module<a class="headerlink" href="#selene-core-selenium-scripts-module" title="Permalink to this heading">¶</a></h2>
+<span class="target" id="module-selene.core.selenium.scripts"></span><dl class="py function">
+<dt class="sig sig-object py" id="selene.core.selenium.scripts.script_click_element">
+<span class="sig-prename descclassname"><span class="pre">selene.core.selenium.scripts.</span></span><span class="sig-name descname"><span class="pre">script_click_element</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">driver</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">element</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/selene/core/selenium/scripts.html#script_click_element"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#selene.core.selenium.scripts.script_click_element" title="Permalink to this definition">¶</a></dt>
+<dd><p>Execute JavaScript to click an element</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>driver</strong> (<em>selenium.webdriver</em>) – a selenium webdriver instance</p></li>
+<li><p><strong>element</strong> (<em>selenium.webdriver.remote.webelement.WebElement</em>) – the element from which to get the scroll position
+(if None, then the scroll position of the page is found).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>output</strong> – True if the operation was successful, False otherwise</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="selene.core.selenium.scripts.script_expand_all_by_class_name">
+<span class="sig-prename descclassname"><span class="pre">selene.core.selenium.scripts.</span></span><span class="sig-name descname"><span class="pre">script_expand_all_by_class_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">driver</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">identifier</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attribute</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">indicator</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clickable</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/selene/core/selenium/scripts.html#script_expand_all_by_class_name"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#selene.core.selenium.scripts.script_expand_all_by_class_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>WARNING: EXPERIMENTAL</p>
+<p>Execute JavaScript to expand a list of dropdown menus.</p>
+<dl class="simple">
+<dt>Steps:</dt><dd><ul class="simple">
+<li><p>Find dropdowns by finding all elements with a class name specified with identifier.</p></li>
+<li><dl class="simple">
+<dt>For each dropdown found:</dt><dd><ul>
+<li><dl class="simple">
+<dt>Check if the dropdown is expanded or not. This can be done by:</dt><dd><ul>
+<li><p>Does the attribute ‘class’ contain an indicator (e.g. ‘expanded’)?</p></li>
+<li><p>Does the attribute ‘text’ contain an indicator (e.g. ‘Show More’)?</p></li>
+<li><p>Is there an attribute caalled ‘exists’?</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p>Find the element to click to expand the dropdown.
+Sometimes the clickable elemnt is not the dropdown itself, but is a button <strong>inside</strong> the dropdown.</p></li>
+<li><p>Click the clickable element.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>driver</strong> (<em>selenium.webdriver</em>) – a selenium webdriver instance</p></li>
+<li><p><strong>identifier</strong> (<em>str</em>) – the class name to search for</p></li>
+<li><p><strong>attribute</strong> (<em>str</em>) – the attribute of the element to check whether it is expanded or not</p></li>
+<li><p><strong>indicator</strong> (<em>str</em>) – the indicator <strong>within</strong> the attribute, which will indicate whether it is expanded or not</p></li>
+<li><p><strong>'clickable'</strong> (<em>str</em>) – the class name of the element within the dropdown which you have to click to expand the dropdown</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>output</strong> – True if the operation was successful, False otherwise</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="selene.core.selenium.scripts.script_get_parent">
+<span class="sig-prename descclassname"><span class="pre">selene.core.selenium.scripts.</span></span><span class="sig-name descname"><span class="pre">script_get_parent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">driver</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">element</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/selene/core/selenium/scripts.html#script_get_parent"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#selene.core.selenium.scripts.script_get_parent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Execute JavaScript to get the parent of an element</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>driver</strong> (<em>selenium.webdriver</em>) – a selenium webdriver instance</p></li>
+<li><p><strong>element</strong> (<em>selenium.webdriver.remote.webelement.WebElement</em>) – the element from which to get the scroll position
+(if None, then the scroll position of the page is found).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>output</strong> – the parent WebElement</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>selenium.webdriver.remote.webelement.WebElement</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="selene.core.selenium.scripts.script_get_scroll_height">
+<span class="sig-prename descclassname"><span class="pre">selene.core.selenium.scripts.</span></span><span class="sig-name descname"><span class="pre">script_get_scroll_height</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">driver</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">element</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/selene/core/selenium/scripts.html#script_get_scroll_height"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#selene.core.selenium.scripts.script_get_scroll_height" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt>Execute JavaScript to get the scroll height of either:</dt><dd><ul class="simple">
+<li><p>the page</p></li>
+<li><p>an element with a scroll bar.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>driver</strong> (<em>selenium.webdriver</em>) – a selenium webdriver instance</p></li>
+<li><p><strong>element</strong> (<em>selenium.webdriver.remote.webelement.WebElement</em>) – the element from which to get the scroll height
+(if None, then the scroll height of the page is found).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>output</strong> – the scroll height in pixels</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="selene.core.selenium.scripts.script_get_scroll_position">
+<span class="sig-prename descclassname"><span class="pre">selene.core.selenium.scripts.</span></span><span class="sig-name descname"><span class="pre">script_get_scroll_position</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">driver</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">element</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/selene/core/selenium/scripts.html#script_get_scroll_position"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#selene.core.selenium.scripts.script_get_scroll_position" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt>Execute JavaScript to get the scroll position of either:</dt><dd><ul class="simple">
+<li><p>the page</p></li>
+<li><p>an element with a scroll bar.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>driver</strong> (<em>selenium.webdriver</em>) – a selenium webdriver instance</p></li>
+<li><p><strong>element</strong> (<em>selenium.webdriver.remote.webelement.WebElement</em>) – the element from which to get the scroll position
+(if None, then the scroll position of the page is found).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>output</strong> – the scroll position in pixels</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="selene.core.selenium.scripts.script_scroll_to">
+<span class="sig-prename descclassname"><span class="pre">selene.core.selenium.scripts.</span></span><span class="sig-name descname"><span class="pre">script_scroll_to</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">driver</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">position</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">element</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/selene/core/selenium/scripts.html#script_scroll_to"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#selene.core.selenium.scripts.script_scroll_to" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt>Execute JavaScript to scroll to a position on either:</dt><dd><ul class="simple">
+<li><p>the page</p></li>
+<li><p>an element with a scroll bar.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>driver</strong> (<em>selenium.webdriver</em>) – a selenium webdriver instance</p></li>
+<li><p><strong>position</strong> (<em>int</em>) – the y position (in pxels) to scroll to</p></li>
+<li><p><strong>element</strong> (<em>selenium.webdriver.remote.webelement.WebElement</em>) – the element from which to get the scroll position
+(if None, then the scroll position of the page is found).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>output</strong> – True if the operation was successful, False otherwise</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="selene-core-selenium-tasks-module">
+<h2>selene.core.selenium.tasks module<a class="headerlink" href="#selene-core-selenium-tasks-module" title="Permalink to this heading">¶</a></h2>
+<span class="target" id="module-selene.core.selenium.tasks"></span><dl class="py function">
+<dt class="sig sig-object py" id="selene.core.selenium.tasks.mouse_move">
+<span class="sig-prename descclassname"><span class="pre">selene.core.selenium.tasks.</span></span><span class="sig-name descname"><span class="pre">mouse_move</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">driver</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_mouse_moves</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/selene/core/selenium/tasks.html#mouse_move"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#selene.core.selenium.tasks.mouse_move" title="Permalink to this definition">¶</a></dt>
+<dd><p>performs mouse move, for help with bot mitigation, partially ported from OpenWPM</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="selene.core.selenium.tasks.task_click">
+<span class="sig-prename descclassname"><span class="pre">selene.core.selenium.tasks.</span></span><span class="sig-name descname"><span class="pre">task_click</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">driver</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">by</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">identifier</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wait</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/selene/core/selenium/tasks.html#task_click"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#selene.core.selenium.tasks.task_click" title="Permalink to this definition">¶</a></dt>
+<dd><p>Click an element using a By. selector and an identifier.</p>
+<p>For more info, see:
+<a class="reference external" href="https://selenium-python.readthedocs.io/locating-elements.html">https://selenium-python.readthedocs.io/locating-elements.html</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>driver</strong> (<em>selenium.webdriver</em>) – a selenium webdriver instance</p></li>
+<li><p><strong>by</strong> (<em>selenium.webdriver.common.by.By</em>) – see <a class="reference external" href="https://selenium-python.readthedocs.io/locating-elements.html">https://selenium-python.readthedocs.io/locating-elements.html</a></p></li>
+<li><p><strong>identifier</strong> (<em>str</em>) – see <a class="reference external" href="https://selenium-python.readthedocs.io/locating-elements.html">https://selenium-python.readthedocs.io/locating-elements.html</a></p></li>
+<li><p><strong>wait</strong> (<em>int</em>) – a number of seconds to wait before raising a TimeoutException</p></li>
+<li><p><strong>logger</strong> (<em>logging.Logger</em>) – a logger instance (see core.logger.py)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>output</strong> – True if the operation was successful, False otherwise</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="selene.core.selenium.tasks.task_close_tab_return_to_url_and_handle">
+<span class="sig-prename descclassname"><span class="pre">selene.core.selenium.tasks.</span></span><span class="sig-name descname"><span class="pre">task_close_tab_return_to_url_and_handle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">driver</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">url</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">handle</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">string</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wait</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/selene/core/selenium/tasks.html#task_close_tab_return_to_url_and_handle"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#selene.core.selenium.tasks.task_close_tab_return_to_url_and_handle" title="Permalink to this definition">¶</a></dt>
+<dd><p>Close the current tab and check that the driver is back at the expected handle and url.</p>
+<dl class="simple">
+<dt>Checking the correct url can be done in 2 ways:</dt><dd><ol class="arabic simple">
+<li><p>Checking for an exact match</p></li>
+<li><p>Checking whether the url contains a specified string.</p></li>
+</ol>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>driver</strong> (<em>selenium.webdriver</em>) – a selenium webdriver instance</p></li>
+<li><p><strong>handle</strong> (<em>str</em>) – the handle to navigate to</p></li>
+<li><p><strong>url</strong> (<em>str</em>) – the url to navigate to</p></li>
+<li><p><strong>string</strong> (<em>str</em>) – a specified string for the new url to contain</p></li>
+<li><p><strong>wait</strong> (<em>int</em>) – a number of seconds to wait before raising a TimeoutException</p></li>
+<li><p><strong>logger</strong> (<em>logging.Logger</em>) – a logger instance (see core.logger.py)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>output</strong> – True if the operation was successful, False otherwise</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="selene.core.selenium.tasks.task_find">
+<span class="sig-prename descclassname"><span class="pre">selene.core.selenium.tasks.</span></span><span class="sig-name descname"><span class="pre">task_find</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">by</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">identifier</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wait</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/selene/core/selenium/tasks.html#task_find"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#selene.core.selenium.tasks.task_find" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find an element using a By. selector and an identifier.</p>
+<p>For more info, see:
+<a class="reference external" href="https://selenium-python.readthedocs.io/locating-elements.html">https://selenium-python.readthedocs.io/locating-elements.html</a></p>
+<p>If the operation is to find an element on the whole page, then
+the parent variable is a Selenium Webdriver instance (usually named driver).</p>
+<p>If the operation is to find an element on the whole page, then
+the parent variable is a Selenium WebElement instance
+(NOT a core.selenium.element.Element instance).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>parent</strong> (<em>EITHER selenium.webdriver OR selenium.webdriver.remote.webelement.WebElement</em>) – where to search for the element</p></li>
+<li><p><strong>by</strong> (<em>selenium.webdriver.common.by.By</em>) – see <a class="reference external" href="https://selenium-python.readthedocs.io/locating-elements.html">https://selenium-python.readthedocs.io/locating-elements.html</a></p></li>
+<li><p><strong>identifier</strong> (<em>str</em>) – see <a class="reference external" href="https://selenium-python.readthedocs.io/locating-elements.html">https://selenium-python.readthedocs.io/locating-elements.html</a></p></li>
+<li><p><strong>wait</strong> (<em>int</em>) – a number of seconds to wait before raising a TimeoutException</p></li>
+<li><p><strong>logger</strong> (<em>logging.Logger</em>) – a logger instance (see core.logger.py)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>output</strong> – returns the webelement if it is found; None otherwise</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>[None, selenium.webdriver.remote.webelement.WebElement]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="selene.core.selenium.tasks.task_find_all">
+<span class="sig-prename descclassname"><span class="pre">selene.core.selenium.tasks.</span></span><span class="sig-name descname"><span class="pre">task_find_all</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">by</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">identifier</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wait</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/selene/core/selenium/tasks.html#task_find_all"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#selene.core.selenium.tasks.task_find_all" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find a list of elements using a By. selector and an identifier.</p>
+<p>For more info, see:
+<a class="reference external" href="https://selenium-python.readthedocs.io/locating-elements.html">https://selenium-python.readthedocs.io/locating-elements.html</a></p>
+<p>If the operation is to find an element on the whole page, then
+the parent variable is a Selenium Webdriver instance (usually named driver).</p>
+<p>If the operation is to find an element on the whole page, then
+the parent variable is a Selenium WebElement instance
+(NOT a core.selenium.element.Element instance).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>parent</strong> (<em>EITHER selenium.webdriver OR selenium.webdriver.remote.webelement.WebElement</em>) – where to search for the element</p></li>
+<li><p><strong>by</strong> (<em>selenium.webdriver.common.by.By</em>) – see <a class="reference external" href="https://selenium-python.readthedocs.io/locating-elements.html">https://selenium-python.readthedocs.io/locating-elements.html</a></p></li>
+<li><p><strong>identifier</strong> (<em>str</em>) – see <a class="reference external" href="https://selenium-python.readthedocs.io/locating-elements.html">https://selenium-python.readthedocs.io/locating-elements.html</a></p></li>
+<li><p><strong>wait</strong> (<em>int</em>) – a number of seconds to wait before raising a TimeoutException</p></li>
+<li><p><strong>logger</strong> (<em>logging.Logger</em>) – a logger instance (see core.logger.py)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>output</strong> – returns a list of webelements if one or more are found; an empty list otherwise</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="selene.core.selenium.tasks.task_navigate_to_url">
+<span class="sig-prename descclassname"><span class="pre">selene.core.selenium.tasks.</span></span><span class="sig-name descname"><span class="pre">task_navigate_to_url</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">driver</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">url</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">string</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wait</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/selene/core/selenium/tasks.html#task_navigate_to_url"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#selene.core.selenium.tasks.task_navigate_to_url" title="Permalink to this definition">¶</a></dt>
+<dd><p>Navigate to a new url and check that the url is correct.</p>
+<dl class="simple">
+<dt>Checking the correct url can be done in 2 ways:</dt><dd><ol class="arabic simple">
+<li><p>Checking for an exact match</p></li>
+<li><p>Checking whether the url contains a specified string.</p></li>
+</ol>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>driver</strong> (<em>selenium.webdriver</em>) – a selenium webdriver instance</p></li>
+<li><p><strong>url</strong> (<em>str</em>) – the url to navigate to</p></li>
+<li><p><strong>string</strong> (<em>str</em>) – a specified string for the new url to contain</p></li>
+<li><p><strong>wait</strong> (<em>int</em>) – a number of seconds to wait before raising a TimeoutException</p></li>
+<li><p><strong>logger</strong> (<em>logging.Logger</em>) – a logger instance (see core.logger.py)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>output</strong> – True if the operation was successful, False otherwise</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="selene.core.selenium.tasks.task_navigate_to_url_in_new_tab">
+<span class="sig-prename descclassname"><span class="pre">selene.core.selenium.tasks.</span></span><span class="sig-name descname"><span class="pre">task_navigate_to_url_in_new_tab</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">driver</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">url</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">string</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wait</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/selene/core/selenium/tasks.html#task_navigate_to_url_in_new_tab"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#selene.core.selenium.tasks.task_navigate_to_url_in_new_tab" title="Permalink to this definition">¶</a></dt>
+<dd><p>Navigate to a new url in a new tab, and check that the url is correct.</p>
+<dl class="simple">
+<dt>Checking the correct url can be done in 2 ways:</dt><dd><ol class="arabic simple">
+<li><p>Checking for an exact match</p></li>
+<li><p>Checking whether the url contains a specified string.</p></li>
+</ol>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>driver</strong> (<em>selenium.webdriver</em>) – a selenium webdriver instance</p></li>
+<li><p><strong>url</strong> (<em>str</em>) – the url to navigate to</p></li>
+<li><p><strong>string</strong> (<em>str</em>) – a specified string for the new url to contain</p></li>
+<li><p><strong>wait</strong> (<em>int</em>) – a number of seconds to wait before raising a TimeoutException</p></li>
+<li><p><strong>logger</strong> (<em>logging.Logger</em>) – a logger instance (see core.logger.py)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>output</strong> – True if the operation was successful, False otherwise</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="selene.core.selenium.tasks.task_screenshot_to_local">
+<span class="sig-prename descclassname"><span class="pre">selene.core.selenium.tasks.</span></span><span class="sig-name descname"><span class="pre">task_screenshot_to_local</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">driver</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dirpath</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filestem</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/selene/core/selenium/tasks.html#task_screenshot_to_local"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#selene.core.selenium.tasks.task_screenshot_to_local" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save a browser screenshot to a local directory</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>driver</strong> (<em>selenium.webdriver</em>) – a selenium webdriver instance</p></li>
+<li><p><strong>dirpath</strong> (<em>str</em>) – the directory path</p></li>
+<li><p><strong>filestem</strong> (<em>str</em>) – a string to add to a datetime to create the filename TODO tidy up workflow?</p></li>
+<li><p><strong>logger</strong> (<em>logging.Logger</em>) – a logger instance (see core.logger.py)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="selene.core.selenium.tasks.task_screenshot_to_notebook">
+<span class="sig-prename descclassname"><span class="pre">selene.core.selenium.tasks.</span></span><span class="sig-name descname"><span class="pre">task_screenshot_to_notebook</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">driver</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/selene/core/selenium/tasks.html#task_screenshot_to_notebook"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#selene.core.selenium.tasks.task_screenshot_to_notebook" title="Permalink to this definition">¶</a></dt>
+<dd><p>Display a browser screenshot in a Jupyter notebook.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>driver</strong> (<em>selenium.webdriver</em>) – a selenium webdriver instance</p></li>
+<li><p><strong>width</strong> (<em>int</em>) – the width of the image</p></li>
+<li><p><strong>height</strong> (<em>int</em>) – the height of the image</p></li>
+<li><p><strong>logger</strong> (<em>logging.Logger</em>) – a logger instance (see core.logger.py)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-selene.core.selenium">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-selene.core.selenium" title="Permalink to this heading">¶</a></h2>
+</section>
+</section>
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+
+          <div class="sidebar-resize-handle"></div>
+
+<h3><a href="../index.html">Table of Contents</a></h3>
+<p class="caption" role="heading"><span class="caption-text">The basics</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../basics/element_retrieval.html">Gathering data from a webpage with selene</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../basics/clicking_and_scrolling.html">Clicking and scrolling</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Website-specific functionality</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../websites/websites.html">Building website-specific functionality</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Contributing</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../contributing_code.html">Contributing code to selene</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Writing documentation and user guides</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="selene.core.html">Selene core functionality and parent objects</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Selene selenium-based functionality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="selene.soup.html">Selene soup-based functionality</a></li>
+</ul>
+
+<hr class="docutils" />
+<ul>
+  <li class="toctree-l1"><a class="reference internal" href="../genindex.html" accesskey="I">General Index</a></li>
+  <li class="toctree-l1"><a class="reference internal" href="../py-modindex.html">Python Module Index</a></li>
+</ul>
+<div id="ethical-ad-placement"></div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+
+    <nav class="relbar">
+      <a class="previous" href="selene.core.html" aria-label="Previous topic" >
+        <div class="icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M257.5 445.1l-22.2 22.2c-9.4 9.4-24.6 9.4-33.9 0L7 273c-9.4-9.4-9.4-24.6 0-33.9L201.4 44.7c9.4-9.4 24.6-9.4 33.9 0l22.2 22.2c9.5 9.5 9.3 25-.4 34.3L136.6 216H424c13.3 0 24 10.7 24 24v32c0 13.3-10.7 24-24 24H136.6l120.5 114.8c9.8 9.3 10 24.8.4 34.3z"/></svg>
+        </div>
+        <div class="title">
+          <span class="text">
+            <span class="direction">previous</span>
+            Selene core functionality and parent objects
+          </span>
+        </div>
+      </a>
+      <a class="next" href="selene.soup.html" aria-label="Next topic" >
+        <div class="title">
+          <span class="text">
+            <span class="direction">next</span>
+            Selene soup-based functionality
+          </span>
+        </div>
+        <div class="icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M190.5 66.9l22.2-22.2c9.4-9.4 24.6-9.4 33.9 0L441 239c9.4 9.4 9.4 24.6 0 33.9L246.6 467.3c-9.4 9.4-24.6 9.4-33.9 0l-22.2-22.2c-9.5-9.5-9.3-25 .4-34.3L311.4 296H24c-13.3 0-24-10.7-24-24v-32c0-13.3 10.7-24 24-24h287.4L190.9 101.2c-9.8-9.3-10-24.8-.4-34.3z"/></svg>
+        </div>
+      </a>
+    </nav>
+
+    <footer role="contentinfo">
+      &#169; Copyright 2022, CMA DaTA Unit.
+      Created using <a class="reference external" href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.1.
+      <a class="reference external" href="https://insipid-sphinx-theme.readthedocs.io/">Insipid Theme</a>.
+<a class="reference internal" href="../_sources/api/selene.selenium.rst.txt" rel="nofollow">Show Source</a>.
+    </footer>
+  </body>
+</html>

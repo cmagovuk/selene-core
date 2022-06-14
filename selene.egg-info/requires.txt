@@ -1,0 +1,14 @@
+numpy
+selenium
+beautifulsoup4
+lxml
+ipython
+requests
+pyvirtualdisplay
+
+[tests]
+coverage
+interrogate
+pytest
+pytest-cov
+black

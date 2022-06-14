@@ -1,0 +1,658 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>selene.core.selenium.page &#8212; Selene</title>
+    <link rel="stylesheet" href="../../../../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/insipid.css" />
+
+    <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+    <script src="../../../../_static/jquery.js"></script>
+    <script src="../../../../_static/underscore.js"></script>
+    <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../../../_static/doctools.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script defer src="../../../../_static/insipid.js"></script>
+    <script defer src="../../../../_static/insipid-sidebar.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+  </head><body>
+    <script type="text/javascript">
+        document.body.classList.add('js');
+    </script>
+    <input type="checkbox" id="sidebar-checkbox" style="display: none;">
+    <label id="overlay" for="sidebar-checkbox"></label>
+    <div class="sidebar-resize-handle"></div>
+    <script type="text/javascript">
+        try {
+            let sidebar = localStorage.getItem('sphinx-sidebar');
+            const sidebar_width = localStorage.getItem('sphinx-sidebar-width');
+            if (sidebar_width) {
+                document.documentElement.style.setProperty('--sidebar-width', sidebar_width);
+            }
+            // show sidebar on wide screen
+            if (!sidebar && window.matchMedia('(min-width: 100rem)').matches) {
+                sidebar = 'visible';
+                // NB: We don't store the value in localStorage!
+            }
+            if (sidebar === 'visible') {
+                document.getElementById('sidebar-checkbox').checked = true;
+            }
+        } catch(e) {
+            console.info(e);
+        }
+    </script>
+    <header id="topbar-placeholder">
+      <div id="topbar">
+        <div id="titlebar">
+          <div class="buttons">
+            <label for="sidebar-checkbox" id="sidebar-button" role="button" tabindex="0" aria-controls="sphinxsidebar" accesskey="M">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"/></svg>
+            </label>
+            <button id="search-button" type="button" title="Search" aria-label="Search" aria-expanded="false" aria-controls="search-form" accesskey="S">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+            </button>
+          </div>
+          <div class="title">
+            <a class="parent" href="../../../index.html" accesskey="U">Module code</a>
+            <a class="top" href="#">selene.core.selenium.page</a>
+          </div>
+          <div class="buttons">
+            <button id="fullscreen-button" type="button" aria-hidden="true">
+              <span class="enable">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M212.686 315.314L120 408l32.922 31.029c15.12 15.12 4.412 40.971-16.97 40.971h-112C10.697 480 0 469.255 0 456V344c0-21.382 25.803-32.09 40.922-16.971L72 360l92.686-92.686c6.248-6.248 16.379-6.248 22.627 0l25.373 25.373c6.249 6.248 6.249 16.378 0 22.627zm22.628-118.628L328 104l-32.922-31.029C279.958 57.851 290.666 32 312.048 32h112C437.303 32 448 42.745 448 56v112c0 21.382-25.803 32.09-40.922 16.971L376 152l-92.686 92.686c-6.248 6.248-16.379 6.248-22.627 0l-25.373-25.373c-6.249-6.248-6.249-16.378 0-22.627z"/></svg>
+              </span>
+              <span class="disable">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M4.686 427.314L104 328l-32.922-31.029C55.958 281.851 66.666 256 88.048 256h112C213.303 256 224 266.745 224 280v112c0 21.382-25.803 32.09-40.922 16.971L152 376l-99.314 99.314c-6.248 6.248-16.379 6.248-22.627 0L4.686 449.941c-6.248-6.248-6.248-16.379 0-22.627zM443.314 84.686L344 184l32.922 31.029c15.12 15.12 4.412 40.971-16.97 40.971h-112C234.697 256 224 245.255 224 232V120c0-21.382 25.803-32.09 40.922-16.971L296 136l99.314-99.314c6.248-6.248 16.379-6.248 22.627 0l25.373 25.373c6.248 6.248 6.248 16.379 0 22.627z"/></svg>
+              </span>
+            </button>
+          </div>
+        </div>
+        <div id="searchbox" role="search">
+          <form id="search-form" class="search" style="display: none" action="../../../../search.html" method="get">
+            <input type="search" name="q" placeholder="Search ..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
+            <button>Go</button>
+          </form>
+        </div>
+      </div>
+    </header>
+    <nav>
+    </nav>
+
+    <nav class="relbar">
+    </nav>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+<h1>Source code for selene.core.selenium.page</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">from</span> <span class="nn">selenium</span> <span class="kn">import</span> <span class="n">webdriver</span>
+<span class="kn">from</span> <span class="nn">selenium.webdriver.common.by</span> <span class="kn">import</span> <span class="n">By</span>
+<span class="kn">from</span> <span class="nn">selenium.webdriver.support</span> <span class="kn">import</span> <span class="n">expected_conditions</span> <span class="k">as</span> <span class="n">EC</span>
+<span class="kn">from</span> <span class="nn">selenium.webdriver.support.wait</span> <span class="kn">import</span> <span class="n">WebDriverWait</span>
+<span class="kn">from</span> <span class="nn">selenium.common.exceptions</span> <span class="kn">import</span> <span class="n">TimeoutException</span><span class="p">,</span> <span class="n">StaleElementReferenceException</span>
+
+<span class="kn">from</span> <span class="nn">selene.core.page</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">selene.core.config</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">selene.core.selenium.tasks</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">selene.core.selenium.driver</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">selene.core.selenium.scripts</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">selene.core.selenium.element</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">selene.core.selenium.conditions</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="kn">from</span> <span class="nn">selene.core.soup.page</span> <span class="kn">import</span> <span class="n">PageSoup</span>
+
+
+<div class="viewcode-block" id="PageSelene"><a class="viewcode-back" href="../../../../api/selene.selenium.html#selene.core.selenium.page.PageSelene">[docs]</a><span class="k">class</span> <span class="nc">PageSelene</span><span class="p">(</span><span class="n">Page</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A page class to assist any workflow which requires selenium webdriver.</span>
+
+<span class="sd">    - A website is made out of pages.</span>
+<span class="sd">    - Dynamically-generated pages require Selenium Webdriver.</span>
+<span class="sd">    - Each page will need general functionality (e.g. finding and element, scrolling etc.).</span>
+<span class="sd">    - Inheriting this class provides that general functionality</span>
+
+<span class="sd">    NOTE 1: Generally, the way to use this object is to initalise using the from_url() method,</span>
+<span class="sd">    as this will attach the url to the page AND navigate to the url.</span>
+
+<span class="sd">    NOTE 2: Any PageSelene object will also contain a PageSoup object (see core.soup.page).</span>
+<span class="sd">    This is an attempt to allow both the use of Selenium (for dynamic elements)</span>
+<span class="sd">    and BeautifulSoup (for static elements) when scraping.</span>
+
+<span class="sd">    Inherits selene.core.page.Page</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">driver</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">logger</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initialise a PageSelene instance.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">            driver : selenium.webdriver</span>
+<span class="sd">                the initialised webdriver instance</span>
+<span class="sd">            url : str</span>
+<span class="sd">                the url of the page</span>
+<span class="sd">            logger : logging.Logger</span>
+<span class="sd">                a logger instance (see core.logger.py)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">Page</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">logger</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="c1"># Get the PageSoup object</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">page_soup</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_page_soup</span><span class="p">(</span><span class="n">driver</span><span class="p">)</span>
+
+<div class="viewcode-block" id="PageSelene.from_url"><a class="viewcode-back" href="../../../../api/selene.selenium.html#selene.core.selenium.page.PageSelene.from_url">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_url</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">driver</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">string</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">logger</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initialise a PageSelene instance and navigate to the instance&#39;s specified url</span>
+
+<span class="sd">        Checking the correct url can be done in 2 ways:</span>
+<span class="sd">            1. Checking for an exact match</span>
+<span class="sd">            2. Checking whether the url contains a specified string.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">            driver : selenium.webdriver</span>
+<span class="sd">                the initialised webdriver instance</span>
+<span class="sd">            url : str</span>
+<span class="sd">                the url of the page</span>
+<span class="sd">            string : str</span>
+<span class="sd">                a specified string for the new url to contain</span>
+<span class="sd">            logger : logging.Logger</span>
+<span class="sd">                a logger instance (see core.logger.py)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">logger</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;navigate to: </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">task_navigate_to_url</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">string</span><span class="o">=</span><span class="n">string</span><span class="p">,</span> <span class="n">wait</span><span class="o">=</span><span class="n">WAIT_NORMAL</span><span class="p">,</span> <span class="n">logger</span><span class="o">=</span><span class="n">logger</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">logger</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="PageSelene.new_tab"><a class="viewcode-back" href="../../../../api/selene.selenium.html#selene.core.selenium.page.PageSelene.new_tab">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">new_tab</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">driver</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">string</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">logger</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initialise a PageSelene instance and navigate to the instance&#39;s specified url in a new tab</span>
+
+<span class="sd">        Checking the correct url can be done in 2 ways:</span>
+<span class="sd">            1. Checking for an exact match</span>
+<span class="sd">            2. Checking whether the url contains a specified string.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">            driver : selenium.webdriver</span>
+<span class="sd">                the initialised webdriver instance</span>
+<span class="sd">            url : str</span>
+<span class="sd">                the url of the page</span>
+<span class="sd">            string : str</span>
+<span class="sd">                a specified string for the new url to contain</span>
+<span class="sd">            logger : logging.Logger</span>
+<span class="sd">                a logger instance (see core.logger.py)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">logger</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;navigate to: </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s2"> in new tab&quot;</span><span class="p">)</span>
+        <span class="n">task_navigate_to_url_in_new_tab</span><span class="p">(</span>
+            <span class="n">driver</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">string</span><span class="o">=</span><span class="n">string</span><span class="p">,</span> <span class="n">wait</span><span class="o">=</span><span class="n">WAIT_NORMAL</span><span class="p">,</span> <span class="n">logger</span><span class="o">=</span><span class="n">logger</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">from_url</span><span class="p">(</span><span class="n">driver</span><span class="o">=</span><span class="n">driver</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="n">string</span><span class="o">=</span><span class="n">string</span><span class="p">,</span> <span class="n">logger</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="PageSelene.get_page_soup"><a class="viewcode-back" href="../../../../api/selene.selenium.html#selene.core.selenium.page.PageSelene.get_page_soup">[docs]</a>    <span class="k">def</span> <span class="nf">get_page_soup</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">driver</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get a PageSoup object (see core.soup.page) with the current source html code</span>
+<span class="sd">        as found by the webdriver instance.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">            driver : selenium.webdriver</span>
+<span class="sd">                the initialised webdriver instance</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        ----------</span>
+<span class="sd">            output : PageSoup</span>
+<span class="sd">                PageSoup object initialised using the page&#39;s source html code.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">PageSoup</span><span class="o">.</span><span class="n">from_html</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">,</span> <span class="n">driver</span><span class="o">.</span><span class="n">page_source</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="PageSelene.refresh"><a class="viewcode-back" href="../../../../api/selene.selenium.html#selene.core.selenium.page.PageSelene.refresh">[docs]</a>    <span class="k">def</span> <span class="nf">refresh</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">driver</span><span class="p">,</span> <span class="n">wait</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Refresh the page by refreshing the driver and re-initialising the PageSelene object.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">            driver : selenium.webdriver</span>
+<span class="sd">                the initialised webdriver instance</span>
+<span class="sd">            wait : int</span>
+<span class="sd">                a number of seconds to wait before re-initialising</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        ----------</span>
+<span class="sd">            output : PageSelene</span>
+<span class="sd">                re-initialised PageSelene object</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;refreshing driver: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">driver</span><span class="o">.</span><span class="n">refresh</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;waiting </span><span class="si">{</span><span class="n">wait</span><span class="si">}</span><span class="s2"> seconds&quot;</span><span class="p">)</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">wait</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">from_url</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">,</span> <span class="n">logger</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="PageSelene.refresh_until_true"><a class="viewcode-back" href="../../../../api/selene.selenium.html#selene.core.selenium.page.PageSelene.refresh_until_true">[docs]</a>    <span class="k">def</span> <span class="nf">refresh_until_true</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">driver</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">attempts</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This wraps other functions such as self.find.</span>
+
+<span class="sd">        If the wrapped function returns anything other than False or None, then this function returns True.</span>
+
+<span class="sd">        If the wrapped function returns False or None,</span>
+<span class="sd">        then this function calls self.refresh. It does so for a number of attempts. If all attempts fail,</span>
+<span class="sd">        then this function returns False</span>
+
+<span class="sd">        This becomes useful if a web page did not load properly, and therefore needs to be refreshed.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">            driver : selenium.webdriver</span>
+<span class="sd">                the initialised webdriver instance</span>
+<span class="sd">            func : function</span>
+<span class="sd">                the function to be wrapped</span>
+<span class="sd">            message : str</span>
+<span class="sd">                the error message to print to the logs</span>
+<span class="sd">            attempts : int</span>
+<span class="sd">                the number of attempts before returning False</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        ----------</span>
+<span class="sd">            output : bool</span>
+<span class="sd">                False if the function fails a specified number of times; True if it succeeds</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;driver&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">driver</span>
+        <span class="k">for</span> <span class="n">attempt</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">attempts</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;function </span><span class="si">{</span><span class="n">func</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2"> succeeded; returning True&quot;</span><span class="p">)</span>
+                <span class="k">return</span> <span class="kc">True</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">message</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;EXCEPTION&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">screenshot_to_notebook</span><span class="p">(</span><span class="n">driver</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">attempt</span> <span class="o">&lt;</span> <span class="n">attempts</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;attempting refresh: attempts: </span><span class="si">{</span><span class="n">attempt</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">refresh</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">wait</span><span class="o">=</span><span class="p">(</span><span class="n">attempt</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="mi">30</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;function </span><span class="si">{</span><span class="n">func</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2"> failed; returning False&quot;</span><span class="p">,</span> <span class="s2">&quot;EXCEPTION&quot;</span><span class="p">)</span>
+                <span class="k">return</span> <span class="kc">False</span></div>
+
+<div class="viewcode-block" id="PageSelene.navigate_to_url"><a class="viewcode-back" href="../../../../api/selene.selenium.html#selene.core.selenium.page.PageSelene.navigate_to_url">[docs]</a>    <span class="k">def</span> <span class="nf">navigate_to_url</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">driver</span><span class="p">,</span>
+        <span class="n">url</span><span class="p">,</span>
+        <span class="n">string</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="n">wait</span><span class="o">=</span><span class="n">WAIT_NORMAL</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This wraps core.selenium.tasks.task_navigate_to_url</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">            driver : selenium.webdriver</span>
+<span class="sd">                a selenium webdriver instance</span>
+<span class="sd">            url : str</span>
+<span class="sd">                the url to navigate to</span>
+<span class="sd">            string : str</span>
+<span class="sd">                a specified string for the new url to contain</span>
+<span class="sd">            wait : int</span>
+<span class="sd">                a number of seconds to wait before raising a TimeoutException</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        ----------</span>
+<span class="sd">            output : bool</span>
+<span class="sd">                True if the operation was successful, False otherwise</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;navigate_to_url: </span><span class="si">{</span><span class="s2">&quot;; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">url</span><span class="p">,</span> <span class="n">string</span><span class="p">])</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">task_navigate_to_url</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">string</span><span class="p">,</span> <span class="n">wait</span><span class="p">,</span> <span class="n">logger</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="PageSelene.find"><a class="viewcode-back" href="../../../../api/selene.selenium.html#selene.core.selenium.page.PageSelene.find">[docs]</a>    <span class="k">def</span> <span class="nf">find</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">driver</span><span class="p">,</span> <span class="n">by</span><span class="p">,</span> <span class="n">identifier</span><span class="p">,</span> <span class="n">wait</span><span class="o">=</span><span class="n">WAIT_NORMAL</span><span class="p">,</span> <span class="n">log</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This:</span>
+<span class="sd">            - wraps core.selenium.tasks.task_find</span>
+<span class="sd">            - returns the result, not as a selenium.webdriver.remote.webelement.WebElement object,</span>
+<span class="sd">            but instead as a core.selenium.element.ElementSelene wrapper object, which gives added functionality.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">            driver : selenium.webdriver</span>
+<span class="sd">                a selenium webdriver instance</span>
+<span class="sd">            by : selenium.webdriver.common.by.By</span>
+<span class="sd">                see https://selenium-python.readthedocs.io/locating-elements.html</span>
+<span class="sd">            identifier : str</span>
+<span class="sd">                see https://selenium-python.readthedocs.io/locating-elements.html</span>
+<span class="sd">            wait : int</span>
+<span class="sd">                a number of seconds to wait before raising a TimeoutException</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        ----------</span>
+<span class="sd">            output : None or core.selenium.element.ElementSelene</span>
+<span class="sd">                returns the element if an element is found, None otherwise</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">logger</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">logger</span> <span class="k">if</span> <span class="n">log</span> <span class="k">else</span> <span class="kc">None</span>
+        <span class="n">element</span> <span class="o">=</span> <span class="n">task_find</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">by</span><span class="p">,</span> <span class="n">identifier</span><span class="p">,</span> <span class="n">wait</span><span class="o">=</span><span class="n">wait</span><span class="p">,</span> <span class="n">logger</span><span class="o">=</span><span class="n">logger</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">element</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">ElementSelene</span><span class="p">(</span><span class="n">element</span><span class="p">,</span> <span class="n">logger</span><span class="p">)</span>
+            <span class="k">except</span> <span class="n">StaleElementReferenceException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;EXCEPTION&quot;</span><span class="p">)</span>
+                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">by</span><span class="p">,</span> <span class="n">identifier</span><span class="p">,</span> <span class="n">wait</span><span class="p">,</span> <span class="n">log</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">None</span></div>
+
+<div class="viewcode-block" id="PageSelene.find_all"><a class="viewcode-back" href="../../../../api/selene.selenium.html#selene.core.selenium.page.PageSelene.find_all">[docs]</a>    <span class="k">def</span> <span class="nf">find_all</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">driver</span><span class="p">,</span> <span class="n">by</span><span class="p">,</span> <span class="n">identifier</span><span class="p">,</span> <span class="n">wait</span><span class="o">=</span><span class="n">WAIT_NORMAL</span><span class="p">,</span> <span class="n">log</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This:</span>
+<span class="sd">            - wraps core.selenium.tasks.task_find_all</span>
+<span class="sd">            - returns the result, not as a list of selenium.webdriver.remote.webelement.WebElement objects,</span>
+<span class="sd">            but instead as a list of core.selenium.element.ElementSelene wrapper objects, which gives added functionality.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">            driver : selenium.webdriver</span>
+<span class="sd">                a selenium webdriver instance</span>
+<span class="sd">            by : selenium.webdriver.common.by.By</span>
+<span class="sd">                see https://selenium-python.readthedocs.io/locating-elements.html</span>
+<span class="sd">            identifier : str</span>
+<span class="sd">                see https://selenium-python.readthedocs.io/locating-elements.html</span>
+<span class="sd">            wait : int</span>
+<span class="sd">                a number of seconds to wait before raising a TimeoutException</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        ----------</span>
+<span class="sd">            output : list</span>
+<span class="sd">                returns the elements if one or more element is found, an empty list otherwise</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">logger</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">logger</span> <span class="k">if</span> <span class="n">log</span> <span class="k">else</span> <span class="kc">None</span>
+        <span class="n">elements</span> <span class="o">=</span> <span class="n">task_find_all</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">by</span><span class="p">,</span> <span class="n">identifier</span><span class="p">,</span> <span class="n">wait</span><span class="o">=</span><span class="n">wait</span><span class="p">,</span> <span class="n">logger</span><span class="o">=</span><span class="n">logger</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">elements</span> <span class="o">=</span> <span class="p">[</span><span class="n">ElementSelene</span><span class="p">(</span><span class="n">el</span><span class="p">,</span> <span class="n">logger</span><span class="p">)</span> <span class="k">for</span> <span class="n">el</span> <span class="ow">in</span> <span class="n">elements</span><span class="p">]</span>
+        <span class="k">except</span> <span class="n">StaleElementReferenceException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;EXCEPTION&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">by</span><span class="p">,</span> <span class="n">identifier</span><span class="p">,</span> <span class="n">wait</span><span class="p">,</span> <span class="n">log</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">elements</span></div>
+
+<div class="viewcode-block" id="PageSelene.find_soup"><a class="viewcode-back" href="../../../../api/selene.selenium.html#selene.core.selenium.page.PageSelene.find_soup">[docs]</a>    <span class="k">def</span> <span class="nf">find_soup</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Each PageSelene object contains a PageSoup object.</span>
+<span class="sd">        This wraps the core.soup.page.PageSoup.find function, so it</span>
+<span class="sd">        can use BeautifulSoup to find elements.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        ----------</span>
+<span class="sd">            output : core.soup.element.ElementSoup</span>
+<span class="sd">                the ElementSoup instance relating to the found webelement</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">page_soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="PageSelene.find_all_soup"><a class="viewcode-back" href="../../../../api/selene.selenium.html#selene.core.selenium.page.PageSelene.find_all_soup">[docs]</a>    <span class="k">def</span> <span class="nf">find_all_soup</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Each PageSelene object contains a PageSoup object.</span>
+<span class="sd">        This wraps the core.soup.page.PageSoup.find_all function, so it</span>
+<span class="sd">        can use BeautifulSoup to find elements.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        ----------</span>
+<span class="sd">            output : list</span>
+<span class="sd">                the list of ElementSoup instances relating to the found webelements</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">page_soup</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="PageSelene.click"><a class="viewcode-back" href="../../../../api/selene.selenium.html#selene.core.selenium.page.PageSelene.click">[docs]</a>    <span class="k">def</span> <span class="nf">click</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">driver</span><span class="p">,</span> <span class="n">by</span><span class="p">,</span> <span class="n">identifier</span><span class="p">,</span> <span class="n">wait</span><span class="o">=</span><span class="n">WAIT_NORMAL</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Find and click an element on the page.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">            driver : selenium.webdriver</span>
+<span class="sd">                a selenium webdriver instance</span>
+<span class="sd">            by : selenium.webdriver.common.by.By</span>
+<span class="sd">                see https://selenium-python.readthedocs.io/locating-elements.html</span>
+<span class="sd">            identifier : str</span>
+<span class="sd">                see https://selenium-python.readthedocs.io/locating-elements.html</span>
+<span class="sd">            wait : int</span>
+<span class="sd">                a number of seconds to wait before raising a TimeoutException</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        ----------</span>
+<span class="sd">            output : bool</span>
+<span class="sd">                True if the operation was successful, False otherwise</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">bool_clickable</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">by</span><span class="p">,</span> <span class="n">identifier</span><span class="p">,</span> <span class="n">wait</span><span class="o">=</span><span class="n">wait</span><span class="p">,</span> <span class="n">logger</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="p">):</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="n">element</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">by</span><span class="p">,</span> <span class="n">identifier</span><span class="p">,</span> <span class="n">wait</span><span class="o">=</span><span class="n">wait</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">element</span><span class="o">.</span><span class="n">click</span><span class="p">(</span><span class="n">driver</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="PageSelene.scroll_down"><a class="viewcode-back" href="../../../../api/selene.selenium.html#selene.core.selenium.page.PageSelene.scroll_down">[docs]</a>    <span class="k">def</span> <span class="nf">scroll_down</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">driver</span><span class="p">,</span> <span class="n">wait</span><span class="o">=</span><span class="n">WAIT_NORMAL</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Scroll down the page.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">            driver : selenium.webdriver</span>
+<span class="sd">                a selenium webdriver instance</span>
+<span class="sd">            wait : int</span>
+<span class="sd">                a number of seconds to wait before raising a TimeoutException</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        ----------</span>
+<span class="sd">            output : bool</span>
+<span class="sd">                True if the operation was successful, False otherwise</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;scroll_down&quot;</span><span class="p">)</span>
+        <span class="n">height_window</span> <span class="o">=</span> <span class="n">driver</span><span class="o">.</span><span class="n">get_window_size</span><span class="p">()[</span><span class="s2">&quot;height&quot;</span><span class="p">]</span>
+        <span class="n">height</span> <span class="o">=</span> <span class="n">script_get_scroll_height</span><span class="p">(</span><span class="n">driver</span><span class="p">)</span>
+        <span class="n">position</span> <span class="o">=</span> <span class="n">script_get_scroll_position</span><span class="p">(</span><span class="n">driver</span><span class="p">)</span>
+        <span class="n">position_new</span> <span class="o">=</span> <span class="n">position</span> <span class="o">+</span> <span class="nb">int</span><span class="p">(</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">height_window</span><span class="p">)</span>
+        <span class="n">position_new</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">position_new</span><span class="p">,</span> <span class="n">height</span><span class="p">)</span>
+        <span class="n">script_scroll_to</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">position_new</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">bool_yoffset_changed</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">wait</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="p">,</span> <span class="n">position</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="PageSelene.scroll_to"><a class="viewcode-back" href="../../../../api/selene.selenium.html#selene.core.selenium.page.PageSelene.scroll_to">[docs]</a>    <span class="k">def</span> <span class="nf">scroll_to</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">driver</span><span class="p">,</span> <span class="n">position_new</span><span class="p">,</span> <span class="n">wait</span><span class="o">=</span><span class="n">WAIT_NORMAL</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Scroll to a new position on the page.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">            driver : selenium.webdriver</span>
+<span class="sd">                a selenium webdriver instance</span>
+<span class="sd">            position_new : int</span>
+<span class="sd">                y position in pixels</span>
+<span class="sd">            wait : int</span>
+<span class="sd">                a number of seconds to wait before raising a TimeoutException</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        ----------</span>
+<span class="sd">            output : bool</span>
+<span class="sd">                True if the operation was successful, False otherwise</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;scroll_to&quot;</span><span class="p">)</span>
+        <span class="n">position</span> <span class="o">=</span> <span class="n">script_get_scroll_position</span><span class="p">(</span><span class="n">driver</span><span class="p">)</span>
+        <span class="n">script_scroll_to</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">position_new</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">bool_yoffset_changed</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">wait</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="p">,</span> <span class="n">position</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="PageSelene.scroll_to_bottom"><a class="viewcode-back" href="../../../../api/selene.selenium.html#selene.core.selenium.page.PageSelene.scroll_to_bottom">[docs]</a>    <span class="k">def</span> <span class="nf">scroll_to_bottom</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">driver</span><span class="p">,</span> <span class="n">wait</span><span class="o">=</span><span class="n">WAIT_NORMAL</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Scroll to the bottom of the page.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">            driver : selenium.webdriver</span>
+<span class="sd">                a selenium webdriver instance</span>
+<span class="sd">            wait : int</span>
+<span class="sd">                a number of seconds to wait before raising a TimeoutException</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        ----------</span>
+<span class="sd">            output : bool</span>
+<span class="sd">                True if the operation was successful, False otherwise</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;scroll_to_bottom&quot;</span><span class="p">)</span>
+        <span class="n">position</span> <span class="o">=</span> <span class="n">script_get_scroll_position</span><span class="p">(</span><span class="n">driver</span><span class="p">)</span>
+        <span class="n">height</span> <span class="o">=</span> <span class="n">script_get_scroll_height</span><span class="p">(</span><span class="n">driver</span><span class="p">)</span>
+        <span class="n">script_scroll_to</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">height</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">bool_yoffset_changed</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">wait</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="p">,</span> <span class="n">position</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="PageSelene.expand_scroll_height"><a class="viewcode-back" href="../../../../api/selene.selenium.html#selene.core.selenium.page.PageSelene.expand_scroll_height">[docs]</a>    <span class="k">def</span> <span class="nf">expand_scroll_height</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">driver</span><span class="p">,</span> <span class="n">wait</span><span class="o">=</span><span class="n">WAIT_SMALL</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Keep scrolling to the bottom of the page, as the page dynamically</span>
+<span class="sd">        expands due to the continued scrolling.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">            driver : selenium.webdriver</span>
+<span class="sd">                a selenium webdriver instance</span>
+<span class="sd">            wait : int</span>
+<span class="sd">                a number of seconds to wait before raising a TimeoutException</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        ----------</span>
+<span class="sd">            output : bool</span>
+<span class="sd">                True if the operation was successful, False otherwise</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;expand_scroll_height&quot;</span><span class="p">)</span>
+        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="n">height</span> <span class="o">=</span> <span class="n">script_get_scroll_height</span><span class="p">(</span><span class="n">driver</span><span class="p">)</span>
+            <span class="n">script_scroll_to</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">height</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">bool_scroll_height_changed</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">wait</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="p">,</span> <span class="n">height</span><span class="p">):</span>
+                <span class="k">return</span></div>
+
+<div class="viewcode-block" id="PageSelene.screenshot_to_notebook"><a class="viewcode-back" href="../../../../api/selene.selenium.html#selene.core.selenium.page.PageSelene.screenshot_to_notebook">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">screenshot_to_notebook</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">600</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">logger</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This wraps core.selenium.tasks.task_screenshot_to_notebook</span>
+
+<span class="sd">        Display a browser screenshot in a Jupyter notebook.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">            driver : selenium.webdriver</span>
+<span class="sd">                a selenium webdriver instance</span>
+<span class="sd">            width : int</span>
+<span class="sd">                the width of the image</span>
+<span class="sd">            height : int</span>
+<span class="sd">                the height of the image</span>
+<span class="sd">            logger : logging.Logger</span>
+<span class="sd">                a logger instance (see core.logger.py)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">task_screenshot_to_notebook</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="n">height</span><span class="p">,</span> <span class="n">logger</span><span class="o">=</span><span class="n">logger</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="PageSelene.screenshot_to_local"><a class="viewcode-back" href="../../../../api/selene.selenium.html#selene.core.selenium.page.PageSelene.screenshot_to_local">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">screenshot_to_local</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">dirpath</span><span class="p">,</span> <span class="n">filestem</span><span class="p">,</span> <span class="n">logger</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This wraps core.selenium.tasks.screenshot_to_local</span>
+
+<span class="sd">        Save a browser screenshot to a local directory</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">            driver : selenium.webdriver</span>
+<span class="sd">                a selenium webdriver instance</span>
+<span class="sd">            dirpath : str</span>
+<span class="sd">                directory to save file</span>
+<span class="sd">            filestem : str</span>
+<span class="sd">                a string to add to a datetime to create the filename</span>
+<span class="sd">            logger : logging.Logger</span>
+<span class="sd">                a logger instance (see core.logger.py)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">task_screenshot_to_local</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">dirpath</span><span class="p">,</span> <span class="n">filestem</span><span class="p">,</span> <span class="n">logger</span><span class="o">=</span><span class="n">logger</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="PageSelene.close_all_tabs_except_specified_tab"><a class="viewcode-back" href="../../../../api/selene.selenium.html#selene.core.selenium.page.PageSelene.close_all_tabs_except_specified_tab">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">close_all_tabs_except_specified_tab</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">handle_keep</span><span class="p">,</span> <span class="n">attempts</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Closes all open tabs EXCEPT for the tab given by the specified handle.</span>
+
+<span class="sd">        Useful for cleanup of any open tabs.</span>
+
+<span class="sd">        It has an attempts variable, in case it doesn&#39;t work first time.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">            driver : selenium.webdriver</span>
+<span class="sd">                a selenium webdriver instance</span>
+<span class="sd">            handle_keep : str</span>
+<span class="sd">                the tab/handle to not close.</span>
+<span class="sd">            attempts : int</span>
+<span class="sd">                a number of attempts before returning False</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        ----------</span>
+<span class="sd">            output : bool</span>
+<span class="sd">                True if the operation was successful, False otherwise</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">attempts</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">elif</span> <span class="n">handle_keep</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">driver</span><span class="o">.</span><span class="n">window_handles</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">for</span> <span class="n">handle</span> <span class="ow">in</span> <span class="n">driver</span><span class="o">.</span><span class="n">window_handles</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">handle</span> <span class="o">!=</span> <span class="n">handle_keep</span><span class="p">:</span>
+                <span class="n">driver</span><span class="o">.</span><span class="n">switch_to</span><span class="o">.</span><span class="n">window</span><span class="p">(</span><span class="n">handle</span><span class="p">)</span>
+                <span class="n">driver</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+                <span class="n">driver</span><span class="o">.</span><span class="n">switch_to</span><span class="o">.</span><span class="n">window</span><span class="p">(</span><span class="n">handle_keep</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="p">(</span>
+            <span class="nb">len</span><span class="p">(</span><span class="n">driver</span><span class="o">.</span><span class="n">window_handles</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span>
+            <span class="ow">and</span> <span class="n">driver</span><span class="o">.</span><span class="n">current_window_handle</span> <span class="o">==</span> <span class="n">handle_keep</span>
+        <span class="p">):</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">return</span> <span class="n">close_all_tabs_except_current_tab</span><span class="p">(</span>
+            <span class="n">driver</span><span class="p">,</span> <span class="n">handle_keep</span><span class="p">,</span> <span class="n">attempts</span><span class="o">=</span><span class="n">attempts</span> <span class="o">-</span> <span class="mi">1</span>
+        <span class="p">)</span></div></div>
+</pre></div>
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+
+          <div class="sidebar-resize-handle"></div>
+
+<h3><a href="../../../../index.html">Table of Contents</a></h3>
+<p class="caption" role="heading"><span class="caption-text">The basics</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../basics/element_retrieval.html">Gathering data from a webpage with selene</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../basics/clicking_and_scrolling.html">Clicking and scrolling</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Website-specific functionality</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../websites/websites.html">Building website-specific functionality</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Contributing</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../contributing_code.html">Contributing code to selene</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../contributing.html">Writing documentation and user guides</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../api/selene.core.html">Selene core functionality and parent objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../api/selene.selenium.html">Selene selenium-based functionality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../api/selene.soup.html">Selene soup-based functionality</a></li>
+</ul>
+
+<hr class="docutils" />
+<ul>
+  <li class="toctree-l1"><a class="reference internal" href="../../../../genindex.html" accesskey="I">General Index</a></li>
+  <li class="toctree-l1"><a class="reference internal" href="../../../../py-modindex.html">Python Module Index</a></li>
+</ul>
+<div id="ethical-ad-placement"></div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+
+    <nav class="relbar">
+    </nav>
+
+    <footer role="contentinfo">
+      &#169; Copyright 2022, CMA DaTA Unit.
+      Created using <a class="reference external" href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.1.
+      <a class="reference external" href="https://insipid-sphinx-theme.readthedocs.io/">Insipid Theme</a>.
+    </footer>
+  </body>
+</html>

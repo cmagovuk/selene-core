@@ -1,0 +1,530 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>selene.core.selenium.tasks &#8212; Selene</title>
+    <link rel="stylesheet" href="../../../../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/insipid.css" />
+
+    <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+    <script src="../../../../_static/jquery.js"></script>
+    <script src="../../../../_static/underscore.js"></script>
+    <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../../../_static/doctools.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script defer src="../../../../_static/insipid.js"></script>
+    <script defer src="../../../../_static/insipid-sidebar.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+  </head><body>
+    <script type="text/javascript">
+        document.body.classList.add('js');
+    </script>
+    <input type="checkbox" id="sidebar-checkbox" style="display: none;">
+    <label id="overlay" for="sidebar-checkbox"></label>
+    <div class="sidebar-resize-handle"></div>
+    <script type="text/javascript">
+        try {
+            let sidebar = localStorage.getItem('sphinx-sidebar');
+            const sidebar_width = localStorage.getItem('sphinx-sidebar-width');
+            if (sidebar_width) {
+                document.documentElement.style.setProperty('--sidebar-width', sidebar_width);
+            }
+            // show sidebar on wide screen
+            if (!sidebar && window.matchMedia('(min-width: 100rem)').matches) {
+                sidebar = 'visible';
+                // NB: We don't store the value in localStorage!
+            }
+            if (sidebar === 'visible') {
+                document.getElementById('sidebar-checkbox').checked = true;
+            }
+        } catch(e) {
+            console.info(e);
+        }
+    </script>
+    <header id="topbar-placeholder">
+      <div id="topbar">
+        <div id="titlebar">
+          <div class="buttons">
+            <label for="sidebar-checkbox" id="sidebar-button" role="button" tabindex="0" aria-controls="sphinxsidebar" accesskey="M">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"/></svg>
+            </label>
+            <button id="search-button" type="button" title="Search" aria-label="Search" aria-expanded="false" aria-controls="search-form" accesskey="S">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+            </button>
+          </div>
+          <div class="title">
+            <a class="parent" href="../../../index.html" accesskey="U">Module code</a>
+            <a class="top" href="#">selene.core.selenium.tasks</a>
+          </div>
+          <div class="buttons">
+            <button id="fullscreen-button" type="button" aria-hidden="true">
+              <span class="enable">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M212.686 315.314L120 408l32.922 31.029c15.12 15.12 4.412 40.971-16.97 40.971h-112C10.697 480 0 469.255 0 456V344c0-21.382 25.803-32.09 40.922-16.971L72 360l92.686-92.686c6.248-6.248 16.379-6.248 22.627 0l25.373 25.373c6.249 6.248 6.249 16.378 0 22.627zm22.628-118.628L328 104l-32.922-31.029C279.958 57.851 290.666 32 312.048 32h112C437.303 32 448 42.745 448 56v112c0 21.382-25.803 32.09-40.922 16.971L376 152l-92.686 92.686c-6.248 6.248-16.379 6.248-22.627 0l-25.373-25.373c-6.249-6.248-6.249-16.378 0-22.627z"/></svg>
+              </span>
+              <span class="disable">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M4.686 427.314L104 328l-32.922-31.029C55.958 281.851 66.666 256 88.048 256h112C213.303 256 224 266.745 224 280v112c0 21.382-25.803 32.09-40.922 16.971L152 376l-99.314 99.314c-6.248 6.248-16.379 6.248-22.627 0L4.686 449.941c-6.248-6.248-6.248-16.379 0-22.627zM443.314 84.686L344 184l32.922 31.029c15.12 15.12 4.412 40.971-16.97 40.971h-112C234.697 256 224 245.255 224 232V120c0-21.382 25.803-32.09 40.922-16.971L296 136l99.314-99.314c6.248-6.248 16.379-6.248 22.627 0l25.373 25.373c6.248 6.248 6.248 16.379 0 22.627z"/></svg>
+              </span>
+            </button>
+          </div>
+        </div>
+        <div id="searchbox" role="search">
+          <form id="search-form" class="search" style="display: none" action="../../../../search.html" method="get">
+            <input type="search" name="q" placeholder="Search ..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
+            <button>Go</button>
+          </form>
+        </div>
+      </div>
+    </header>
+    <nav>
+    </nav>
+
+    <nav class="relbar">
+    </nav>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+<h1>Source code for selene.core.selenium.tasks</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Image</span><span class="p">,</span> <span class="n">display</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+
+<span class="kn">from</span> <span class="nn">selenium</span> <span class="kn">import</span> <span class="n">webdriver</span>
+<span class="kn">from</span> <span class="nn">selenium.webdriver.common.by</span> <span class="kn">import</span> <span class="n">By</span>
+<span class="kn">from</span> <span class="nn">selenium.webdriver.support</span> <span class="kn">import</span> <span class="n">expected_conditions</span> <span class="k">as</span> <span class="n">EC</span>
+<span class="kn">from</span> <span class="nn">selenium.webdriver.support.wait</span> <span class="kn">import</span> <span class="n">WebDriverWait</span>
+<span class="kn">from</span> <span class="nn">selenium.common.exceptions</span> <span class="kn">import</span> <span class="n">TimeoutException</span><span class="p">,</span> <span class="n">WebDriverException</span>
+<span class="kn">from</span> <span class="nn">selenium.webdriver.common.action_chains</span> <span class="kn">import</span> <span class="n">ActionChains</span>
+
+<span class="kn">from</span> <span class="nn">selene.core.config</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">selene.core.selenium.scripts</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">selene.core.selenium.conditions</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="kn">import</span> <span class="nn">random</span>
+
+
+<div class="viewcode-block" id="task_navigate_to_url"><a class="viewcode-back" href="../../../../api/selene.selenium.html#selene.core.selenium.tasks.task_navigate_to_url">[docs]</a><span class="k">def</span> <span class="nf">task_navigate_to_url</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">string</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">wait</span><span class="o">=</span><span class="n">WAIT_NORMAL</span><span class="p">,</span> <span class="n">logger</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Navigate to a new url and check that the url is correct.</span>
+
+<span class="sd">    Checking the correct url can be done in 2 ways:</span>
+<span class="sd">        1. Checking for an exact match</span>
+<span class="sd">        2. Checking whether the url contains a specified string.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">        driver : selenium.webdriver</span>
+<span class="sd">            a selenium webdriver instance</span>
+<span class="sd">        url : str</span>
+<span class="sd">            the url to navigate to</span>
+<span class="sd">        string : str</span>
+<span class="sd">            a specified string for the new url to contain</span>
+<span class="sd">        wait : int</span>
+<span class="sd">            a number of seconds to wait before raising a TimeoutException</span>
+<span class="sd">        logger : logging.Logger</span>
+<span class="sd">            a logger instance (see core.logger.py)</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    ----------</span>
+<span class="sd">        output : bool</span>
+<span class="sd">            True if the operation was successful, False otherwise</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">logger</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;task_navigate_to_url: </span><span class="si">{</span><span class="s2">&quot;; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">url</span><span class="p">,</span> <span class="n">string</span><span class="p">])</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="c1"># Get the original url</span>
+    <span class="n">url_prev</span> <span class="o">=</span> <span class="n">driver</span><span class="o">.</span><span class="n">current_url</span>
+    <span class="c1"># If the original url is the same as the expected url, return True</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">bool_url_unexpected</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">WAIT_TINY</span><span class="p">,</span> <span class="n">logger</span><span class="p">,</span> <span class="n">url</span><span class="p">):</span>
+        <span class="k">return</span> <span class="kc">True</span>
+    <span class="c1"># Navigate to new url, catching Webdriver failures</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">driver</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">WebDriverException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">logger</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">False</span>
+    <span class="c1"># Check that the url has changed</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">bool_url_changed</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">wait</span><span class="p">,</span> <span class="n">logger</span><span class="p">,</span> <span class="n">url_prev</span><span class="p">):</span>
+        <span class="k">return</span> <span class="kc">False</span>
+    <span class="c1"># Check that the url is correct</span>
+    <span class="k">if</span> <span class="n">string</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">bool_url_expected</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">wait</span><span class="p">,</span> <span class="n">logger</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">bool_url_contains</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">wait</span><span class="p">,</span> <span class="n">logger</span><span class="p">,</span> <span class="n">string</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="task_navigate_to_url_in_new_tab"><a class="viewcode-back" href="../../../../api/selene.selenium.html#selene.core.selenium.tasks.task_navigate_to_url_in_new_tab">[docs]</a><span class="k">def</span> <span class="nf">task_navigate_to_url_in_new_tab</span><span class="p">(</span>
+    <span class="n">driver</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">string</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">wait</span><span class="o">=</span><span class="n">WAIT_NORMAL</span><span class="p">,</span> <span class="n">logger</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Navigate to a new url in a new tab, and check that the url is correct.</span>
+
+<span class="sd">    Checking the correct url can be done in 2 ways:</span>
+<span class="sd">        1. Checking for an exact match</span>
+<span class="sd">        2. Checking whether the url contains a specified string.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">        driver : selenium.webdriver</span>
+<span class="sd">            a selenium webdriver instance</span>
+<span class="sd">        url : str</span>
+<span class="sd">            the url to navigate to</span>
+<span class="sd">        string : str</span>
+<span class="sd">            a specified string for the new url to contain</span>
+<span class="sd">        wait : int</span>
+<span class="sd">            a number of seconds to wait before raising a TimeoutException</span>
+<span class="sd">        logger : logging.Logger</span>
+<span class="sd">            a logger instance (see core.logger.py)</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    ----------</span>
+<span class="sd">        output : bool</span>
+<span class="sd">            True if the operation was successful, False otherwise</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">logger</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;task_navigate_to_url_in_new_tab: </span><span class="si">{</span><span class="s2">&quot;; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">url</span><span class="p">,</span> <span class="n">string</span><span class="p">])</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="c1"># Get the current number of handles</span>
+    <span class="n">handles_prev</span> <span class="o">=</span> <span class="n">driver</span><span class="o">.</span><span class="n">window_handles</span>
+    <span class="n">n_handles_prev</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">handles_prev</span><span class="p">)</span>
+    <span class="c1"># Open url in new tab</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">driver</span><span class="o">.</span><span class="n">execute_script</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;window.open(&quot;</span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s1">&quot;);&#39;</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">JavascriptException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">logger</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">False</span>
+    <span class="c1"># Check that new handle has been created</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">bool_new_handle</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">n_handles_prev</span><span class="p">,</span> <span class="n">WAIT_SMALL</span><span class="p">,</span> <span class="n">logger</span><span class="p">):</span>
+        <span class="k">return</span> <span class="kc">False</span>
+    <span class="c1"># Switch to new tab</span>
+    <span class="n">handle_new</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">driver</span><span class="o">.</span><span class="n">window_handles</span> <span class="k">if</span> <span class="n">x</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">handles_prev</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">driver</span><span class="o">.</span><span class="n">switch_to</span><span class="o">.</span><span class="n">window</span><span class="p">(</span><span class="n">handle_new</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">WebDriverException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">logger</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">False</span>
+    <span class="c1"># Check that the current handle is now changed</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">bool_correct_handle</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">handle_new</span><span class="p">,</span> <span class="n">WAIT_SMALL</span><span class="p">,</span> <span class="n">logger</span><span class="p">):</span>
+        <span class="k">return</span> <span class="kc">False</span>
+    <span class="c1"># Check that the url is corrects</span>
+    <span class="k">if</span> <span class="n">string</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">bool_url_expected</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">wait</span><span class="p">,</span> <span class="n">logger</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">bool_url_contains</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">wait</span><span class="p">,</span> <span class="n">logger</span><span class="p">,</span> <span class="n">string</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="task_close_tab_return_to_url_and_handle"><a class="viewcode-back" href="../../../../api/selene.selenium.html#selene.core.selenium.tasks.task_close_tab_return_to_url_and_handle">[docs]</a><span class="k">def</span> <span class="nf">task_close_tab_return_to_url_and_handle</span><span class="p">(</span>
+    <span class="n">driver</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">handle</span><span class="p">,</span> <span class="n">string</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">wait</span><span class="o">=</span><span class="n">WAIT_NORMAL</span><span class="p">,</span> <span class="n">logger</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Close the current tab and check that the driver is back at the expected handle and url.</span>
+
+<span class="sd">    Checking the correct url can be done in 2 ways:</span>
+<span class="sd">        1. Checking for an exact match</span>
+<span class="sd">        2. Checking whether the url contains a specified string.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">        driver : selenium.webdriver</span>
+<span class="sd">            a selenium webdriver instance</span>
+<span class="sd">        handle : str</span>
+<span class="sd">            the handle to navigate to</span>
+<span class="sd">        url : str</span>
+<span class="sd">            the url to navigate to</span>
+<span class="sd">        string : str</span>
+<span class="sd">            a specified string for the new url to contain</span>
+<span class="sd">        wait : int</span>
+<span class="sd">            a number of seconds to wait before raising a TimeoutException</span>
+<span class="sd">        logger : logging.Logger</span>
+<span class="sd">            a logger instance (see core.logger.py)</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    ----------</span>
+<span class="sd">        output : bool</span>
+<span class="sd">            True if the operation was successful, False otherwise</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">logger</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s1">&#39;task_close_tab_return_to_url_and_handle: </span><span class="si">{</span><span class="s2">&quot;; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">url</span><span class="p">,</span> <span class="n">string</span><span class="p">])</span><span class="si">}</span><span class="s1">&#39;</span>
+        <span class="p">)</span>
+    <span class="c1"># Close tab</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">driver</span><span class="o">.</span><span class="n">execute_script</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;window.close();&quot;</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">JavascriptException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">logger</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">False</span>
+    <span class="c1"># Switch to handle</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">driver</span><span class="o">.</span><span class="n">switch_to</span><span class="o">.</span><span class="n">window</span><span class="p">(</span><span class="n">handle</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">WebDriverException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">logger</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">False</span>
+    <span class="c1"># Check that the handle is the expected one</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">bool_correct_handle</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">handle</span><span class="p">,</span> <span class="n">WAIT_SMALL</span><span class="p">,</span> <span class="n">logger</span><span class="p">):</span>
+        <span class="k">return</span> <span class="kc">False</span>
+    <span class="c1"># Check that the url is the expected one</span>
+    <span class="k">if</span> <span class="n">string</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">bool_url_expected</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">wait</span><span class="p">,</span> <span class="n">logger</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">bool_url_contains</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">wait</span><span class="p">,</span> <span class="n">logger</span><span class="p">,</span> <span class="n">string</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="task_find"><a class="viewcode-back" href="../../../../api/selene.selenium.html#selene.core.selenium.tasks.task_find">[docs]</a><span class="k">def</span> <span class="nf">task_find</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="n">by</span><span class="p">,</span> <span class="n">identifier</span><span class="p">,</span> <span class="n">wait</span><span class="o">=</span><span class="n">WAIT_NORMAL</span><span class="p">,</span> <span class="n">logger</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Find an element using a By. selector and an identifier.</span>
+
+<span class="sd">    For more info, see:</span>
+<span class="sd">    https://selenium-python.readthedocs.io/locating-elements.html</span>
+
+<span class="sd">    If the operation is to find an element on the whole page, then</span>
+<span class="sd">    the parent variable is a Selenium Webdriver instance (usually named driver).</span>
+
+<span class="sd">    If the operation is to find an element on the whole page, then</span>
+<span class="sd">    the parent variable is a Selenium WebElement instance</span>
+<span class="sd">    (NOT a core.selenium.element.Element instance).</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">        parent : EITHER selenium.webdriver OR selenium.webdriver.remote.webelement.WebElement</span>
+<span class="sd">            where to search for the element</span>
+<span class="sd">        by : selenium.webdriver.common.by.By</span>
+<span class="sd">            see https://selenium-python.readthedocs.io/locating-elements.html</span>
+<span class="sd">        identifier : str</span>
+<span class="sd">            see https://selenium-python.readthedocs.io/locating-elements.html</span>
+<span class="sd">        wait : int</span>
+<span class="sd">            a number of seconds to wait before raising a TimeoutException</span>
+<span class="sd">        logger : logging.Logger</span>
+<span class="sd">            a logger instance (see core.logger.py)</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    ----------</span>
+<span class="sd">        output : [None, selenium.webdriver.remote.webelement.WebElement]</span>
+<span class="sd">            returns the webelement if it is found; None otherwise</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">logger</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;task_find: </span><span class="si">{</span><span class="n">identifier</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">WebDriverWait</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="n">wait</span><span class="p">)</span><span class="o">.</span><span class="n">until</span><span class="p">(</span>
+            <span class="n">EC</span><span class="o">.</span><span class="n">presence_of_element_located</span><span class="p">((</span><span class="n">by</span><span class="p">,</span> <span class="n">identifier</span><span class="p">)),</span>
+            <span class="n">message</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Element not found: </span><span class="si">{</span><span class="n">identifier</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+    <span class="k">except</span> <span class="n">TimeoutException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">logger</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">None</span></div>
+
+
+<div class="viewcode-block" id="task_find_all"><a class="viewcode-back" href="../../../../api/selene.selenium.html#selene.core.selenium.tasks.task_find_all">[docs]</a><span class="k">def</span> <span class="nf">task_find_all</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="n">by</span><span class="p">,</span> <span class="n">identifier</span><span class="p">,</span> <span class="n">wait</span><span class="o">=</span><span class="n">WAIT_NORMAL</span><span class="p">,</span> <span class="n">logger</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Find a list of elements using a By. selector and an identifier.</span>
+
+<span class="sd">    For more info, see:</span>
+<span class="sd">    https://selenium-python.readthedocs.io/locating-elements.html</span>
+
+<span class="sd">    If the operation is to find an element on the whole page, then</span>
+<span class="sd">    the parent variable is a Selenium Webdriver instance (usually named driver).</span>
+
+<span class="sd">    If the operation is to find an element on the whole page, then</span>
+<span class="sd">    the parent variable is a Selenium WebElement instance</span>
+<span class="sd">    (NOT a core.selenium.element.Element instance).</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">        parent : EITHER selenium.webdriver OR selenium.webdriver.remote.webelement.WebElement</span>
+<span class="sd">            where to search for the element</span>
+<span class="sd">        by : selenium.webdriver.common.by.By</span>
+<span class="sd">            see https://selenium-python.readthedocs.io/locating-elements.html</span>
+<span class="sd">        identifier : str</span>
+<span class="sd">            see https://selenium-python.readthedocs.io/locating-elements.html</span>
+<span class="sd">        wait : int</span>
+<span class="sd">            a number of seconds to wait before raising a TimeoutException</span>
+<span class="sd">        logger : logging.Logger</span>
+<span class="sd">            a logger instance (see core.logger.py)</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    ----------</span>
+<span class="sd">        output : list</span>
+<span class="sd">            returns a list of webelements if one or more are found; an empty list otherwise</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">logger</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;task_find_all: </span><span class="si">{</span><span class="n">identifier</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">WebDriverWait</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="n">wait</span><span class="p">)</span><span class="o">.</span><span class="n">until</span><span class="p">(</span>
+            <span class="n">EC</span><span class="o">.</span><span class="n">presence_of_element_located</span><span class="p">((</span><span class="n">by</span><span class="p">,</span> <span class="n">identifier</span><span class="p">)),</span>
+            <span class="n">message</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;No elements found: </span><span class="si">{</span><span class="n">identifier</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+    <span class="k">except</span> <span class="n">TimeoutException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">logger</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">[]</span>
+    <span class="k">return</span> <span class="n">parent</span><span class="o">.</span><span class="n">find_elements</span><span class="p">(</span><span class="n">by</span><span class="p">,</span> <span class="n">identifier</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="task_click"><a class="viewcode-back" href="../../../../api/selene.selenium.html#selene.core.selenium.tasks.task_click">[docs]</a><span class="k">def</span> <span class="nf">task_click</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">by</span><span class="p">,</span> <span class="n">identifier</span><span class="p">,</span> <span class="n">wait</span><span class="o">=</span><span class="n">WAIT_NORMAL</span><span class="p">,</span> <span class="n">logger</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Click an element using a By. selector and an identifier.</span>
+
+<span class="sd">    For more info, see:</span>
+<span class="sd">    https://selenium-python.readthedocs.io/locating-elements.html</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">        driver : selenium.webdriver</span>
+<span class="sd">            a selenium webdriver instance</span>
+<span class="sd">        by : selenium.webdriver.common.by.By</span>
+<span class="sd">            see https://selenium-python.readthedocs.io/locating-elements.html</span>
+<span class="sd">        identifier : str</span>
+<span class="sd">            see https://selenium-python.readthedocs.io/locating-elements.html</span>
+<span class="sd">        wait : int</span>
+<span class="sd">            a number of seconds to wait before raising a TimeoutException</span>
+<span class="sd">        logger : logging.Logger</span>
+<span class="sd">            a logger instance (see core.logger.py)</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    ----------</span>
+<span class="sd">        output : bool</span>
+<span class="sd">            True if the operation was successful, False otherwise</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">logger</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;task_click: </span><span class="si">{</span><span class="n">identifier</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">bool_clickable</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">by</span><span class="p">,</span> <span class="n">identifier</span><span class="p">,</span> <span class="n">wait</span><span class="o">=</span><span class="n">wait</span><span class="p">,</span> <span class="n">logger</span><span class="o">=</span><span class="n">logger</span><span class="p">):</span>
+        <span class="k">return</span> <span class="kc">False</span>
+    <span class="n">element</span> <span class="o">=</span> <span class="n">task_find</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">by</span><span class="p">,</span> <span class="n">identifier</span><span class="p">,</span> <span class="n">wait</span><span class="o">=</span><span class="n">wait</span><span class="p">,</span> <span class="n">logger</span><span class="o">=</span><span class="n">logger</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">script_click_element</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">element</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="task_screenshot_to_notebook"><a class="viewcode-back" href="../../../../api/selene.selenium.html#selene.core.selenium.tasks.task_screenshot_to_notebook">[docs]</a><span class="k">def</span> <span class="nf">task_screenshot_to_notebook</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">logger</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Display a browser screenshot in a Jupyter notebook.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">        driver : selenium.webdriver</span>
+<span class="sd">            a selenium webdriver instance</span>
+<span class="sd">        width : int</span>
+<span class="sd">            the width of the image</span>
+<span class="sd">        height : int</span>
+<span class="sd">            the height of the image</span>
+<span class="sd">        logger : logging.Logger</span>
+<span class="sd">            a logger instance (see core.logger.py)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">logger</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;screenshot_to_notebook&quot;</span><span class="p">)</span>
+    <span class="n">image</span> <span class="o">=</span> <span class="n">Image</span><span class="p">(</span><span class="n">driver</span><span class="o">.</span><span class="n">get_screenshot_as_png</span><span class="p">(),</span> <span class="n">width</span><span class="o">=</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="n">height</span><span class="p">)</span>
+    <span class="n">display</span><span class="p">(</span><span class="n">image</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="task_screenshot_to_local"><a class="viewcode-back" href="../../../../api/selene.selenium.html#selene.core.selenium.tasks.task_screenshot_to_local">[docs]</a><span class="k">def</span> <span class="nf">task_screenshot_to_local</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">dirpath</span><span class="p">,</span> <span class="n">filestem</span><span class="p">,</span> <span class="n">logger</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Save a browser screenshot to a local directory</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">        driver : selenium.webdriver</span>
+<span class="sd">            a selenium webdriver instance</span>
+<span class="sd">        dirpath : str</span>
+<span class="sd">            the directory path</span>
+<span class="sd">        filestem : str</span>
+<span class="sd">            a string to add to a datetime to create the filename TODO tidy up workflow?</span>
+<span class="sd">        logger : logging.Logger</span>
+<span class="sd">            a logger instance (see core.logger.py)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">logger</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;task_screenshot_to_local: </span><span class="si">{</span><span class="s2">&quot;; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">dirpath</span><span class="p">,</span> <span class="n">filestem</span><span class="p">])</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">dirpath</span><span class="p">):</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">dirpath</span><span class="p">)</span>
+    <span class="n">str_datetime</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y%m</span><span class="si">%d</span><span class="s2">%H%M%S</span><span class="si">%f</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">filename</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">str_datetime</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">filestem</span><span class="si">}</span><span class="s2">.png&quot;</span>
+    <span class="n">filepath</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">dirpath</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="n">driver</span><span class="o">.</span><span class="n">save_screenshot</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="mouse_move"><a class="viewcode-back" href="../../../../api/selene.selenium.html#selene.core.selenium.tasks.mouse_move">[docs]</a><span class="k">def</span> <span class="nf">mouse_move</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">max_mouse_moves</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;performs mouse move, for help with bot mitigation, partially ported from OpenWPM&quot;&quot;&quot;</span>
+
+    <span class="c1"># bot mitigation: move the mouse randomly around a number of times</span>
+    <span class="n">window_size</span> <span class="o">=</span> <span class="n">driver</span><span class="o">.</span><span class="n">get_window_size</span><span class="p">()</span>
+    <span class="n">num_moves</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">num_fails</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">while</span> <span class="n">num_moves</span> <span class="o">&lt;</span> <span class="n">max_mouse_moves</span> <span class="ow">and</span> <span class="n">num_fails</span> <span class="o">&lt;</span> <span class="n">max_mouse_moves</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">num_moves</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>  <span class="c1"># move to the center of the screen</span>
+                <span class="n">x</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">window_size</span><span class="p">[</span><span class="s2">&quot;height&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="mi">2</span><span class="p">))</span>
+                <span class="n">y</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">window_size</span><span class="p">[</span><span class="s2">&quot;width&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="mi">2</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>  <span class="c1"># move a random amount in some direction</span>
+                <span class="n">move_max</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">500</span><span class="p">)</span>
+                <span class="n">x</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="o">-</span><span class="n">move_max</span><span class="p">,</span> <span class="n">move_max</span><span class="p">)</span>
+                <span class="n">y</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="o">-</span><span class="n">move_max</span><span class="p">,</span> <span class="n">move_max</span><span class="p">)</span>
+            <span class="n">action</span> <span class="o">=</span> <span class="n">ActionChains</span><span class="p">(</span><span class="n">driver</span><span class="p">)</span>
+            <span class="n">action</span><span class="o">.</span><span class="n">move_by_offset</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+            <span class="n">action</span><span class="o">.</span><span class="n">perform</span><span class="p">()</span>
+            <span class="n">num_moves</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="n">num_fails</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">pass</span>
+    <span class="k">return</span> <span class="n">num_moves</span></div>
+</pre></div>
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+
+          <div class="sidebar-resize-handle"></div>
+
+<h3><a href="../../../../index.html">Table of Contents</a></h3>
+<p class="caption" role="heading"><span class="caption-text">The basics</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../basics/element_retrieval.html">Gathering data from a webpage with selene</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../basics/clicking_and_scrolling.html">Clicking and scrolling</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Website-specific functionality</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../websites/websites.html">Building website-specific functionality</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Contributing</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../contributing_code.html">Contributing code to selene</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../contributing.html">Writing documentation and user guides</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../api/selene.core.html">Selene core functionality and parent objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../api/selene.selenium.html">Selene selenium-based functionality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../api/selene.soup.html">Selene soup-based functionality</a></li>
+</ul>
+
+<hr class="docutils" />
+<ul>
+  <li class="toctree-l1"><a class="reference internal" href="../../../../genindex.html" accesskey="I">General Index</a></li>
+  <li class="toctree-l1"><a class="reference internal" href="../../../../py-modindex.html">Python Module Index</a></li>
+</ul>
+<div id="ethical-ad-placement"></div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+
+    <nav class="relbar">
+    </nav>
+
+    <footer role="contentinfo">
+      &#169; Copyright 2022, CMA DaTA Unit.
+      Created using <a class="reference external" href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.1.
+      <a class="reference external" href="https://insipid-sphinx-theme.readthedocs.io/">Insipid Theme</a>.
+    </footer>
+  </body>
+</html>
