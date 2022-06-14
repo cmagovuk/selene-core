@@ -28,7 +28,7 @@ jobs:
           make html
       # NOTE could use https://github.com/peaceiris/actions-gh-pages if fork
       - name: Commit documentation changes
-        if: github.event_name == 'push'
+        # if: github.event_name == 'push'
         run: |
           # rm -r ~/.gitconfig
           git config --global user.email "you@example.com"
