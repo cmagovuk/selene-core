@@ -3,7 +3,7 @@ Selene
 
 A framework for efficient, consistent and maintainable object-oriented webscraping. Wraps and combines both Selenium Webdriver and BeautifulSoup.
 
-`Selene documentation <https://ubiquitous-spoon-638667f8.pages.github.io/>`_.
+`Selene documentation <https://cmagovuk.github.io/selene-core/>`_.
 
 Principles
 ~~~~~~~~~~
@@ -26,7 +26,7 @@ Features
 How to use it
 ~~~~~~~~~~~~~
 
-Selene is a framework. It provides base Classes that can be used to create website-specific ``Page`` and ``Element`` objects by sub-classing the base Classes. Please refer to the `documentation <websites/websites.html>`_ for an example of how this is done.
+Selene is a framework. It provides base Classes that can be used to create website-specific ``Page`` and ``Element`` objects by sub-classing the base Classes. Please refer to the `documentation <https://cmagovuk.github.io/selene-core/build/html/websites/websites.html>`_ for an example of how this is done.
 
 Installation
 ~~~~~~~~~~~~

@@ -10,17 +10,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Get Token
-        uses: cmagovuk/github-app-installation-token-action@v2
-        id: installationToken
-        with: 
-          appId: ${{ secrets.TALOS_V2_APP_ID }}
-          installationId: ${{secrets.TALOS_V2_INSTALLATION_ID }}
-          privateKey: ${{ secrets.TALOS_V2_PRIVATE_KEY }}
-      - name: Setup git
-        run: |
-          git config --global url."https://x-access-token:${{ steps.installationToken.outputs.token }}@github.com/".insteadOf "https://github.com/"
-          git config --global url."https://x-access-token:${{ steps.installationToken.outputs.token }}@github.com/".insteadOf "git@github.com:"
       - name: Install pandoc
         run: |
           sudo apt-get install pandoc
@@ -37,7 +26,7 @@ jobs:
         run: |
           cd docs
           make html
-      # NOTE could use https://github.com/peaceiris/actions-gh-pages
+      # NOTE could use https://github.com/peaceiris/actions-gh-pages if fork
       - name: Commit documentation changes
         if: github.event_name == 'push'
         run: |
