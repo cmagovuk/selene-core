@@ -30,7 +30,6 @@ jobs:
       - name: Commit documentation changes
         if: github.event_name == 'push'
         run: |
-          rm -r ~/.gitconfig
           git config --global user.email "you@example.com"
           git config --global user.name "GithubAction"
           git config --global url."https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/".insteadOf "https://github.com/"
