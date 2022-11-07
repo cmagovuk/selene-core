@@ -47,7 +47,7 @@ def script_get_scroll_position(driver, element=None):
         script = "return window.pageYOffset;"
         return driver.execute_script(script)
     script = "return arguments[0].scrollTop;"
-    return driver.execute_script(script, element)
+    return driver.execute_script(script, element.element)
 
 
 def script_scroll_to(driver, position, element=None):
