@@ -1,3 +1,2 @@
 # Install chromedriver
-apt-get update
-sudo apt install -y chromium-chromedriver
+sudo apt-get update && apt install -y chromium-chromedriver && apt install -y chromium-browser
