@@ -60,7 +60,7 @@ def test_bool_yoffset_changed():
 def test_bool_scroll_height_changed():
     page = PageSelene.from_url(driver=driver, url = "http://www.scrapethissite.com/pages/forms/")
     orig_height = script_get_scroll_height(driver)
-    Select(driver.find_element_by_xpath('//*[@id="per_page"]')).select_by_value('100')
+    Select(driver.find_element(By.XPATH, '//*[@id="per_page"]')).select_by_value('100')
     assert bool_scroll_height_changed(driver, wait = 1, logger = None, height = orig_height) == True      
     
 def test_bool_element_class_contains():
