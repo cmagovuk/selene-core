@@ -179,7 +179,7 @@ def bool_url_does_not_contain(
             True if the url does not contain the specified string, False otherwise
     """
     if logger:
-        logger.debug(f'bool_url_does_not_contain: {"; ".join([url, string])}')
+        logger.debug(f"bool_url_does_not_contain: {string}")
     if string == "":
         return False
     try:

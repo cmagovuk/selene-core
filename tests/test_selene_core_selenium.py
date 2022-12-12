@@ -13,11 +13,13 @@ from selene.core.selenium.driver import *
 from selene.core.selenium.page import *
 from selene.core.selenium.crawler import *
 from selene.core.selenium.tasks import *
+from selene.core.logger import get_logger
 
 # initialise the driver
 driver = get_driver()
 url = "https://www.scrapethissite.com/"
 page = PageSelene.from_url(driver=driver, url = url)
+logger=get_logger()
 
 def test_bool_url_changed():
     assert bool_url_changed(driver, wait=1, logger=None, url = url) == False
@@ -33,7 +35,7 @@ def test_bool_url_contains():
     assert bool_url_contains(driver, wait=1, logger=None, string = "scrape") == True
     
 def test_bool_url_does_not_contain():
-    assert bool_url_does_not_contain(driver, wait=1, logger=None, string = "scrape") == False
+    assert bool_url_does_not_contain(driver, wait=1, logger=logger, string = "scrape") == False
     
 def test_bool_visible():
     assert bool_visible(driver, by = By.ID, identifier = 'nav-homepage', wait = 1) == True
@@ -86,11 +88,7 @@ def test_bool_element_text_does_not_contain():
 def test_bool_new_handle():
     page.new_tab(driver, url = "http://www.scrapethissite.com/")
     assert bool_new_handle(driver, n_handles_old = 1, wait = 1, logger = None) == True
-      
-def test_bool_correct_handle():
-    # unclear how to write a test for this, how do we define the expected handle
-    pass
-    
+        
 def test_crawler_init():
     assert CrawlerSelene() is not None
 
