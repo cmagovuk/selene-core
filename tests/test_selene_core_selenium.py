@@ -52,12 +52,12 @@ def test_bool_yoffset_changed():
     page.scroll_down(driver, wait = 1)
     assert bool_yoffset_changed(driver, wait = 1, yoffset = orig_offset, logger = None) == True
     
-def test_bool_scroll_position_changed():
-    page = PageSelene.from_url(driver=driver, url = "http://www.scrapethissite.com/pages/frames/")
-    el = page.find(driver, by = By.ID, identifier = 'iframe')
-    orig_pos = script_get_scroll_position(driver, el)
-    el.scroll_to_bottom(driver)
-    assert bool_scroll_position_changed(driver, element = el, wait = 1, position = orig_pos, logger = None) == True
+# def test_bool_scroll_position_changed():
+#     page = PageSelene.from_url(driver=driver, url = "http://www.scrapethissite.com/pages/frames/")
+#     el = page.find(driver, by = By.ID, identifier = 'iframe')
+#     orig_pos = script_get_scroll_position(driver, el)
+#     el.scroll_to_bottom(driver)
+#     assert bool_scroll_position_changed(driver, element = el, wait = 1, position = orig_pos, logger = None) == True
     
 def test_bool_scroll_height_changed():
     page = PageSelene.from_url(driver=driver, url = "http://www.scrapethissite.com/pages/forms/")
@@ -88,11 +88,7 @@ def test_bool_element_text_does_not_contain():
 def test_bool_new_handle():
     page.new_tab(driver, url = "http://www.scrapethissite.com/")
     assert bool_new_handle(driver, n_handles_old = 1, wait = 1, logger = None) == True
-      
-def test_bool_correct_handle():
-    # unclear how to write a test for this, how do we define the expected handle
-    pass
-    
+        
 def test_crawler_init():
     assert CrawlerSelene() is not None
 
