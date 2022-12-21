@@ -74,7 +74,7 @@ def script_scroll_to(driver, position, element=None):
     if element is None:
         script = "window.scrollTo(0, arguments[0]); return true;"
         return driver.execute_script(script, position)
-    script = "arguments[0].scrollTo(0, arguments[1]); return true;"
+    script = "'arguments[0].scrollTop=arguments[1]'; return true;"
     return driver.execute_script(script, element, position)
 
 
