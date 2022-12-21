@@ -168,9 +168,7 @@ class ElementSelene(Element):
         position_new = position + int(0.5 * height_window)
         position_new = min(position_new, height)
         script_scroll_to(driver, position_new, self)
-        return bool_scroll_position_changed(
-            driver, self, wait, self.logger, position
-        )
+        return bool_scroll_position_changed(driver, self, wait, self.logger, position)
 
     def scroll_to(self, driver, position_new, wait=WAIT_NORMAL):
         """
@@ -190,9 +188,7 @@ class ElementSelene(Element):
         """
         position = script_get_scroll_position(driver, self)
         script_scroll_to(driver, position_new, self)
-        return bool_scroll_position_changed(
-            driver, self, wait, self.logger, position
-        )
+        return bool_scroll_position_changed(driver, self, wait, self.logger, position)
 
     def scroll_to_bottom(self, driver, wait=WAIT_NORMAL):
         """
@@ -212,6 +208,4 @@ class ElementSelene(Element):
         """
         height = script_get_scroll_height(driver, self)
         script_scroll_to(driver, height, self)
-        return bool_scroll_height_changed(
-            driver, wait, self.logger, height, element=self
-        )
+        return bool_scroll_height_changed(driver, wait, self.logger, height, element=self)
