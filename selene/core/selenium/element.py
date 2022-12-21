@@ -51,7 +51,7 @@ class ElementSelene(Element):
         ----------
             out : ElementSelene object wrapping the parent element
         """
-        return ElementSelene(script_get_parent(driver, self.element))
+        return ElementSelene(script_get_parent(driver, self))
 
     def find(self, by, identifier, wait=WAIT_NORMAL, log=True):
         """
@@ -144,7 +144,7 @@ class ElementSelene(Element):
             output : bool
                 True if the operation was successful, False otherwise
         """
-        return script_click_element(driver, self.element)
+        return script_click_element(driver, self)
 
     def scroll_down(self, driver, wait=WAIT_NORMAL):
         """
@@ -163,13 +163,13 @@ class ElementSelene(Element):
                 True if the operation was successful, False otherwise
         """
         height_window = driver.get_window_size()["height"]
-        height = script_get_scroll_height(driver, self.element)
-        position = script_get_scroll_position(driver, self.element)
+        height = script_get_scroll_height(driver, self)
+        position = script_get_scroll_position(driver, self)
         position_new = position + int(0.5 * height_window)
         position_new = min(position_new, height)
-        script_scroll_to(driver, position_new, self.element)
+        script_scroll_to(driver, position_new, self)
         return bool_scroll_position_changed(
-            driver, self.element, wait, self.logger, position
+            driver, self, wait, self.logger, position
         )
 
     def scroll_to(self, driver, position_new, wait=WAIT_NORMAL):
@@ -188,10 +188,10 @@ class ElementSelene(Element):
             output : bool
                 True if the operation was successful, False otherwise
         """
-        position = script_get_scroll_position(driver, self.element)
-        script_scroll_to(driver, position_new, self.element)
+        position = script_get_scroll_position(driver, self)
+        script_scroll_to(driver, position_new, self)
         return bool_scroll_position_changed(
-            driver, self.element, wait, self.logger, position
+            driver, self, wait, self.logger, position
         )
 
     def scroll_to_bottom(self, driver, wait=WAIT_NORMAL):
@@ -210,8 +210,8 @@ class ElementSelene(Element):
             output : bool
                 True if the operation was successful, False otherwise
         """
-        height = script_get_scroll_height(driver, self.element)
-        script_scroll_to(driver, height, self.element)
+        height = script_get_scroll_height(driver, self)
+        script_scroll_to(driver, height, self)
         return bool_scroll_height_changed(
-            driver, wait, self.logger, height, element=self.element
+            driver, wait, self.logger, height, element=self
         )
