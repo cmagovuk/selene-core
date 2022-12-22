@@ -52,12 +52,12 @@ def test_bool_yoffset_changed():
     page.scroll_down(driver, wait = 1)
     assert bool_yoffset_changed(driver, wait = 1, yoffset = orig_offset, logger = None) == True
     
-# def test_bool_scroll_position_changed():
-#     page = PageSelene.from_url(driver=driver, url = "http://www.scrapethissite.com/pages/frames/")
-#     el = page.find(driver, by = By.ID, identifier = 'iframe')
-#     orig_pos = script_get_scroll_position(driver, el)
-#     el.scroll_to_bottom(driver)
-#     assert bool_scroll_position_changed(driver, element = el, wait = 1, position = orig_pos, logger = None) == True
+def test_bool_scroll_position_changed():
+    page = PageSelene.from_url(driver=driver, url = "https://www.gov.uk/cma-cases")
+    el = page.find(driver, by = By.XPATH, identifier = '//*[@id="case_type"]')
+    orig_pos = script_get_scroll_position(driver, el)
+    el.scroll_to_bottom(driver)
+    assert bool_scroll_position_changed(driver, element = el, wait = 1, position = orig_pos, logger = None) == True
     
 def test_bool_scroll_height_changed():
     page = PageSelene.from_url(driver=driver, url = "http://www.scrapethissite.com/pages/forms/")

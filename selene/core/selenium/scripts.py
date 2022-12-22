@@ -21,7 +21,7 @@ def script_get_scroll_height(driver, element=None):
         script = "return document.body.scrollHeight;"
         return driver.execute_script(script)
     script = "return arguments[0].scrollHeight;"
-    return driver.execute_script(script, element)
+    return driver.execute_script(script, element.element)
 
 
 def script_get_scroll_position(driver, element=None):
@@ -74,8 +74,8 @@ def script_scroll_to(driver, position, element=None):
     if element is None:
         script = "window.scrollTo(0, arguments[0]); return true;"
         return driver.execute_script(script, position)
-    script = "arguments[0].scrollTo(0, arguments[1]); return true;"
-    return driver.execute_script(script, element, position)
+    script = "arguments[0].scrollTop=arguments[1]; return true;"
+    return driver.execute_script(script, element.element, position)
 
 
 def script_click_element(driver, element):
@@ -96,7 +96,7 @@ def script_click_element(driver, element):
             True if the operation was successful, False otherwise
     """
     script = "arguments[0].click(); return true;"
-    return driver.execute_script(script, element)
+    return driver.execute_script(script, element.element)
 
 
 def script_get_parent(driver, element):
@@ -117,7 +117,7 @@ def script_get_parent(driver, element):
             the parent WebElement
     """
     script = "return arguments[0].parentElement;"
-    return driver.execute_script(script, element)
+    return driver.execute_script(script, element.element)
 
 
 def script_expand_all_by_class_name(
