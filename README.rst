@@ -35,8 +35,6 @@ To install from scratch
 
 * Install Chrome and chromedriver: 
 
-On Linux 
-
 ``sudo apt-get update`` 
 
 ``apt install -y chromium-chromedriver chromium-browser``
