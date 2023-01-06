@@ -33,6 +33,12 @@ Installation
 
 To install from scratch
 
-* Install Chrome and chromedriver: ``bash env-setup.sh``
+* Install Chrome and chromedriver: 
 
-* Install: ``pip install .``
+On Linux ``sudo apt-get update 
+
+apt install -y chromium-chromedriver chromium-browser``
+
+* Install: 
+
+``pip install .``
