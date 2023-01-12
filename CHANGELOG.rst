@@ -7,6 +7,11 @@ and this project adheres to `Semantic Versioning <https://semver.org/spec/v2.0.0
 `Unreleased <https://github.com/cmagovuk/selene-core/compare/v1.0.0...master>`_
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+- 
+
+`v1.0.1 <https://github.com/cmagovuk/selene-core/releases/tag/v1.0.1>`_
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 Fixed
 """""
 - Bug in logger for bool_url_does_not_contain function
