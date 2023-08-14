@@ -2,7 +2,6 @@ import os
 import time
 import numpy as np
 from selenium import webdriver
-from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 from pyvirtualdisplay import Display
 from selene.core.config import *
 
