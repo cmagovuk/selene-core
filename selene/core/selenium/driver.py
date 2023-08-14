@@ -59,10 +59,9 @@ def get_driver(
         options.add_argument(f"--user-agent={user_agent}")
 
     # enable browser logging
-    desired_capabilities = DesiredCapabilities.CHROME
-    desired_capabilities["goog:loggingPrefs"] = {"browser": "ALL"}
+    options.set_capability ("goog:loggingPrefs", {"browser": "ALL"})
 
-    driver = webdriver.Chrome(options=options, desired_capabilities=desired_capabilities)
+    driver = webdriver.Chrome(options=options)
     driver.set_window_rect(x=0, y=0, width=width, height=height)
 
     if use_display:
