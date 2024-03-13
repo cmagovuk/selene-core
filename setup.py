@@ -13,7 +13,7 @@ REQUIREMENTS = [
 
 REQUIREMENTS_TEST = ["coverage", "interrogate", "pytest", "pytest-cov", "black"]
 
-__version__ = "1.0.1"
+__version__ = "1.0.2"
 
 setup(
     name="selene",
