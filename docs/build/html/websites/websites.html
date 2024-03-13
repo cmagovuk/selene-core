@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Building website-specific functionality &#8212; Selene</title>
+    <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=649a27d8" />
+    <link rel="stylesheet" type="text/css" href="../_static/insipid.css?v=b2d00be7" />
+    <link rel="stylesheet" type="text/css" href="../_static/nbsphinx-code-cells.css" />
+
+    <script src="../_static/documentation_options.js?v=4ebf8126"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script defer src="../_static/insipid.js"></script>
+    <script defer src="../_static/insipid-sidebar.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Contributing code to selene" href="../contributing_code.html" />
+    <link rel="prev" title="Clicking and scrolling" href="../basics/clicking_and_scrolling.html" />
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+  </head><body>
+    <script type="text/javascript">
+        document.body.classList.add('js');
+    </script>
+    <input type="checkbox" id="sidebar-checkbox" style="display: none;">
+    <label id="overlay" for="sidebar-checkbox"></label>
+    <div class="sidebar-resize-handle"></div>
+    <script type="text/javascript">
+        try {
+            let sidebar = localStorage.getItem('sphinx-sidebar');
+            const sidebar_width = localStorage.getItem('sphinx-sidebar-width');
+            if (sidebar_width) {
+                document.documentElement.style.setProperty('--sidebar-width', sidebar_width);
+            }
+            // show sidebar on wide screen
+            if (!sidebar && window.matchMedia('(min-width: 100rem)').matches) {
+                sidebar = 'visible';
+                // NB: We don't store the value in localStorage!
+            }
+            if (sidebar === 'visible') {
+                document.getElementById('sidebar-checkbox').checked = true;
+            }
+        } catch(e) {
+            console.info(e);
+        }
+    </script>
+    <header id="topbar-placeholder">
+      <div id="topbar">
+        <div id="titlebar">
+          <div class="buttons">
+            <label for="sidebar-checkbox" id="sidebar-button" role="button" tabindex="0" aria-controls="sphinxsidebar" accesskey="M">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"/></svg>
+            </label>
+            <button id="search-button" type="button" title="Search" aria-label="Search" aria-expanded="false" aria-controls="search-form" accesskey="S">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+            </button>
+          </div>
+          <div class="title">
+            <a class="parent" href="../index.html" accesskey="U">Selene</a>
+            <a class="top" href="#">Building website-specific functionality</a>
+          </div>
+          <div class="buttons">
+            <button id="fullscreen-button" type="button" aria-hidden="true">
+              <span class="enable">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M212.686 315.314L120 408l32.922 31.029c15.12 15.12 4.412 40.971-16.97 40.971h-112C10.697 480 0 469.255 0 456V344c0-21.382 25.803-32.09 40.922-16.971L72 360l92.686-92.686c6.248-6.248 16.379-6.248 22.627 0l25.373 25.373c6.249 6.248 6.249 16.378 0 22.627zm22.628-118.628L328 104l-32.922-31.029C279.958 57.851 290.666 32 312.048 32h112C437.303 32 448 42.745 448 56v112c0 21.382-25.803 32.09-40.922 16.971L376 152l-92.686 92.686c-6.248 6.248-16.379 6.248-22.627 0l-25.373-25.373c-6.249-6.248-6.249-16.378 0-22.627z"/></svg>
+              </span>
+              <span class="disable">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M4.686 427.314L104 328l-32.922-31.029C55.958 281.851 66.666 256 88.048 256h112C213.303 256 224 266.745 224 280v112c0 21.382-25.803 32.09-40.922 16.971L152 376l-99.314 99.314c-6.248 6.248-16.379 6.248-22.627 0L4.686 449.941c-6.248-6.248-6.248-16.379 0-22.627zM443.314 84.686L344 184l32.922 31.029c15.12 15.12 4.412 40.971-16.97 40.971h-112C234.697 256 224 245.255 224 232V120c0-21.382 25.803-32.09 40.922-16.971L296 136l99.314-99.314c6.248-6.248 16.379-6.248 22.627 0l25.373 25.373c6.248 6.248 6.248 16.379 0 22.627z"/></svg>
+              </span>
+            </button>
+          </div>
+        </div>
+        <div id="searchbox" role="search">
+          <form id="search-form" class="search" style="display: none" action="../search.html" method="get">
+            <input type="search" name="q" placeholder="Search ..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
+            <button>Go</button>
+          </form>
+        </div>
+      </div>
+    </header>
+    <nav>
+      <a href="../basics/clicking_and_scrolling.html" class="nav-icon previous" title="previous:&#13;Clicking and scrolling" aria-label="Previous topic" accesskey="P" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M31.7 239l136-136c9.4-9.4 24.6-9.4 33.9 0l22.6 22.6c9.4 9.4 9.4 24.6 0 33.9L127.9 256l96.4 96.4c9.4 9.4 9.4 24.6 0 33.9L201.7 409c-9.4 9.4-24.6 9.4-33.9 0l-136-136c-9.5-9.4-9.5-24.6-.1-34z"/></svg>
+      </a>
+      <a href="../contributing_code.html" class="nav-icon next" title="next:&#13;Contributing code to selene" aria-label="Next topic" accesskey="N" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M224.3 273l-136 136c-9.4 9.4-24.6 9.4-33.9 0l-22.6-22.6c-9.4-9.4-9.4-24.6 0-33.9l96.4-96.4-96.4-96.4c-9.4-9.4-9.4-24.6 0-33.9L54.3 103c9.4-9.4 24.6-9.4 33.9 0l136 136c9.5 9.4 9.5 24.6.1 34z"/></svg>
+      </a>
+    </nav>
+
+    <nav class="relbar">
+      <a class="previous" href="../basics/clicking_and_scrolling.html" aria-label="Previous topic" >
+        <div class="icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M257.5 445.1l-22.2 22.2c-9.4 9.4-24.6 9.4-33.9 0L7 273c-9.4-9.4-9.4-24.6 0-33.9L201.4 44.7c9.4-9.4 24.6-9.4 33.9 0l22.2 22.2c9.5 9.5 9.3 25-.4 34.3L136.6 216H424c13.3 0 24 10.7 24 24v32c0 13.3-10.7 24-24 24H136.6l120.5 114.8c9.8 9.3 10 24.8.4 34.3z"/></svg>
+        </div>
+        <div class="title">
+          <span class="text">
+            <span class="direction">previous</span>
+            Clicking and scrolling
+          </span>
+        </div>
+      </a>
+      <a class="next" href="../contributing_code.html" aria-label="Next topic" >
+        <div class="title">
+          <span class="text">
+            <span class="direction">next</span>
+            Contributing code to selene
+          </span>
+        </div>
+        <div class="icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M190.5 66.9l22.2-22.2c9.4-9.4 24.6-9.4 33.9 0L441 239c9.4 9.4 9.4 24.6 0 33.9L246.6 467.3c-9.4 9.4-24.6 9.4-33.9 0l-22.2-22.2c-9.5-9.5-9.3-25 .4-34.3L311.4 296H24c-13.3 0-24-10.7-24-24v-32c0-13.3 10.7-24 24-24h287.4L190.9 101.2c-9.8-9.3-10-24.8-.4-34.3z"/></svg>
+        </div>
+      </a>
+    </nav>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+<section id="Building-website-specific-functionality">
+<h1>Building website-specific functionality<a class="headerlink" href="#Building-website-specific-functionality" title="Link to this heading">¶</a></h1>
+<p>The real power of selene comes from using it as a starting framework from which to develop website-specific functionality.</p>
+<p>Here, we illustrate building website specific functionality for the CMA’s own website:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">selenium.webdriver.common.by</span> <span class="kn">import</span> <span class="n">By</span>
+
+<span class="kn">from</span> <span class="nn">selene.core.logger</span> <span class="kn">import</span> <span class="n">get_logger</span>
+<span class="kn">from</span> <span class="nn">selene.core.selenium.driver</span> <span class="kn">import</span> <span class="n">get_driver</span><span class="p">,</span> <span class="n">stop_driver</span>
+<span class="kn">from</span> <span class="nn">selene.core.selenium.page</span> <span class="kn">import</span> <span class="n">PageSelene</span>
+<span class="kn">from</span> <span class="nn">selene.core.selenium.conditions</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">selene.core.selenium.crawler</span> <span class="kn">import</span> <span class="n">CrawlerSelene</span>
+
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">sleep</span>
+</pre></div>
+</div>
+</div>
+<section id="Defining-our-new-Page-objects">
+<h2>Defining our new Page objects<a class="headerlink" href="#Defining-our-new-Page-objects" title="Link to this heading">¶</a></h2>
+<p>The starting point for any scraping in selene is the page object. We define two page objects that inherit the general PageSelene class.</p>
+<p>These new objects represent types of page on the site. We attach methods to these new objects to carry out certain tasks on those pages, such as closing cookie banners, clicking icons and retrieving elements of interest.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">PageCmaCaseList</span><span class="p">(</span><span class="n">PageSelene</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; a class for pages of the form https://www.gov.uk/cma-cases &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">remove_cookie_banner</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">driver</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; accept cookie banner &quot;&quot;&quot;</span>
+        <span class="n">accept_button</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">By</span><span class="o">.</span><span class="n">XPATH</span><span class="p">,</span> <span class="s1">&#39;//*[@id=&quot;global-cookie-message&quot;]/div[1]/div/div[2]/button[1]&#39;</span><span class="p">)</span>
+        <span class="n">accept_button</span><span class="o">.</span><span class="n">click</span><span class="p">(</span><span class="n">driver</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">get_case_links</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; retrieve the links to any cases listed on a case list page &quot;&quot;&quot;</span>
+        <span class="n">url_regex</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">&#39;.*gem-c-document.*govuk-link.*&#39;</span><span class="p">)</span> <span class="c1">#  note you can use regex to find elements if you need to</span>
+        <span class="n">link_elements</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_all_soup</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;class&#39;</span><span class="p">:</span> <span class="n">url_regex</span><span class="p">})</span>
+        <span class="n">links</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;href&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">link_elements</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">links</span>
+
+    <span class="k">def</span> <span class="nf">click_next_page</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">driver</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; find the next page button and click on it &quot;&quot;&quot;</span>
+        <span class="n">next_page</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">By</span><span class="o">.</span><span class="n">XPATH</span><span class="p">,</span> <span class="s1">&#39;//*[@id=&quot;js-pagination&quot;]/nav/ul/li/a&#39;</span><span class="p">)</span>
+        <span class="n">next_page</span><span class="o">.</span><span class="n">click</span><span class="p">(</span><span class="n">driver</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">PageCmaCase</span><span class="p">(</span><span class="n">PageSelene</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; a class for the webpage of specific CMA cases, e.g. https://www.gov.uk/cma-cases/vetpartners-limited-slash-goddard-holdco-limited-merger-inquiry &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">get_case_name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; return the name of the case &quot;&quot;&quot;</span>
+        <span class="n">name_text</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_soup</span><span class="p">(</span><span class="s1">&#39;h1&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;class&#39;</span><span class="p">:</span> <span class="s1">&#39;gem-c-title__text govuk-heading-l&#39;</span><span class="p">})</span><span class="o">.</span><span class="n">text</span>
+        <span class="k">if</span> <span class="n">name_text</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">name_text</span> <span class="o">=</span> <span class="n">name_text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">name_text</span>
+
+    <span class="k">def</span> <span class="nf">get_published_date</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">driver</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; return published date for case &quot;&quot;&quot;</span>
+        <span class="n">date_text</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">By</span><span class="o">.</span><span class="n">XPATH</span><span class="p">,</span> <span class="s1">&#39;//*[@id=&quot;content&quot;]/div[2]/div/div[1]/div/dl/dd[2]&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span>
+        <span class="k">if</span> <span class="n">date_text</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">date_text</span> <span class="o">=</span> <span class="n">date_text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">date_text</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="Crawling-the-site-using-our-new-objects">
+<h2>Crawling the site using our new objects<a class="headerlink" href="#Crawling-the-site-using-our-new-objects" title="Link to this heading">¶</a></h2>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">driver</span> <span class="o">=</span> <span class="n">get_driver</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="mi">1024</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">768</span><span class="p">)</span>
+<span class="n">logger</span> <span class="o">=</span> <span class="n">get_logger</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="s1">&#39;INFO&#39;</span><span class="p">)</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;http://www.gov.uk/cma-cases&quot;</span>
+<span class="n">page</span> <span class="o">=</span> <span class="n">PageCmaCaseList</span><span class="o">.</span><span class="n">from_url</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">logger</span> <span class="o">=</span> <span class="n">logger</span><span class="p">,</span> <span class="n">string</span><span class="o">=</span><span class="s2">&quot;cma-cases&quot;</span><span class="p">)</span> <span class="c1"># the string parameter acts as a check that we have navigated to the correct url</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+2022-06-13 18:38:17 INFO     Logger started
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">page</span><span class="o">.</span><span class="n">click_next_page</span><span class="p">(</span><span class="n">driver</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">page</span><span class="o">.</span><span class="n">screenshot_to_notebook</span><span class="p">(</span><span class="n">driver</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/websites_websites_8_0.png" class="no-scaled-link" src="../_images/websites_websites_8_0.png" style="width: 600px; height: 400px;" />
+</div>
+</div>
+<p>First things first, we need to close the cookie banner.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">page</span><span class="o">.</span><span class="n">remove_cookie_banner</span><span class="p">(</span><span class="n">driver</span><span class="p">)</span>
+<span class="n">page</span><span class="o">.</span><span class="n">screenshot_to_notebook</span><span class="p">(</span><span class="n">driver</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/websites_websites_10_0.png" class="no-scaled-link" src="../_images/websites_websites_10_0.png" style="width: 600px; height: 400px;" />
+</div>
+</div>
+<p>Now, we grab the urls for the individual cases on the first page:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">urls</span> <span class="o">=</span> <span class="n">page</span><span class="o">.</span><span class="n">get_case_links</span><span class="p">()</span>
+<span class="n">urls</span><span class="p">[:</span><span class="mi">3</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[&#39;/cma-cases/dye-and-durham-uk-limited-slash-tm-group-uk-limited-merger-inquiry&#39;,
+ &#39;/cma-cases/royalelife-slash-stately-albion-limited-and-slash-or-pathfinder-park-homes-holding-limited-merger-inquiry&#39;,
+ &#39;/cma-cases/ali-holding-srl-slash-welbilt-inc-merger-inquiry&#39;]
+</pre></div></div>
+</div>
+<p>We visit the first 3 links (using our second PageCmaCase page object) and grab the case name and published date and store this in a pandas dataframe.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">case_names</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">published_dates</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">url</span> <span class="ow">in</span> <span class="n">urls</span><span class="p">[:</span><span class="mi">3</span><span class="p">]:</span>
+    <span class="n">full_url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;http://www.gov.uk</span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="n">page_case</span> <span class="o">=</span> <span class="n">PageCmaCase</span><span class="o">.</span><span class="n">from_url</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">full_url</span><span class="p">,</span> <span class="n">logger</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+    <span class="n">case_names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">page_case</span><span class="o">.</span><span class="n">get_case_name</span><span class="p">())</span>
+    <span class="n">published_dates</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">page_case</span><span class="o">.</span><span class="n">get_published_date</span><span class="p">(</span><span class="n">driver</span><span class="p">))</span>
+
+<span class="n">results</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;case&quot;</span><span class="p">:</span> <span class="n">case_names</span><span class="p">,</span>
+                        <span class="s2">&quot;published_date&quot;</span><span class="p">:</span> <span class="n">published_dates</span><span class="p">})</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>case</th>
+      <th>published_date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Dye &amp; Durham (UK) Limited / TM Group (UK) Limi...</td>
+      <td>1 September 2021</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>RoyaleLife / Stately-Albion Limited and/or Pat...</td>
+      <td>24 March 2022</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Ali Holding S.r.l. / Welbilt, Inc merger inquiry</td>
+      <td>10 March 2022</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+</section>
+<section id="Putting-it-all-together">
+<h2>Putting it all together<a class="headerlink" href="#Putting-it-all-together" title="Link to this heading">¶</a></h2>
+<p>Let’s imagine you wanted to collect the case names / published dates for all CMA cases. The workflow might look something like this:</p>
+<ol class="arabic simple">
+<li><p>Load first case list page</p></li>
+<li><p>Generate all urls for inidividual cases</p></li>
+<li><p>Load these case pages in turn, collating the required information</p></li>
+<li><p>Click next page</p></li>
+<li><p>Repeat steps 2 to 4</p></li>
+</ol>
+<p>You can use the selene Crawler class for executing this type of workflow, as in the example below:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">CrawlerCma</span><span class="p">(</span><span class="n">CrawlerSelene</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; a crawler object to collect data from the CMA website on cases &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">collect_case_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">driver</span><span class="p">,</span> <span class="n">logger</span><span class="p">,</span> <span class="n">page_limit</span><span class="p">,</span> <span class="n">start_url</span> <span class="o">=</span> <span class="s2">&quot;http://www.gov.uk/cma-cases&quot;</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; a function to crawl CMA case lists and collect case names / published dates &quot;&quot;&quot;</span>
+        <span class="n">case_names</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">published_dates</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">page_count</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">page_list</span> <span class="o">=</span> <span class="n">PageCmaCaseList</span><span class="o">.</span><span class="n">from_url</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">start_url</span><span class="p">,</span> <span class="n">logger</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">string</span><span class="o">=</span><span class="s2">&quot;cma&quot;</span><span class="p">)</span>
+
+        <span class="k">while</span> <span class="n">page_count</span> <span class="o">&lt;=</span> <span class="n">page_limit</span><span class="p">:</span>
+            <span class="n">page_list</span><span class="o">.</span><span class="n">screenshot_to_notebook</span><span class="p">(</span><span class="n">driver</span><span class="p">)</span>
+            <span class="n">page_urls</span> <span class="o">=</span> <span class="n">page_list</span><span class="o">.</span><span class="n">get_case_links</span><span class="p">()</span>
+            <span class="n">current_handle</span> <span class="o">=</span> <span class="n">driver</span><span class="o">.</span><span class="n">window_handles</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+            <span class="k">for</span> <span class="n">url</span> <span class="ow">in</span> <span class="n">page_urls</span><span class="p">[:</span><span class="mi">5</span><span class="p">]:</span> <span class="c1"># just getting the first 5 links to save some time!</span>
+                <span class="n">full_url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;http://www.gov.uk</span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s2">&quot;</span>
+                <span class="n">sleep</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">low</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="mi">5</span><span class="p">))</span> <span class="c1"># out of politeness</span>
+                <span class="n">page_case</span> <span class="o">=</span> <span class="n">PageCmaCase</span><span class="o">.</span><span class="n">new_tab</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">full_url</span><span class="p">,</span> <span class="n">logger</span><span class="o">=</span><span class="n">logger</span><span class="p">)</span>
+                <span class="n">case_names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">page_case</span><span class="o">.</span><span class="n">get_case_name</span><span class="p">())</span>
+                <span class="n">published_dates</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">page_case</span><span class="o">.</span><span class="n">get_published_date</span><span class="p">(</span><span class="n">driver</span><span class="p">))</span>
+                <span class="n">page_case</span><span class="o">.</span><span class="n">close_all_tabs_except_specified_tab</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">handle_keep</span><span class="o">=</span><span class="n">current_handle</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Number of tabs open: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">driver</span><span class="o">.</span><span class="n">window_handles</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+            <span class="n">page_list</span><span class="o">.</span><span class="n">click_next_page</span><span class="p">(</span><span class="n">driver</span><span class="p">)</span>
+            <span class="n">page_count</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">page_list</span> <span class="o">=</span> <span class="n">PageCmaCaseList</span><span class="o">.</span><span class="n">from_url</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">driver</span><span class="o">.</span><span class="n">current_url</span><span class="p">,</span> <span class="n">logger</span><span class="o">=</span><span class="n">logger</span><span class="p">,</span> <span class="n">string</span><span class="o">=</span><span class="s2">&quot;cma&quot;</span><span class="p">)</span>
+
+        <span class="n">results</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;case&quot;</span><span class="p">:</span> <span class="n">case_names</span><span class="p">,</span>
+                        <span class="s2">&quot;published_date&quot;</span><span class="p">:</span> <span class="n">published_dates</span><span class="p">})</span>
+        <span class="k">return</span> <span class="n">results</span>
+</pre></div>
+</div>
+</div>
+<p>Let’s see it in action:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">crawler</span> <span class="o">=</span> <span class="n">CrawlerCma</span><span class="p">()</span>
+<span class="n">output</span> <span class="o">=</span> <span class="n">crawler</span><span class="o">.</span><span class="n">collect_case_data</span><span class="p">(</span><span class="n">driver</span><span class="o">=</span><span class="n">driver</span><span class="p">,</span> <span class="n">logger</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">page_limit</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+2022-06-13 18:38:50 INFO     Logger started
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/websites_websites_20_1.png" class="no-scaled-link" src="../_images/websites_websites_20_1.png" style="width: 600px; height: 400px;" />
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+2022-06-13 18:39:12 DEBUG    Crawler: Number of tabs open: 1
+2022-06-13 18:39:36 DEBUG    Crawler: Number of tabs open: 1
+2022-06-13 18:40:00 DEBUG    Crawler: Number of tabs open: 1
+2022-06-13 18:40:24 DEBUG    Crawler: Number of tabs open: 1
+2022-06-13 18:40:49 DEBUG    Crawler: Number of tabs open: 1
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/websites_websites_20_3.png" class="no-scaled-link" src="../_images/websites_websites_20_3.png" style="width: 600px; height: 400px;" />
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+2022-06-13 18:41:14 DEBUG    Crawler: Number of tabs open: 1
+2022-06-13 18:41:37 DEBUG    Crawler: Number of tabs open: 1
+2022-06-13 18:42:03 DEBUG    Crawler: Number of tabs open: 1
+2022-06-13 18:42:29 DEBUG    Crawler: Number of tabs open: 1
+2022-06-13 18:42:54 DEBUG    Crawler: Number of tabs open: 1
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">output</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>case</th>
+      <th>published_date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Dye &amp; Durham (UK) Limited / TM Group (UK) Limi...</td>
+      <td>1 September 2021</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>RoyaleLife / Stately-Albion Limited and/or Pat...</td>
+      <td>24 March 2022</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Ali Holding S.r.l. / Welbilt, Inc merger inquiry</td>
+      <td>10 March 2022</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>UK fuel retail market review</td>
+      <td>13 June 2022</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Investigation into a capacity sharing agreemen...</td>
+      <td>12 November 2021</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Brookfield Asset Management Inc. / Scotia Gas ...</td>
+      <td>11 January 2022</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Investigation into Meta's (formerly Facebook) ...</td>
+      <td>4 June 2021</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Self-funded IVF: consumer law guidance</td>
+      <td>7 February 2020</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Financial services sector: suspected anti-comp...</td>
+      <td>16 November 2018</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Huws Gray Ltd / Grafton Plc</td>
+      <td>11 October 2021</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<p>This code could be written outside of selene, but sometimes it’s helpful to retain useful code within the selene framework so it can be re-used in future.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">stop_driver</span><span class="p">(</span><span class="n">driver</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</section>
+</section>
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+
+          <div class="sidebar-resize-handle"></div>
+
+<h3><a href="../index.html">Table of Contents</a></h3>
+<p class="caption" role="heading"><span class="caption-text">The basics</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../basics/element_retrieval.html">Gathering data from a webpage with selene</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../basics/clicking_and_scrolling.html">Clicking and scrolling</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Website-specific functionality</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Building website-specific functionality</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Contributing</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../contributing_code.html">Contributing code to selene</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Writing documentation and user guides</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api/selene.core.html">Selene core functionality and parent objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/selene.selenium.html">Selene selenium-based functionality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/selene.soup.html">Selene soup-based functionality</a></li>
+</ul>
+
+<div><hr class="docutils"></div>
+<ul>
+  <li class="toctree-l1"><a class="reference internal" href="../genindex.html" accesskey="I">General Index</a></li>
+  <li class="toctree-l1"><a class="reference internal" href="../py-modindex.html">Python Module Index</a></li>
+</ul>
+<div id="ethical-ad-placement"></div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+
+    <nav class="relbar">
+      <a class="previous" href="../basics/clicking_and_scrolling.html" aria-label="Previous topic" >
+        <div class="icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M257.5 445.1l-22.2 22.2c-9.4 9.4-24.6 9.4-33.9 0L7 273c-9.4-9.4-9.4-24.6 0-33.9L201.4 44.7c9.4-9.4 24.6-9.4 33.9 0l22.2 22.2c9.5 9.5 9.3 25-.4 34.3L136.6 216H424c13.3 0 24 10.7 24 24v32c0 13.3-10.7 24-24 24H136.6l120.5 114.8c9.8 9.3 10 24.8.4 34.3z"/></svg>
+        </div>
+        <div class="title">
+          <span class="text">
+            <span class="direction">previous</span>
+            Clicking and scrolling
+          </span>
+        </div>
+      </a>
+      <a class="next" href="../contributing_code.html" aria-label="Next topic" >
+        <div class="title">
+          <span class="text">
+            <span class="direction">next</span>
+            Contributing code to selene
+          </span>
+        </div>
+        <div class="icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M190.5 66.9l22.2-22.2c9.4-9.4 24.6-9.4 33.9 0L441 239c9.4 9.4 9.4 24.6 0 33.9L246.6 467.3c-9.4 9.4-24.6 9.4-33.9 0l-22.2-22.2c-9.5-9.5-9.3-25 .4-34.3L311.4 296H24c-13.3 0-24-10.7-24-24v-32c0-13.3 10.7-24 24-24h287.4L190.9 101.2c-9.8-9.3-10-24.8-.4-34.3z"/></svg>
+        </div>
+      </a>
+    </nav>
+
+    <footer role="contentinfo">
+      &#169; Copyright 2022, CMA DaTA Unit.
+      Created using <a class="reference external" href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+      <a class="reference external" href="https://insipid-sphinx-theme.readthedocs.io/">Insipid Theme</a>.
+<a class="reference internal" href="../_sources/websites/websites.ipynb.txt" rel="nofollow">Show Source</a>.
+    </footer>
+  </body>
+</html>

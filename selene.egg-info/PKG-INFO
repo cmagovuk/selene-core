@@ -1,0 +1,17 @@
+Metadata-Version: 2.1
+Name: selene
+Version: 1.0.2
+License-File: LICENSE
+Requires-Dist: numpy
+Requires-Dist: selenium
+Requires-Dist: beautifulsoup4
+Requires-Dist: lxml
+Requires-Dist: ipython
+Requires-Dist: requests
+Requires-Dist: pyvirtualdisplay
+Provides-Extra: tests
+Requires-Dist: coverage; extra == "tests"
+Requires-Dist: interrogate; extra == "tests"
+Requires-Dist: pytest; extra == "tests"
+Requires-Dist: pytest-cov; extra == "tests"
+Requires-Dist: black; extra == "tests"
